@@ -43,7 +43,11 @@ CREATE TABLE meal_ingredient_association (
 DROP TABLE IF EXISTS meals;
 
 CREATE TABLE meals(
+<<<<<<< HEAD
+   idMeal                      INTEGER  NOT NULL 
+=======
    idMeal                      INTEGER  NOT NULL
+>>>>>>> 38e2740bcbba0e0133a3dc70494fffc7d888acc0
   ,strMeal                     VARCHAR(200) NOT NULL
   ,strDrinkAlternate           VARCHAR(200)
   ,strCategory                 VARCHAR(200)
@@ -95,8 +99,8 @@ CREATE TABLE meals(
   ,strSource                   VARCHAR(200)
   ,strImageSource              VARCHAR(200)
   ,strCreativeCommonsConfirmed VARCHAR(200)
-  ,dateModified                VARCHAR(200)
-  ,CONSTRAINT PK_meal PRIMARY KEY (idMeal)
+  ,dateModified                VARCHAR(200),
+  CONSTRAINT PK_meal PRIMARY KEY (idMeal)
 );
 
 COMMIT TRANSACTION;
