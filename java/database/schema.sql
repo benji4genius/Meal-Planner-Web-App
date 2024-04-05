@@ -42,60 +42,60 @@ CREATE TABLE meal_ingredient_association (
 
 DROP TABLE IF EXISTS meals;
 
-CREATE TABLE meals (
-   idMeal                      INTEGER  NOT NULL
-  ,strMeal                     VARCHAR(50) NOT NULL
-  ,strDrinkAlternate           VARCHAR(50)
-  ,strCategory                 VARCHAR(50) NOT NULL
-  ,strArea                     VARCHAR(20) NOT NULL
-  ,strInstructions             TEXT NOT NULL
-  ,strMealThumb                VARCHAR(100) NOT NULL
-  ,strTags                     VARCHAR(20)
-  ,strYoutube                  VARCHAR(50) NOT NULL
-  ,strIngredient1              VARCHAR(20) NOT NULL
-  ,strIngredient2              VARCHAR(20) NOT NULL
-  ,strIngredient3              VARCHAR(20) NOT NULL
-  ,strIngredient4              VARCHAR(20) NOT NULL
-  ,strIngredient5              VARCHAR(20) NOT NULL
-  ,strIngredient6              VARCHAR(50) NOT NULL
-  ,strIngredient7              VARCHAR(20) NOT NULL
-  ,strIngredient8              VARCHAR(20) NOT NULL
-  ,strIngredient9              VARCHAR(20) NOT NULL
-  ,strIngredient10             VARCHAR(20)
-  ,strIngredient11             VARCHAR(20)
-  ,strIngredient12             VARCHAR(5)
-  ,strIngredient13             VARCHAR(5)
-  ,strIngredient14             VARCHAR(30)
-  ,strIngredient15             VARCHAR(30)
-  ,strIngredient16             VARCHAR(30)
-  ,strIngredient17             VARCHAR(30)
-  ,strIngredient18             VARCHAR(30)
-  ,strIngredient19             VARCHAR(30)
-  ,strIngredient20             VARCHAR(30)
-  ,strMeasure1                 VARCHAR(20) NOT NULL
-  ,strMeasure2                 VARCHAR(20) NOT NULL
-  ,strMeasure3                 VARCHAR(20) NOT NULL
-  ,strMeasure4                 VARCHAR(20) NOT NULL
-  ,strMeasure5                 VARCHAR(20) NOT NULL
-  ,strMeasure6                 VARCHAR(20) NOT NULL
-  ,strMeasure7                 VARCHAR(20) NOT NULL
-  ,strMeasure8                 VARCHAR(20) NOT NULL
-  ,strMeasure9                 VARCHAR(20) NOT NULL
-  ,strMeasure10                VARCHAR(20)
-  ,strMeasure11                VARCHAR(20)
-  ,strMeasure12                VARCHAR(20)
-  ,strMeasure13                VARCHAR(20)
-  ,strMeasure14                VARCHAR(20)
-  ,strMeasure15                VARCHAR(20)
-  ,strMeasure16                VARCHAR(20)
-  ,strMeasure17                VARCHAR(20)
-  ,strMeasure18                VARCHAR(20)
-  ,strMeasure19                VARCHAR(20)
-  ,strMeasure20                VARCHAR(20)
-  ,strSource                   VARCHAR(80)
-  ,strImageSource              VARCHAR(30)
-  ,strCreativeCommonsConfirmed VARCHAR(30)
-  ,dateModified                VARCHAR(30),
+CREATE TABLE meals(
+   idMeal                      INTEGER  NOT NULL PRIMARY KEY
+  ,strMeal                     VARCHAR(200) NOT NULL
+  ,strDrinkAlternate           VARCHAR(200)
+  ,strCategory                 VARCHAR(200)
+  ,strArea                     VARCHAR(200)
+  ,strInstructions             TEXT
+  ,strMealThumb                VARCHAR(200)
+  ,strTags                     VARCHAR(200)
+  ,strYoutube                  VARCHAR(200)
+  ,strIngredient1              VARCHAR(200)
+  ,strIngredient2              VARCHAR(200)
+  ,strIngredient3              VARCHAR(200)
+  ,strIngredient4              VARCHAR(200)
+  ,strIngredient5              VARCHAR(200)
+  ,strIngredient6              VARCHAR(200)
+  ,strIngredient7              VARCHAR(200)
+  ,strIngredient8              VARCHAR(200)
+  ,strIngredient9              VARCHAR(200)
+  ,strIngredient10             VARCHAR(200)
+  ,strIngredient11             VARCHAR(200)
+  ,strIngredient12             VARCHAR(200)
+  ,strIngredient13             VARCHAR(200)
+  ,strIngredient14             VARCHAR(200)
+  ,strIngredient15             VARCHAR(200)
+  ,strIngredient16             VARCHAR(200)
+  ,strIngredient17             VARCHAR(200)
+  ,strIngredient18             VARCHAR(200)
+  ,strIngredient19             VARCHAR(200)
+  ,strIngredient20             VARCHAR(200)
+  ,strMeasure1                 VARCHAR(200)
+  ,strMeasure2                 VARCHAR(200)
+  ,strMeasure3                 VARCHAR(200)
+  ,strMeasure4                 VARCHAR(200)
+  ,strMeasure5                 VARCHAR(200)
+  ,strMeasure6                 VARCHAR(200)
+  ,strMeasure7                 VARCHAR(200)
+  ,strMeasure8                 VARCHAR(200)
+  ,strMeasure9                 VARCHAR(200)
+  ,strMeasure10                VARCHAR(200)
+  ,strMeasure11                VARCHAR(200)
+  ,strMeasure12                VARCHAR(200)
+  ,strMeasure13                VARCHAR(200)
+  ,strMeasure14                VARCHAR(200)
+  ,strMeasure15                VARCHAR(200)
+  ,strMeasure16                VARCHAR(200)
+  ,strMeasure17                VARCHAR(200)
+  ,strMeasure18                VARCHAR(200)
+  ,strMeasure19                VARCHAR(200)
+  ,strMeasure20                VARCHAR(200)
+  ,strSource                   VARCHAR(200)
+  ,strImageSource              VARCHAR(200)
+  ,strCreativeCommonsConfirmed VARCHAR(200)
+  ,dateModified                VARCHAR(200)
   CONSTRAINT PK_meal PRIMARY KEY (idMeal)
 );
 
