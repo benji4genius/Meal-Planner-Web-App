@@ -43,11 +43,10 @@ CREATE TABLE meal_ingredient_association (
 DROP TABLE IF EXISTS meals;
 
 CREATE TABLE meals(
-<<<<<<< HEAD
+
    idMeal                      INTEGER  NOT NULL 
-=======
+
    idMeal                      INTEGER  NOT NULL
->>>>>>> 38e2740bcbba0e0133a3dc70494fffc7d888acc0
   ,strMeal                     VARCHAR(200) NOT NULL
   ,strDrinkAlternate           VARCHAR(200)
   ,strCategory                 VARCHAR(200)
