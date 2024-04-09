@@ -4,53 +4,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Meal {
-    private int mealId;
+    private int idmeal;
 
-    private String mealName;
+    private String strmeal;
 
-    private String instructions;
+    private String strinstructions;
 
     private List<MealIngredient> ingredientList;
 
     //TO DO: Ingredient Measurements, Ingredient Tags//
 
-    private String image;
+    private String strmealthumb;
 
-    private String tutorialVideo;
+    private String stryoutube;
 
     public Meal(){};
 
-    public Meal(int mealId, String mealName, String instructions, List<MealIngredient> ingredientList, String image, String tutorialVideo) {
-        this.mealId = mealId;
-        this.mealName = mealName;
-        this.instructions = instructions;
+    public Meal(int idmeal, String strmeal, String strinstructions, List<MealIngredient> ingredientList, String strmealthumb, String stryoutube) {
+        this.idmeal = idmeal;
+        this.strmeal = strmeal;
+        this.strinstructions = strinstructions;
         this.ingredientList = ingredientList;
-        this.image = image;
-        this.tutorialVideo = tutorialVideo;
+        this.strmealthumb = strmealthumb;
+        this.stryoutube = stryoutube;
     }
 
-    public int getMealId() {
-        return mealId;
+    public int getIdmeal() {
+        return idmeal;
     }
 
-    public void setMealId(int mealId) {
-        this.mealId = mealId;
+    public void setIdmeal(int idmeal) {
+        this.idmeal = idmeal;
     }
 
-    public String getMealName() {
-        return mealName;
+    public String getStrmeal() {
+        return strmeal;
     }
 
-    public void setMealName(String mealName) {
-        this.mealName = mealName;
+    public void setStrmeal(String strmeal) {
+        this.strmeal = strmeal;
     }
 
-    public String getInstructions() {
-        return instructions;
+    public String getStrinstructions() {
+        return strinstructions;
     }
 
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
+    public void setStrinstructions(String strinstructions) {
+        this.strinstructions = strinstructions;
     }
 
     public List<MealIngredient> getIngredientList() {
@@ -61,19 +61,19 @@ public class Meal {
         this.ingredientList = ingredientList;
     }
 
-    public String getImage() {
-        return image;
+    public String getStrmealthumb() {
+        return strmealthumb;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setStrmealthumb(String strmealthumb) {
+        this.strmealthumb = strmealthumb;
     }
 
-    public String getTutorialVideo() {
-        return tutorialVideo;
+    public String getStryoutube() {
+        return stryoutube;
     }
 
-    public void setTutorialVideo(String tutorialVideo) {
-        this.tutorialVideo = tutorialVideo;
+    public void setStryoutube(String stryoutube) {
+        this.stryoutube = stryoutube;
     }
 }

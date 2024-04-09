@@ -4,14 +4,14 @@ import com.techelevator.model.Meal;
 
 public interface MealDao {
 
-Meal getMealById( int mealId);
+Meal getMealById( int idmeal);
 
 
-Meal getAllMeals();
+Meal List<Meal> getAllMeals();
 
 Meal addMeal(Meal meal);
 
-Meal deleteMeal( int mealId);
+Meal deleteMeal( int idmeal);
 
 
 

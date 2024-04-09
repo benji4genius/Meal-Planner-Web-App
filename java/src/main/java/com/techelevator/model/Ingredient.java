@@ -1,41 +1,41 @@
 package com.techelevator.model;
 
 public class Ingredient {
-    private int ingredientId;
+    private int idingredient;
 
-    private String ingredientName;
+    private String stringredient;
 
-    private String ingredientDescription;
+    private String strdescription;
 
     public Ingredient(){};
 
-    public Ingredient(int ingredientId, String ingredientName, String ingredientDescription){
-        this.ingredientId = ingredientId;
-        this.ingredientName = ingredientName;
-        this.ingredientDescription = ingredientDescription;
+    public Ingredient(int idingredient, String stringredient, String strdescription) {
+        this.idingredient = idingredient;
+        this.stringredient = stringredient;
+        this.strdescription = strdescription;
     }
 
-    public int getIngredientId() {
-        return ingredientId;
+    public int getIdingredient() {
+        return idingredient;
     }
 
-    public void setIngredientId(int ingredientId) {
-        this.ingredientId = ingredientId;
+    public String getStringredient() {
+        return stringredient;
     }
 
-    public String getIngredientName() {
-        return ingredientName;
+    public String getStrdescription() {
+        return strdescription;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
+    public void setIdingredient(int idingredient) {
+        this.idingredient = idingredient;
     }
 
-    public String getIngredientDescription() {
-        return ingredientDescription;
+    public void setStringredient(String stringredient) {
+        this.stringredient = stringredient;
     }
 
-    public void setIngredientDescription(String ingredientDescription) {
-        this.ingredientDescription = ingredientDescription;
+    public void setStrdescription(String strdescription) {
+        this.strdescription = strdescription;
     }
 }

@@ -5,7 +5,7 @@ import com.techelevator.model.Ingredient;
 import java.util.List;
 
 public interface IngredientDao {
-    public Ingredient getIngredientById(int ingredientId);
+    public Ingredient getIngredientById(int idingredient);
 
     public List<Ingredient> getListOfAllIngredients();
 
@@ -13,6 +13,6 @@ public interface IngredientDao {
 
     public Ingredient updateIngredient (Ingredient ingredient);
 
-    public Ingredient deleteIngredient (int ingredientID);
+    public Ingredient deleteIngredient (int idingredient);
 
 }

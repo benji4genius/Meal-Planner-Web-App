@@ -3,43 +3,45 @@ package com.techelevator.model;
 import java.util.List;
 
 public class MealPlan {
-    private int mealPlanId;
+    private int meal_plan_id;
 
-    private String mealPlanName;
+    private String name;
 
-    private String mealPlanDescription;
+    private String description;
 
     private List<Meal> mealList;
 
-    public MealPlan(int mealPlanId, String mealPlanName, String mealPlanDescription, List<Meal> mealList) {
-        this.mealPlanId = mealPlanId;
-        this.mealPlanName = mealPlanName;
-        this.mealPlanDescription = mealPlanDescription;
+    public MealPlan(){};
+
+    public MealPlan(int meal_plan_id, String name, String description, List<Meal> mealList) {
+        this.meal_plan_id = meal_plan_id;
+        this.name = name;
+        this.description = description;
         this.mealList = mealList;
     }
 
-    public int getMealPlanId() {
-        return mealPlanId;
+    public int getMeal_plan_id() {
+        return meal_plan_id;
     }
 
-    public void setMealPlanId(int mealPlanId) {
-        this.mealPlanId = mealPlanId;
+    public void setMeal_plan_id(int meal_plan_id) {
+        this.meal_plan_id = meal_plan_id;
     }
 
-    public String getMealPlanName() {
-        return mealPlanName;
+    public String getName() {
+        return name;
     }
 
-    public void setMealPlanName(String mealPlanName) {
-        this.mealPlanName = mealPlanName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMealPlanDescription() {
-        return mealPlanDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMealPlanDescription(String mealPlanDescription) {
-        this.mealPlanDescription = mealPlanDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Meal> getMealList() {

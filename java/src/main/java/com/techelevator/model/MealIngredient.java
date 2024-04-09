@@ -1,23 +1,28 @@
 package com.techelevator.model;
 public class MealIngredient extends Ingredient{
 
-    private int mealId;
+    private int idmeal;
     private String measurement;
 
     public MealIngredient(){};
 
-    public MealIngredient(int ingredientId, String ingredientName, String ingredientDescription, int mealId, String measurement){
-        super(ingredientId, ingredientName, ingredientDescription);
-        this.mealId = mealId;
+    public MealIngredient(int idmeal, String measurement) {
+        this.idmeal = idmeal;
         this.measurement = measurement;
     }
 
-    public int getMealId() {
-        return mealId;
+    public MealIngredient(int idingredient, String stringredient, String strdescription, int idmeal, String measurement) {
+        super(idingredient, stringredient, strdescription);
+        this.idmeal = idmeal;
+        this.measurement = measurement;
     }
 
-    public void setMealId(int mealId) {
-        this.mealId = mealId;
+    public int getIdmeal() {
+        return idmeal;
+    }
+
+    public void setIdmeal(int idmeal) {
+        this.idmeal = idmeal;
     }
 
     public String getMeasurement() {

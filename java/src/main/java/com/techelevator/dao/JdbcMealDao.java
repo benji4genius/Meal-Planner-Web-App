@@ -1,23 +1,30 @@
 package com.techelevator.dao;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.techelevator.model.Meal;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class JdbcMealDao implements MealDao{
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    //private static final String SQL_SELECT_MEAL="";
 
-
-    private static final String SQL_SELECT_MEAL="";
-
-
-    @Override
-    public Meal getMealById(int mealId) {
-        return null;
+    public JdbcMealDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public Meal getAllMeals() {
+    public List<Meal> getAllMeals() {
+        List<Meal> allMeals = new ArrayList<>();
+        String sql = "";
+    }
+
+    @Override
+    public Meal getMealById(int mealId) {
         return null;
     }
 
