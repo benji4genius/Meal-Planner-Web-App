@@ -13,6 +13,6 @@ public interface IngredientDao {
 
     public Ingredient updateIngredient (Ingredient ingredient);
 
-    public Ingredient deleteIngredient (int idingredient);
+    public int deleteIngredient(int idingredient);
 
 }

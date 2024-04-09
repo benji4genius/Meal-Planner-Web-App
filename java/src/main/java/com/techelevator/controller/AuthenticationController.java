@@ -19,8 +19,8 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
-@RestController
-@CrossOrigin
+@RestController // Needed for all our controllers
+@CrossOrigin // Needed for all our controllers (this also connects to the router in the frontend)
 public class AuthenticationController {
 
     private final TokenProvider tokenProvider;

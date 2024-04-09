@@ -6,13 +6,15 @@ public class Ingredient {
     private String stringredient;
 
     private String strdescription;
+    private String strtype;
 
     public Ingredient(){};
 
-    public Ingredient(int idingredient, String stringredient, String strdescription) {
+    public Ingredient(int idingredient, String stringredient, String strdescription, String strtype) {
         this.idingredient = idingredient;
         this.stringredient = stringredient;
         this.strdescription = strdescription;
+        this.strtype = strtype;
     }
 
     public int getIdingredient() {
@@ -27,6 +29,14 @@ public class Ingredient {
         return strdescription;
     }
 
+    public String getStrtype() {
+        return strtype;
+    }
+
+    public void setStrtype(String strtype) {
+        this.strtype = strtype;
+    }
+
     public void setIdingredient(int idingredient) {
         this.idingredient = idingredient;
     }
@@ -38,4 +48,5 @@ public class Ingredient {
     public void setStrdescription(String strdescription) {
         this.strdescription = strdescription;
     }
+
 }

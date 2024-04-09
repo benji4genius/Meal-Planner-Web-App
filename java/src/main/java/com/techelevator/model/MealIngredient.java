@@ -6,13 +6,9 @@ public class MealIngredient extends Ingredient{
 
     public MealIngredient(){};
 
-    public MealIngredient(int idmeal, String measurement) {
-        this.idmeal = idmeal;
-        this.measurement = measurement;
-    }
 
-    public MealIngredient(int idingredient, String stringredient, String strdescription, int idmeal, String measurement) {
-        super(idingredient, stringredient, strdescription);
+    public MealIngredient(int idingredient, String stringredient, String strdescription, String strtype, int idmeal, String measurement) {
+        super(idingredient, stringredient, strdescription, strtype);
         this.idmeal = idmeal;
         this.measurement = measurement;
     }
