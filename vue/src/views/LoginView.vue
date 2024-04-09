@@ -1,7 +1,16 @@
 <template>
   <div id="login">
-    <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
+    <header>
+      <button
+        id="show-form-button"
+        href="#"
+        v-on:click.prevent="showForm = true"
+        v-if="showForm === false">
+        Sign in
+      </button>
+    </header>
+    <form v-on:submit.prevent="login" v-show="showForm === true">
+      <h2>Please Sign In</h2>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -21,11 +30,18 @@
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
   </div>
+  <div id="main">
+      <div id="welcome">
+          <h2>Welcome! Let's get planning!</h2>
+      </div>
+    <body id="body">
+      <img class="background" src="healthy_background.jpg"/>
+    </body>
+  </div>
 </template>
 
 <script>
 import authService from "../services/AuthService";
-
 export default {
   components: {},
   data() {
@@ -34,7 +50,8 @@ export default {
         username: "",
         password: ""
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      showForm: false
     };
   },
   methods: {
@@ -61,10 +78,37 @@ export default {
 </script>
 
 <style scoped>
+body{
+  background-image: url("healthy_background.jpg");
+  background-repeat: no-repeat;
+  margin: none;
+  padding: none;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }
 label {
   margin-right: 0.5rem;
 }
+#show-form-button{
+  margin-left: 92%;
+  margin-top: 1.5rem;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header{
+  background-color:#f0754f;
+  padding-bottom: 25px;
+}
+
+div #welcome{
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 </style>
