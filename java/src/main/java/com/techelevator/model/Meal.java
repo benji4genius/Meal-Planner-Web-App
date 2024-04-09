@@ -5,24 +5,21 @@ import java.util.List;
 
 public class Meal {
     private int idmeal;
-
     private String strmeal;
-
     private String strinstructions;
-
+    private String strtags;
     private List<MealIngredient> ingredientList;
-
-    //TO DO: Ingredient Measurements, Ingredient Tags//
-
     private String strmealthumb;
-
     private String stryoutube;
 
-    public Meal(){};
+    public Meal(){
+    }
 
-    public Meal(int idmeal, String strmeal, String strinstructions, List<MealIngredient> ingredientList, String strmealthumb, String stryoutube) {
+    public Meal(int idmeal, String strmeal, String strinstructions, String strtags,
+                List<MealIngredient> ingredientList, String strmealthumb, String stryoutube) {
         this.idmeal = idmeal;
         this.strmeal = strmeal;
+        this.strtags = strtags;
         this.strinstructions = strinstructions;
         this.ingredientList = ingredientList;
         this.strmealthumb = strmealthumb;
@@ -51,6 +48,13 @@ public class Meal {
 
     public void setStrinstructions(String strinstructions) {
         this.strinstructions = strinstructions;
+    }
+
+    public String getStrtags(String strtags) {
+        return strtags;
+    }
+    public void setStrtags(String strtags) {
+        this.strtags = strtags;
     }
 
     public List<MealIngredient> getIngredientList() {

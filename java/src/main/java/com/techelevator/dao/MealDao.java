@@ -2,20 +2,16 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Meal;
 
+import java.util.List;
+
 public interface MealDao {
 
-Meal getMealById( int idmeal);
+    List<Meal> getAllMeals();
 
+    Meal getMealById(int idmeal);
 
-Meal List<Meal> getAllMeals();
+    Meal addMeal(Meal meal);
 
-Meal addMeal(Meal meal);
-
-Meal deleteMeal( int idmeal);
-
-
-
-
-
+    void deleteMeal(int mealId);
 
 }
