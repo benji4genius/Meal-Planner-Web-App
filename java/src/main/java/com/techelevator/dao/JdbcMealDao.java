@@ -24,7 +24,7 @@ public class JdbcMealDao implements MealDao{
     }
 
     @Override
-    public Meal getMealById(int mealId) {
+    public Meal getMealById(int idmeal) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class JdbcMealDao implements MealDao{
     }
 
     @Override
-    public Meal deleteMeal(int mealId) {
+    public Meal deleteMeal(int idmeal) {
         return null;
     }
 }
