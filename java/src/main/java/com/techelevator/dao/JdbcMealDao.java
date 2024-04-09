@@ -1,23 +1,31 @@
 package com.techelevator.dao;
-
 import com.techelevator.model.Meal;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+@Component
 public class JdbcMealDao implements MealDao{
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    //private static final String SQL_SELECT_MEAL="";
 
-
-    private static final String SQL_SELECT_MEAL="";
-
-
-    @Override
-    public Meal getMealById(int mealId) {
-        return null;
+    public JdbcMealDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public Meal getAllMeals() {
+    public List<Meal> getAllMeals() {
+        String sql = "SELECT * FROM meals";
+        return jdbcTemplate.query(sql, newMealMapper());
+    }
+
+    @Override
+    public Meal getMealById(int idmeal) {
         return null;
     }
 
@@ -30,4 +38,18 @@ public class JdbcMealDao implements MealDao{
     public Meal deleteMeal(int mealId) {
         return null;
     }
+    private static class MealMapper implements RowMapper<Meal> {
+        @Override
+        public Meal mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Meal meal = new Meal();
+            meal.setIdmeal(rs.getInt("idmeal"));
+            meal.setStrmeal(rs.getString("strmeal"));
+            meal.setStrcategory(rs.getString("strcategory"));
+            meal.setStrinstructions(rs.getString("strinstructions"));
+            meal.setStrtags(rs.getString("strtags"));
+            meal.setStryoutube(rs.getString("stryoutube"));
+            return meal;
+        }
+    }
+}
 }
