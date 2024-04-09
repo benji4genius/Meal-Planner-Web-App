@@ -10,7 +10,7 @@ public class Meal {
 
     private String instructions;
 
-    private List<Ingredient> ingredientList;
+    private List<MealIngredient> ingredientList;
 
     //TO DO: Ingredient Measurements, Ingredient Tags//
 
@@ -20,7 +20,7 @@ public class Meal {
 
     public Meal(){};
 
-    public Meal(int mealId, String mealName, String instructions, List<Ingredient> ingredientList, String image, String tutorialVideo) {
+    public Meal(int mealId, String mealName, String instructions, List<MealIngredient> ingredientList, String image, String tutorialVideo) {
         this.mealId = mealId;
         this.mealName = mealName;
         this.instructions = instructions;
@@ -53,11 +53,11 @@ public class Meal {
         this.instructions = instructions;
     }
 
-    public List<Ingredient> getIngredientList() {
+    public List<MealIngredient> getIngredientList() {
         return ingredientList;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
+    public void setIngredientList(List<MealIngredient> ingredientList) {
         this.ingredientList = ingredientList;
     }
 
