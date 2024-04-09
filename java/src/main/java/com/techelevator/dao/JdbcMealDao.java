@@ -1,12 +1,11 @@
 package com.techelevator.dao;
+import java.util.List;
+import java.util.ArrayList;
+
 import com.techelevator.model.Meal;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
 @Component
 public class JdbcMealDao implements MealDao{
@@ -20,8 +19,8 @@ public class JdbcMealDao implements MealDao{
 
     @Override
     public List<Meal> getAllMeals() {
-        String sql = "SELECT * FROM meals";
-        return jdbcTemplate.query(sql, newMealMapper());
+        List<Meal> allMeals = new ArrayList<>();
+        String sql = "";
     }
 
     @Override
@@ -35,21 +34,7 @@ public class JdbcMealDao implements MealDao{
     }
 
     @Override
-    public Meal deleteMeal(int mealId) {
+    public Meal deleteMeal(int idmeal) {
         return null;
     }
-    private static class MealMapper implements RowMapper<Meal> {
-        @Override
-        public Meal mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Meal meal = new Meal();
-            meal.setIdmeal(rs.getInt("idmeal"));
-            meal.setStrmeal(rs.getString("strmeal"));
-            meal.setStrcategory(rs.getString("strcategory"));
-            meal.setStrinstructions(rs.getString("strinstructions"));
-            meal.setStrtags(rs.getString("strtags"));
-            meal.setStryoutube(rs.getString("stryoutube"));
-            return meal;
-        }
-    }
-}
 }

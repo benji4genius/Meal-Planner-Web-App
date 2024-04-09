@@ -10,9 +10,9 @@ public class JdbcIngredientDao implements IngredientDao {
 
     private Ingredient mapRowToIngredient(SqlRowSet result){
         Ingredient ingredient = new Ingredient();
-        ingredient.setIngredientId(result.getInt("ingredient_id"));
-        ingredient.setIngredientName(result.getString("ingredient_name"));
-        ingredient.setIngredientDescription(result.getString("ingredient_description"));
+        ingredient.setIngredientId(result.getInt("idingredient"));
+        ingredient.setIngredientName(result.getString("stringredient"));
+        ingredient.setIngredientDescription(result.getString("strdescription"));
 
         return ingredient;
     }
