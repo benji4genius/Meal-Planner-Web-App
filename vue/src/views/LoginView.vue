@@ -1,45 +1,40 @@
 <template>
-  <div id="login">
-    <header>
-      <nav>
-        <a href="{name: home}">Home</a>
-        <p>Meals</p>
-        <p>Meal Plans</p>
-      </nav>
-    </header>
-    <body>
-      <div id="main-content">
-        <h2>Welcome! Let's get planning!</h2>
-        <button
-        id="show-form-button"
-        href="#"
-        v-on:click.prevent="showForm = true"
-        v-if="showForm === false">
-        Sign in
-      </button>
-      </div>
-    </body>
-    <form v-on:submit.prevent="login" v-show="showForm === true">
-      <h2>Please Sign In</h2>
-      <div role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
-    </form>
-  </div>
+  <main>
+    <div id="login">
+      <header>
+        <nav>
+          <a href="{name: home}">Home</a>
+          <p>Meals</p>
+          <p>Meal Plans</p>
+        </nav>
+      </header>
+      <body>
+        <div id="main-content">
+          <h2>Welcome! Let's get planning!</h2>
+        <form v-on:submit.prevent="login">
+        <h2>Please Sign In</h2>
+        <div role="alert" v-if="invalidCredentials">
+          Invalid username and password!
+        </div>
+        <div role="alert" v-if="this.$route.query.registration">
+          Thank you for registering, please sign in.
+        </div>
+        <div class="form-input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" v-model="user.username" required autofocus />
+        </div>
+        <div class="form-input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" v-model="user.password" required />
+        </div>
+        <button type="submit">Sign in</button>
+        <p>
+        <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      </form>
+        </div>
+      </body>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -52,8 +47,7 @@ export default {
         username: "",
         password: ""
       },
-      invalidCredentials: false,
-      showForm: false
+      invalidCredentials: false
     };
   },
   methods: {
@@ -86,6 +80,12 @@ export default {
 label {
   margin-right: 0.5rem;
 }
+main{
+  background-image: url("healthy_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 form{
   display: flex;
   flex-direction: column;
@@ -93,7 +93,8 @@ form{
 }
 header{
   background-color:#f0754f;
-  padding: 30px;
+  padding: 20px;
+  margin-bottom: none;
 }
 nav{
   display:flex;
@@ -110,6 +111,8 @@ nav{
   margin-top: 200px;
   margin-right: 40%;
   margin-left: 40%;
+  padding-bottom: 45rem;
+  padding-top: 10rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 </style>
