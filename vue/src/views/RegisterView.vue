@@ -1,7 +1,18 @@
 <template>
+  <main>
   <div id="register" class="text-center">
-    <form v-on:submit.prevent="register">
-      <h1>Create Account</h1>
+    <header>
+        <nav>
+          <a href="{name: home}">Home</a>
+          <p>Meals</p>
+          <p>Meal Plans</p>
+        </nav>
+      </header>
+      <body>
+        <div id="main-content">
+          <h2>Welcome! Let's get planning!</h2>
+        <form v-on:submit.prevent="register">
+      <h2>Create Account</h2>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -20,7 +31,10 @@
       <button type="submit">Create Account</button>
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
+        </div>
+      </body>
   </div>
+</main>
 </template>
 
 <script>
@@ -78,5 +92,40 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+main{
+  background-image: url("healthy_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header{
+  background-color:#f0754f;
+  padding: 20px;
+  margin-bottom: none;
+}
+nav{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+#main-content{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+  margin-right: 40%;
+  margin-left: 40%;
+  padding-bottom: 45rem;
+  padding-top: 10rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
