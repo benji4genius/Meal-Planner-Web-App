@@ -1,14 +1,24 @@
 <template>
   <div id="login">
     <header>
-      <button
+      <nav>
+        <a href="{name: home}">Home</a>
+        <p>Meals</p>
+        <p>Meal Plans</p>
+      </nav>
+    </header>
+    <body>
+      <div id="main-content">
+        <h2>Welcome! Let's get planning!</h2>
+        <button
         id="show-form-button"
         href="#"
         v-on:click.prevent="showForm = true"
         v-if="showForm === false">
         Sign in
       </button>
-    </header>
+      </div>
+    </body>
     <form v-on:submit.prevent="login" v-show="showForm === true">
       <h2>Please Sign In</h2>
       <div role="alert" v-if="invalidCredentials">
@@ -29,14 +39,6 @@
       <p>
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
-  </div>
-  <div id="main">
-      <div id="welcome">
-          <h2>Welcome! Let's get planning!</h2>
-      </div>
-    <body id="body">
-      <img class="background" src="healthy_background.jpg"/>
-    </body>
   </div>
 </template>
 
@@ -78,21 +80,11 @@ export default {
 </script>
 
 <style scoped>
-body{
-  background-image: url("healthy_background.jpg");
-  background-repeat: no-repeat;
-  margin: none;
-  padding: none;
-}
 .form-input-group {
   margin-bottom: 1rem;
 }
 label {
   margin-right: 0.5rem;
-}
-#show-form-button{
-  margin-left: 92%;
-  margin-top: 1.5rem;
 }
 form{
   display: flex;
@@ -101,14 +93,23 @@ form{
 }
 header{
   background-color:#f0754f;
-  padding-bottom: 25px;
+  padding: 30px;
 }
-
-div #welcome{
-  display: flex;
-  justify-content: center;
-  margin: 5%;
+nav{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+#main-content{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+  margin-right: 40%;
+  margin-left: 40%;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 </style>
