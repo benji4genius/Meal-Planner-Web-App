@@ -48,7 +48,7 @@ public class MealController {
         }
     }
 
-    @RequestMapping(path = "/{/idmeal}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{idmeal}", method = RequestMethod.GET)
     public Meal getMealById(@PathVariable int idmeal) {
         Meal meal;
         try {

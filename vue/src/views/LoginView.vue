@@ -105,7 +105,7 @@ nav{
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-}
+}          
 #main-content{
   display:flex;
   flex-direction: column;
