@@ -50,7 +50,7 @@ public class Meal {
         this.strinstructions = strinstructions;
     }
 
-    public String getStrtags(String strtags) {
+    public String getStrtags() {
         return strtags;
     }
     public void setStrtags(String strtags) {

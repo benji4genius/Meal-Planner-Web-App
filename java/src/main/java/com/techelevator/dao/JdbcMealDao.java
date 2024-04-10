@@ -1,8 +1,11 @@
 package com.techelevator.dao;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Meal;
 
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLDataException;
@@ -22,12 +25,16 @@ public class JdbcMealDao implements MealDao {
     @Override
     public List<Meal> getAllMeals() {
         List<Meal> allMeals = new ArrayList<>();
-        String sql = "SELECT idmeal, strmeal, strcategory, strinstructions, strtags, stryoutube FROM meals";
+        String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals";
         try {
-            RowMapper<Meal> rowMapper = new MealMapper();
-            allMeals = jdbcTemplate.query(sql, rowMapper);
-        } catch (Exception e) {
-            e.printStackTrace();
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while(results.next()){
+                Meal newMeal= mapRowToMeal(results);
+                allMeals.add(newMeal);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+
         }
         return allMeals;
     }
@@ -35,40 +42,77 @@ public class JdbcMealDao implements MealDao {
     @Override
     public Meal getMealById(int mealId) {
         Meal meal = null;
-        String sql = "SELECT idmeal, strmeal, strinstructions, strtags, stryoutube FROM meals " +
+        String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals " +
                 "WHERE idmeal = ?;";
         try {
-            RowMapper<Meal> rowMapper = new MealMapper();
-            meal = jdbcTemplate.queryForObject(sql, rowMapper, mealId);
-        } catch (Exception e) {
-            e.printStackTrace();
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealId);
+            if(results.next()){
+                meal=mapRowToMeal(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
         return meal;
     }
 
     @Override
     public Meal addMeal(Meal meal) {
-        String sql = "INSERT INTO meals (strmeal, strinstructions, strtags, stryoutube) " +
-                "VALUES (?, ?, ?, ?, ?);";
-            jdbcTemplate.update(sql, meal.getStrmeal(), meal.getStrinstructions(),
-                    meal.getStrtags(), meal.getStryoutube());
+        Meal newMeal=null;
+        String sql = "INSERT INTO meals (strmeal, strinstructions, strtags, strmealthumb, stryoutube) " +
+                "VALUES (?, ?, ?, ?, ?); returning idMeal";
+        try {
+            int mealId=jdbcTemplate.queryForObject(sql, int.class,meal.getStrmeal(), meal.getStrinstructions(), meal.getStrtags(),meal.getStrmealthumb(), meal.getStryoutube());
+            newMeal=getMealById(mealId);
 
-            return meal;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return newMeal;
     }
 
- //void since it doesn't return any value
-    public void deleteMeal(Meal meal) {
-       String sql = "DELETE FROM meals WHERE idmeal = ?;";
-           jdbcTemplate.update(sql, meal.getIdmeal());
-       }
+    @Override
+    public Meal updateMeal(Meal meal) {
+        Meal newMeal= null;
+        String sql="UPDATE meals SET idmeal=?, strmeal=?, strinstructions=?, strtags=?, strmealthumb=?, stryoutube=?";
+        try{
+            int numberOfRows=jdbcTemplate.update(sql, meal.getIdmeal(),meal.getStrmeal(),meal.getStrinstructions(),meal.getStrtags(),meal.getStrmealthumb(),meal.getStryoutube());
 
-        public Meal mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Meal meal = new Meal();
-            meal.setIdmeal(rs.getInt("idmeal"));
-            meal.setStrmeal(rs.getString("strmeal"));
-            meal.setStrinstructions(rs.getString("strinstructions"));
-            meal.setStrtags(rs.getString("strtags"));
-            meal.setStryoutube(rs.getString("stryoutube"));
-            return meal;
+            if(numberOfRows==0){
+                throw new DaoException("Zero rows affected, expected at least one");
+            } else {
+                newMeal = getMealById(meal.getIdmeal());
+            }
+
+        }
+        catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+
+
+        return newMeal;
+    }
+
+    @Override
+    public void deleteMeal(int id) {
+        String sql = "DELETE FROM meals WHERE idmeal = ?;";
+        try {
+            jdbcTemplate.update(sql, id);
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
     }
+
+
+    public Meal mapRowToMeal(SqlRowSet results) {
+        Meal meal = new Meal();
+        meal.setIdmeal(results.getInt("idmeal"));
+        meal.setStrmeal(results.getString("strmeal"));
+        meal.setStrinstructions(results.getString("strinstructions"));
+        meal.setStrtags(results.getString("strtags"));
+        meal.setStrmealthumb(results.getString("strmealthumb"));
+        meal.setStryoutube(results.getString("stryoutube"));
+        return meal;
+    }
+
+}
