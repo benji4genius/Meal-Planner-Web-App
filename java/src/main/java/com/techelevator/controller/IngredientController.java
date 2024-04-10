@@ -26,7 +26,7 @@ public class IngredientController {
     }
 
 
-    @RequestMapping(path = "/ingredients/{idingredient}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{idingredient}", method = RequestMethod.GET)
     public Ingredient getIngredientById(@PathVariable int idingredient) {
         Ingredient ingredient;
         try {
@@ -36,7 +36,7 @@ public class IngredientController {
         }
         return ingredient;
     }
-    @RequestMapping(path = "/ingredients", method = RequestMethod.GET)
+    @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Ingredient> getIngredients() {
         try {
             return ingredientDao.getListOfAllIngredients();
@@ -46,7 +46,7 @@ public class IngredientController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/ingredients", method = RequestMethod.POST)
+    @RequestMapping(path = "", method = RequestMethod.POST)
     public Ingredient createIngredient(@Valid @RequestBody Ingredient newIngredient) {
         try {
             return ingredientDao.addIngredient(newIngredient);
@@ -55,7 +55,7 @@ public class IngredientController {
         }
     }
 
-    @RequestMapping(path = "/ingredients/{idingredient}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/{idingredient}", method = RequestMethod.PUT)
     public Ingredient update(@Valid @RequestBody Ingredient ingredient, @PathVariable int idingredient) {
         // The id on the path takes precedence over the one in the request body, if any
         ingredient.setIdingredient(idingredient);
@@ -68,7 +68,7 @@ public class IngredientController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/ingredients/{idingredient}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/{idingredient}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int idingredient) {
         ingredientDao.deleteIngredient(idingredient);
     }
