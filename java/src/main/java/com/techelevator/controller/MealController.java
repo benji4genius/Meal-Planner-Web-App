@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.MealDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Meal;
 import org.springframework.http.HttpStatus;
@@ -18,18 +19,30 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()") // For user Authentication?
 public class MealController {
     private MealDao mealDao;
+    private UserDao userDao;
 
     // Might need to add userDao Here but not completely sure
     // Also might need to add int user_id to our JDBCmealDao and maybe JDBCmealPlanDao as well
 
-    public MealController(MealDao mealDao) {
+    public MealController(MealDao mealDao, UserDao userDao) {
         this.mealDao = mealDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET) //Not completely sure about this path here
     public List<Meal> getMeals() {
         try {
             return mealDao.getAllMeals();
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(path = "/mymeals", method = RequestMethod.GET) //Not completely sure about this path here
+    public List<Meal> getMealsForUser(Principal principal) {
+        try {
+            int userId = userDao.getUserByUsername(principal.getName()).getId();
+            return mealDao.getAllMealsForUSer(userId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }

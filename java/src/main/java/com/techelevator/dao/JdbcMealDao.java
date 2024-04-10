@@ -38,7 +38,24 @@ public class JdbcMealDao implements MealDao {
         }
         return allMeals;
     }
+    //getAllMealsForUSer(userId)
+    @Override
+    public List<Meal> getAllMealsForUSer(int userId) {
+        List<Meal> allMeals = new ArrayList<>();
+        String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals " +
+                    "WHERE userId = ?"; 
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            while(results.next()){
+                Meal newMeal= mapRowToMeal(results);
+                allMeals.add(newMeal);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
 
+        }
+        return allMeals;
+    }
     @Override
     public Meal getMealById(int mealId) {
         Meal meal = null;

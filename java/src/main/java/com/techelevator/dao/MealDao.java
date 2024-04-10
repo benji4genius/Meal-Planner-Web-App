@@ -16,5 +16,6 @@ public interface MealDao {
     void deleteMeal(int idmeal); // I updated this part to match our database
     Meal updateMeal( Meal meal);
 
+    public List<Meal> getAllMealsForUSer(int userId);
 
 }
