@@ -10,8 +10,8 @@ export default {
     return http.get('/meals');
   },
 
-  getMealsForUser(userId) {
-    return http.get(`/meals/mymeals/${userId}`) // Not sure about this either?
+  getMealsForUser() {
+    return http.get('/meals/mymeals')
   },
 
   getMealById(idmeal) {

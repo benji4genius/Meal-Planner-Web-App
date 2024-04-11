@@ -11,7 +11,7 @@ public interface IngredientDao {
 
     Ingredient addIngredient (Ingredient ingredient);
 
-    Ingredient updateIngredient (Ingredient ingredient);
+   // Ingredient updateIngredient (Ingredient ingredient);
 
     int deleteIngredient(int idingredient);
 
