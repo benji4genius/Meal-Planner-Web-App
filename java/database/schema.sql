@@ -13,7 +13,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS ingredients;
 
 CREATE TABLE ingredients (
-   idIngredient   INTEGER  NOT NULL
+   idIngredient   SERIAL NOT NULL
   ,strIngredient  VARCHAR(100) NOT NULL
   ,strDescription TEXT
   ,strType        VARCHAR(50),
@@ -43,7 +43,7 @@ CREATE TABLE meal_ingredient_association (
 DROP TABLE IF EXISTS meals;
 
 CREATE TABLE meals(
-   idMeal                      INTEGER  NOT NULL
+   idMeal                      SERIAL NOT NULL
   ,strMeal                     VARCHAR(200) NOT NULL
   ,strDrinkAlternate           VARCHAR(200)
   ,strCategory                 VARCHAR(200)

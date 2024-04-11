@@ -70,26 +70,7 @@ public class JdbcIngredientDao implements IngredientDao {
         return newIngredient;
     }
 
-    @Override
-    public Ingredient updateIngredient(Ingredient ingredient) {
-        Ingredient updatedIngredient = null;
-        String sql = "UPDATE ingredients " +
-                     "SET idingredient = ?, stringredient = ?, strdescription = ?, strtype = ? WHERE idingredient = ?;";
-        try {
-            int numberOfRows = jdbcTemplate.update(sql, ingredient.getStrdescription(),
-                    ingredient.getStringredient(),ingredient.getStrtype(), ingredient.getIdingredient());
-            if (numberOfRows == 0) {
-                throw new DaoException("Zero rows affected, expected at least one");
-            } else {
-                updatedIngredient = getIngredientById(ingredient.getIdingredient());
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
-        }
-        return updatedIngredient;
-    }
+
 
     @Override
     public int deleteIngredient(int idingredient) {
@@ -116,24 +97,26 @@ public class JdbcIngredientDao implements IngredientDao {
 }
 
 
-      /* public Hero updateHero(Hero hero, int user_id) {
-    Hero updatedHero = null;
 
-    String sql = "UPDATE heroes SET hero_name = ?, " +
-            "hero_health = ?, hero_defense = ?, hero_profession_id = ? WHERE hero_id = ? AND user_id=?;";
-    try {
-        int rowsAffected = jdbcTemplate.update(sql, hero.getName(), hero.getHealth(),
-                hero.getDefense(), hero.getProfession().getProfessionId(), hero.getId(), user_id);
 
-        if (rowsAffected == 0) {
-            throw new DaoException("Zero rows affected, expected at least one");
-        } else {
-            updatedHero = getHeroById(hero.getId(), user_id);
+
+/* @Override
+    public Ingredient updateIngredient(Ingredient ingredient) {
+        Ingredient updatedIngredient = null;
+        String sql = "UPDATE ingredients " +
+                     "SET idingredient = ?, stringredient = ?, strdescription = ?, strtype = ? WHERE idingredient = ?;";
+        try {
+            int numberOfRows = jdbcTemplate.update(sql, ingredient.getIdingredient(), ingredient.getStrdescription(),
+                    ingredient.getStringredient(),ingredient.getStrtype(), ingredient.getIdingredient());
+            if (numberOfRows == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            } else {
+                updatedIngredient = getIngredientById(ingredient.getIdingredient());
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
         }
-    } catch (CannotGetJdbcConnectionException e) {
-        throw new DaoException("Unable to connect to server or database", e);
-    } catch (DataIntegrityViolationException e) {
-        throw new DaoException("Data integrity violation", e);
-    }
-
-    return updatedHero;*/
+        return updatedIngredient;
+    }*/

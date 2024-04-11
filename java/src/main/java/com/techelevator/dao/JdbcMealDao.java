@@ -60,7 +60,7 @@ public class JdbcMealDao implements MealDao {
     public List<Meal> getAllMealsForUser(int userId) {
         List<Meal> allMeals = new ArrayList<>();
         String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals " +
-                    "WHERE userId = ?";
+                    "WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
@@ -107,11 +107,11 @@ public class JdbcMealDao implements MealDao {
     @Override
     public Meal updateMeal(Meal meal) {
         Meal newMeal = null;
-        String sql = "UPDATE meals SET strmeal=?, strinstructions=?, strtags=?, strmealthumb=?, stryoutube=?" +
-                "WHERE idmeal=?";
+        String sql = "UPDATE meals SET idmeal=?, strmeal=?, strinstructions=?, strtags=?, strmealthumb=?, stryoutube=? " +
+                "WHERE idmeal=?;";
         try {
             int numberOfRows = jdbcTemplate.update(sql, meal.getIdmeal(), meal.getStrmeal(), meal.getStrinstructions(),
-                               meal.getStrtags(), meal.getStrmealthumb(), meal.getStryoutube());
+                               meal.getStrtags(), meal.getStrmealthumb(), meal.getStryoutube(), meal.getIdmeal());
 
             if (numberOfRows == 0) {
                 throw new DaoException("Zero rows affected, expected at least one");
