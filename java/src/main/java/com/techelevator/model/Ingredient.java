@@ -2,13 +2,10 @@ package com.techelevator.model;
 
 public class Ingredient {
     private int idingredient;
-
     private String stringredient;
-
     private String strdescription;
     private String strtype;
-
-    public Ingredient(){};
+    public Ingredient(){}
 
     public Ingredient(int idingredient, String stringredient, String strdescription, String strtype) {
         this.idingredient = idingredient;
