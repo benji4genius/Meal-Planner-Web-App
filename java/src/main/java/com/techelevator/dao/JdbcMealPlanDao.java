@@ -73,7 +73,7 @@ public class JdbcMealPlanDao implements MealPlanDao {
         }
 
         String sql = "INSERT INTO meal_plans (user_id, name, description) " +
-                "VALUES (?, ?, ?, ?) RETURNING meal_plan_id";
+                "VALUES (?, ?, ?) RETURNING meal_plan_id";
         try {
             int newMealPlanId = jdbcTemplate.queryForObject(sql, int.class, mealPlan.getUser_id(), mealPlan.getName(),
                                 mealPlan.getDescription()); //may produce null pointer exception

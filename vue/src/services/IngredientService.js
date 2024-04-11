@@ -6,7 +6,7 @@ const http = axios.create({
 
 export default {
     getIngredients() {
-        return http.get('/ingredients');  //works
+        return http.get('/ingredients');  
     },
 
     getIngredientById(idingredient) {
@@ -22,16 +22,6 @@ export default {
     //     return http.put(`/ingredients/${ingredient.id}`, ingredient); //not sure?
     // },
 
-    updateIngredient(ingredient) {
-        return http.put(`/ingredients/${ingredient.idingredient}`, ingredient); 
-    },
-
-
-
-    // updateIngredient(ingredient) {
-    //     return http.put(`/ingredients/${ingredient.id}`, ingredient); //not sure?
-    // },
-  
     deleteIngredient(idingredient) {
         return http.delete(`/ingredients/${idingredient}`);
     }

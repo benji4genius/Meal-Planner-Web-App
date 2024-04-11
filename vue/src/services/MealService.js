@@ -23,7 +23,7 @@ export default {
   },
 
   updateMeal(meal) {
-    return http.put(`/meals/${meal.idmeal}`, meal); // Not sure about this endpoint
+    return http.put(`/meals/${meal.idmeal}`, meal);
   },
 
   deleteMeal(idmeal) {

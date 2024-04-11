@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS meal_plans;
 
 CREATE TABLE meal_plans (
     meal_plan_id SERIAL NOT NULL,
-    user_id INTEGER NOT NULL,
-    name varchar(50) NOT NULL,
-    description varchar(200) NOT NULL,
+    user_id INTEGER,
+    name varchar(50),
+    description varchar(200),
     CONSTRAINT PK_meal_plan PRIMARY KEY (meal_plan_id)
 );
 
