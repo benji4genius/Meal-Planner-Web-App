@@ -36,6 +36,7 @@ public class JdbcIngredientDao implements IngredientDao {
 
     @Override
     public List<Ingredient> getListOfAllIngredients() {
+<<<<<<< HEAD
 
             List<Ingredient> ingredients = new ArrayList<>();
             String sql = "SELECT idingredient, stringredient, strdescription, strtype " +
@@ -48,88 +49,81 @@ public class JdbcIngredientDao implements IngredientDao {
                 }
             } catch (CannotGetJdbcConnectionException e) {
                 throw new DaoException("Unable to connect to server or database", e);
+=======
+        List<Ingredient> ingredients = new ArrayList<>();
+        String sql = "SELECT idingredient, stringredient, strdescription, strtype " +
+                     "FROM ingredients;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                Ingredient ingredient =  mapRowToIngredient(results);
+                ingredients.add(ingredient);
+>>>>>>> c95a4ff19ca086a2613edc0bd7f9fa198aea15b3
             }
-
-            return ingredients;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return ingredients;
     }
 
     @Override
     public Ingredient addIngredient(Ingredient ingredient) {
-
-
-
-            Ingredient newIngredient = null;
-            String sql = "INSERT INTO ingredients(" +
-                    "stringredient, strdescription, strtype)" +
-                    "VALUES (?, ?, ?); RETURNING idingredient;";
-            try {
-                int newIngredientId = jdbcTemplate.queryForObject(sql, int.class,ingredient.getStrdescription(),
-                        ingredient.getStringredient(),ingredient.getStrtype());
-
-                // might need some extra code here?
-
-                newIngredient = getIngredientById(newIngredientId);
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to server or database", e);
-            } catch (DataIntegrityViolationException e) {
-                throw new DaoException("Data integrity violation", e);
-            }
-            return newIngredient;
-
-
+        Ingredient newIngredient = null;
+        String sql = "INSERT INTO ingredients(stringredient, strdescription, strtype) " +
+                     "VALUES (?, ?, ?) RETURNING idingredient;";
+        try {
+            int newIngredientId = jdbcTemplate.queryForObject(sql, int.class, ingredient.getStringredient(),
+                    ingredient.getStrdescription(), ingredient.getStrtype());
+            newIngredient = getIngredientById(newIngredientId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newIngredient;
     }
 
     @Override
     public Ingredient updateIngredient(Ingredient ingredient) {
-
-            Ingredient updatedIngredient = null;
-            String sql = "UPDATE public.ingredients" +
-                    "SET idingredient=?, stringredient=?, strdescription=?, strtype=?" +
-                    "WHERE idingredient =?;";
-
-            try {
-                int numberOfRows = jdbcTemplate.update(sql, ingredient.getStrdescription(),
-                        ingredient.getStringredient(),ingredient.getStrtype(), ingredient.getIdingredient());
-
-
-                if (numberOfRows == 0) {
-                    throw new DaoException("Zero rows affected, expected at least one");
-                } else {
-                    updatedIngredient = getIngredientById(ingredient.getIdingredient());
-                }
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to server or database", e);
-            } catch (DataIntegrityViolationException e) {
-                throw new DaoException("Data integrity violation", e);
+        Ingredient updatedIngredient = null;
+        String sql = "UPDATE ingredients " +
+                     "SET idingredient = ?, stringredient = ?, strdescription = ?, strtype = ? WHERE idingredient = ?;";
+        try {
+            int numberOfRows = jdbcTemplate.update(sql, ingredient.getStrdescription(),
+                    ingredient.getStringredient(),ingredient.getStrtype(), ingredient.getIdingredient());
+            if (numberOfRows == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            } else {
+                updatedIngredient = getIngredientById(ingredient.getIdingredient());
             }
-            return updatedIngredient;
-
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return updatedIngredient;
     }
 
     @Override
     public int deleteIngredient(int idingredient) {
-
-            int numberOfRows = 0;
-            String sql = "DELETE FROM ingredients WHERE idingredient = ?;";
-            try {
-                numberOfRows = jdbcTemplate.update(sql, idingredient);
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to server or database", e);
-            } catch (DataIntegrityViolationException e) {
-                throw new DaoException("Data integrity violation", e);
-            }
-            return numberOfRows;
-
+        int numberOfRows = 0;
+        String sql = "DELETE FROM ingredients WHERE idingredient = ?;";
+        try {
+            numberOfRows = jdbcTemplate.update(sql, idingredient);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return numberOfRows;
     }
 
-
-    private Ingredient mapRowToIngredient(SqlRowSet results){
+    private Ingredient mapRowToIngredient(SqlRowSet results) {
         Ingredient ingredient = new Ingredient();
         ingredient.setIdingredient(results.getInt("idingredient"));
         ingredient.setStringredient(results.getString("stringredient"));
         ingredient.setStrdescription(results.getString("strdescription"));
         ingredient.setStrtype(results.getString("strtype"));
-
         return ingredient;
     }
 }
