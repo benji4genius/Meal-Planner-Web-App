@@ -36,20 +36,7 @@ public class JdbcIngredientDao implements IngredientDao {
 
     @Override
     public List<Ingredient> getListOfAllIngredients() {
-<<<<<<< HEAD
 
-            List<Ingredient> ingredients = new ArrayList<>();
-            String sql = "SELECT idingredient, stringredient, strdescription, strtype " +
-                    "FROM ingredients;";
-            try {
-                SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-                while (results.next()) {
-                    Ingredient ingredient =  mapRowToIngredient(results);
-                    ingredients.add(ingredient);
-                }
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to server or database", e);
-=======
         List<Ingredient> ingredients = new ArrayList<>();
         String sql = "SELECT idingredient, stringredient, strdescription, strtype " +
                      "FROM ingredients;";
@@ -58,7 +45,7 @@ public class JdbcIngredientDao implements IngredientDao {
             while (results.next()) {
                 Ingredient ingredient =  mapRowToIngredient(results);
                 ingredients.add(ingredient);
->>>>>>> c95a4ff19ca086a2613edc0bd7f9fa198aea15b3
+
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
