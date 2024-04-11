@@ -1,25 +1,36 @@
 <template>
-    <main>
-        <header>
-            <nav>
-                <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-                <img class="logo" src="Untitled Design.png"/>
-                <p class="link">Meal Plans</p>
-            </nav>
-      </header>
-      <body>
-        <div id="main-content">
-            <div class="card" style="width: 20rem;">
-                <img class="image-top" src="chicken_soup.jpg" alt="Card example image">
-                <div class="card-body">
-                    <h4 class="card-title">Chicken Noodle Soup</h4>
-                    <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
-                    <button>Add to a meal plan</button>
-                </div>
-            </div>
+  <main>
+    <header>
+      <nav>
+        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
+        <img class="logo" src="Untitled Design.png" />
+        <p class="link">Meal Plans</p>
+      </nav>
+    </header>
+
+    <body>
+      <div id="main-content">
+        <div class="card" style="width: 20rem;">
+          <img class="image-top" src="chicken_soup.jpg" alt="Card example image">
+          <div class="card-body">
+            <h4 class="card-title">Chicken Noodle Soup</h4>
+            <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
+            <button>Add to a meal plan</button>
+          </div>
         </div>
-      </body>
-    </main>
+
+        <div class="meal-container">
+          <router-link v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+            v-bind:key="meal.idmeal">
+            
+          </router-link>
+        </div>
+
+      </div>
+
+
+    </body>
+  </main>
 </template>
 
 <script>
@@ -29,30 +40,30 @@ export default {
     return {
       meals: []
 
-  
+
     };
   },
   methods: {
     loadMeals() {
-      
-        MealService
-          .getMealsForUser()
-          .then((response) => {
-            this.meals = response.data;
-            
-          })
-          .catch((error) => {
-            const response = error.response;
-            this.registrationErrors = true;
-            if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
-            }
-          });
-      
+
+      MealService
+        .getMealsForUser()
+        .then((response) => {
+          this.meals = response.data;
+
+        })
+        .catch((error) => {
+          const response = error.response;
+          this.registrationErrors = true;
+          if (response.status === 400) {
+            this.registrationErrorMsg = 'Bad Request: Validation Errors';
+          }
+        });
+
     }
-    
+
   },
-  created(){
+  created() {
     this.loadMeals();
   }
 };
@@ -60,31 +71,35 @@ export default {
 
 
 <style scoped>
-main{
+main {
   background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
-header{
-  background-color:#f0754f;
+
+header {
+  background-color: #f0754f;
   padding: 20px;
   border: 2px solid black
 }
-nav{
-  display:flex;
+
+nav {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
-.logo{
+
+.logo {
   height: 100px;
   border: 2px solid black;
 }
-#main-content{
-  display:flex;
+
+#main-content {
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 200px;
@@ -134,6 +149,7 @@ nav{
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
 .card {
   border-color: #949ba2;
   backface-visibility: hidden;
@@ -185,8 +201,8 @@ nav{
       margin-top: 0;
     }
 
-    .card-link + .card-link,
-    a + a {
+    .card-link+.card-link,
+    a+a {
       margin-left: 1.25rem;
     }
   }
@@ -197,5 +213,4 @@ nav{
     border: 0;
     border-radius: 0;
   }
-}
-</style>
+}</style>
