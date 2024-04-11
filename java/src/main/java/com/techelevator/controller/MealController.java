@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/meals")
-@PreAuthorize("isAuthenticated()") // For user Authentication?
+//@PreAuthorize("isAuthenticated()") // For user Authentication?
 public class MealController {
     private MealDao mealDao;
     private UserDao userDao;

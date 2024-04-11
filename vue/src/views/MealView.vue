@@ -44,7 +44,39 @@ Add the noodles to the pot, turn the heat up to high, and boil the noodles until
 </template>
 
 <script>
+import MealService from "../services/MealService";
+export default {
+  data() {
+    return {
+      meals: []
 
+  
+    };
+  },
+  methods: {
+    loadMeals() {
+      
+        MealService
+          .getMealsForUser()
+          .then((response) => {
+            this.meals = response.data;
+            
+          })
+          .catch((error) => {
+            const response = error.response;
+            this.registrationErrors = true;
+            if (response.status === 400) {
+              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+            }
+          });
+      
+    }
+    
+  },
+  created(){
+    this.loadMeals();
+  }
+};
 </script>
 
 

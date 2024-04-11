@@ -38,7 +38,7 @@ public class JdbcIngredientDao implements IngredientDao {
     public List<Ingredient> getListOfAllIngredients() {
 
             List<Ingredient> ingredients = new ArrayList<>();
-            String sql = "SELECT idingredient, stringredient, strdescription, strtype" +
+            String sql = "SELECT idingredient, stringredient, strdescription, strtype " +
                     "FROM ingredients;";
             try {
                 SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
