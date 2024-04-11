@@ -42,7 +42,7 @@ public class MealController {
     public List<Meal> getMealsForUser(Principal principal) {
         try {
             int userId = userDao.getUserByUsername(principal.getName()).getId();
-            return mealDao.getAllMealsForUSer(userId);
+            return mealDao.getAllMealsForUser(userId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }

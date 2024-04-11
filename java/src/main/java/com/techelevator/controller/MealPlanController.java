@@ -31,7 +31,7 @@ public class MealPlanController {
     public List<MealPlan> getMealPlans() {
 
         try {
-            return mealPlanDao.getAllMealPlans();// Katie hasn't pushed her work so we need to make sure the method names are consistant in the daos
+            return mealPlanDao.getAllMealPlans();
 
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,7 +63,6 @@ public class MealPlanController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "", method = RequestMethod.POST)
-
     public MealPlan createMealPlan(@Valid @RequestBody MealPlan newMealPlan) {
         try {
 

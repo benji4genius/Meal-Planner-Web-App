@@ -8,14 +8,14 @@ public interface MealDao {
 
     List<Meal> getAllMeals();
 
+    List<Meal> getAllMealsForUser(int userId);
+
     Meal getMealById(int idmeal);
 
     Meal addMeal(Meal meal);
 
+    void deleteMeal(int idmeal);
 
-    void deleteMeal(int idmeal); // I updated this part to match our database
-    Meal updateMeal( Meal meal);
-
-    public List<Meal> getAllMealsForUSer(int userId);
+    Meal updateMeal(Meal meal);
 
 }
