@@ -74,7 +74,7 @@ public class MealController {
 
 
     @RequestMapping(path = "/{idmeal}", method = RequestMethod.PUT)
-    public Meal update(@Valid @RequestBody Meal meal, @PathVariable int idmeal) {
+    public Meal updateMeal(@Valid @RequestBody Meal meal, @PathVariable int idmeal) {
         // The id on the path takes precedence over the one in the request body, if any
         meal.setIdmeal(idmeal);
         try {
@@ -87,7 +87,7 @@ public class MealController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{idmeal}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int idmeal) {
+    public void deleteMeal(@PathVariable int idmeal) {
 
         mealDao.deleteMeal(idmeal);
     }
