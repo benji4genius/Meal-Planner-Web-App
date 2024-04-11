@@ -55,7 +55,7 @@ public class IngredientController {
     }
 
     @RequestMapping(path = "/{idingredient}", method = RequestMethod.PUT)
-    public Ingredient update(@Valid @RequestBody Ingredient ingredient, @PathVariable int idingredient) {
+    public Ingredient updateIngredient(@Valid @RequestBody Ingredient ingredient, @PathVariable int idingredient) {
         // The id on the path takes precedence over the one in the request body, if any
         ingredient.setIdingredient(idingredient);
         try {
@@ -68,7 +68,7 @@ public class IngredientController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{idingredient}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int idingredient) {
+    public void deleteIngredient(@PathVariable int idingredient) {
         ingredientDao.deleteIngredient(idingredient);
     }
 
