@@ -3,7 +3,6 @@
   <div id="register" class="text-center">
     <header>
         <nav>
-          
           <a class="link" href="{name: home}">Home</a>
           <p class="link">Link</p>
           <img class="logo" src="Untitled Design.png"/>

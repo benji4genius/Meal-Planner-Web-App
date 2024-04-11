@@ -3,11 +3,7 @@
     <div id="login">
       <header>
         <nav>
-          <a class="link" href="{name: home}">Home</a>
-          <p class="link">Link</p>
           <img class="logo" src="Untitled Design.png"/>
-          <p class="link">Meals</p>
-          <p class="link">Meal Plans</p>
         </nav>
       </header>
       <body>
