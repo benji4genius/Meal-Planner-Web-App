@@ -6,19 +6,19 @@ const http = axios.create({
 
 export default {
     getIngredients() {
-        return http.get('/ingredients');
+        return http.get('/ingredients');  //works
     },
 
     getIngredientById(idingredient) {
-        return http.get(`/ingredients/${idingredient}`);
+        return http.get(`/ingredients/${idingredient}`); 
     },
 
     createIngredient(newIngredient) {
-        return http.post('/ingredients', newIngredient); //just ingredient or newIngredient? 
+        return http.post('/ingredients', newIngredient);
     },
 
     updateIngredient(ingredient) {
-        return http.put(`/ingredients/${ingredient.id}`, ingredient); //not sure?
+        return http.put(`/ingredients/${ingredient.idingredient}`, ingredient); 
     },
 
     deleteIngredient(idingredient) {
