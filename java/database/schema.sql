@@ -44,6 +44,7 @@ DROP TABLE IF EXISTS meals;
 
 CREATE TABLE meals(
    idMeal                      SERIAL NOT NULL
+   ,user_id                    INTEGER FOREIGN KEY NOT NULL
   ,strMeal                     VARCHAR(200) NOT NULL
   ,strDrinkAlternate           VARCHAR(200)
   ,strCategory                 VARCHAR(200)

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Meal {
     private int idmeal;
+    private int user_id;
     private String strmeal;
     private String strinstructions;
     private String strtags;
@@ -12,15 +13,15 @@ public class Meal {
     private String strmealthumb;
     private String stryoutube;
 
-    public Meal(){
+    public Meal() {
     }
 
-    public Meal(int idmeal, String strmeal, String strinstructions, String strtags,
-                List<MealIngredient> ingredientList, String strmealthumb, String stryoutube) {
+    public Meal(int idmeal, int user_id, String strmeal, String strinstructions, String strtags, List<MealIngredient> ingredientList, String strmealthumb, String stryoutube) {
         this.idmeal = idmeal;
+        this.user_id = user_id;
         this.strmeal = strmeal;
-        this.strtags = strtags;
         this.strinstructions = strinstructions;
+        this.strtags = strtags;
         this.ingredientList = ingredientList;
         this.strmealthumb = strmealthumb;
         this.stryoutube = stryoutube;
@@ -32,6 +33,14 @@ public class Meal {
 
     public void setIdmeal(int idmeal) {
         this.idmeal = idmeal;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getStrmeal() {
@@ -53,6 +62,7 @@ public class Meal {
     public String getStrtags() {
         return strtags;
     }
+
     public void setStrtags(String strtags) {
         this.strtags = strtags;
     }

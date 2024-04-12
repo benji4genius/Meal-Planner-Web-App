@@ -1,20 +1,17 @@
 import axios from "axios";
 
-const http = axios.create({
-    baseURL: "http://localhost:9000"
-});
 
 export default {
     getIngredients() {
-        return http.get('/ingredients');  
+        return axios.get('/ingredients');  
     },
 
     getIngredientById(idingredient) {
-        return http.get(`/ingredients/${idingredient}`); 
+        return axios.get(`/ingredients/${idingredient}`); 
     },
 
     createIngredient(newIngredient) {
-        return http.post('/ingredients', newIngredient);
+        return axios.post('/ingredients', newIngredient);
     },
 
 
@@ -23,7 +20,7 @@ export default {
     // },
 
     deleteIngredient(idingredient) {
-        return http.delete(`/ingredients/${idingredient}`);
+        return axios.delete(`/ingredients/${idingredient}`);
     }
 
 
