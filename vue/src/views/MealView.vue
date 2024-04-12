@@ -10,19 +10,17 @@
 
     <body>
       <div id="main-content">
-        <div class="card" style="width: 20rem;">
+        <!-- <div class="card" style="width: 20rem;">
           <img class="image-top" src="chicken_soup.jpg" alt="Card example image">
           <div class="card-body">
             <h4 class="card-title">Chicken Noodle Soup</h4>
             <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
             <button>Add to a meal plan</button>
           </div>
-        </div>
+        </div> -->
 
         <div class="meal-container">
-          <div class="card" style="width: 20rem;">
-
-            <div v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+            <div class="card" style="width: 20rem;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
               v-bind:key="meal.idmeal">
               <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
               <div class="card-body">
@@ -32,7 +30,11 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
         </div>
+=======
+
+>>>>>>> 082b4321af59e4fa642223ba2bad28216ee612f5
       </div>
     </body>
   </main>
@@ -155,7 +157,10 @@ nav {
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
+.meal-container{
+  display:flex;
+  flex-direction: row;
+}
 .card {
   border-color: #949ba2;
   backface-visibility: hidden;
@@ -213,11 +218,15 @@ nav {
     }
   }
 
-  .image-top,
+  .image-top { /*added width and height*/
+    width: 100%;
+    height: auto;
+  }
   .image-bottom,
   img {
     border: 0;
     border-radius: 0;
   }
 }
+
 </style>
