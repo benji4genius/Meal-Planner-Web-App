@@ -30,11 +30,6 @@
               </div>
             </div>
           </div>
-<<<<<<< HEAD
-        </div>
-=======
-
->>>>>>> 082b4321af59e4fa642223ba2bad28216ee612f5
       </div>
     </body>
   </main>
