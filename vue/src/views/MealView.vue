@@ -22,18 +22,24 @@
         <div class="meal-container">
           <div class="card" style="width: 20rem;">
 
-            <router-link v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+            <div v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
               v-bind:key="meal.idmeal">
-              <p>{{ meal.strmeal }}</p>
-              <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
-              <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
-              <button>Add to a meal plan</button>
-            </router-link>
-          </div>
 
+              <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
+              
+              <div class="card-body">
+                <h4 class="card-title">{{ meal.strmeal }}</h4>
+                <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
+                <button>Add to a meal plan</button>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
+
+
 
     </body>
   </main>
@@ -115,6 +121,7 @@ nav {
   padding-top: 10rem;
   font-family: Neucha, sans-serif;
 }
+
 
 .link {
   align-self: center;
