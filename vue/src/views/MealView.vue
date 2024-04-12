@@ -20,14 +20,20 @@
         </div>
 
         <div class="meal-container">
-          <router-link v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
-            v-bind:key="meal.idmeal">
-            
-          </router-link>
+          <div class="card" style="width: 20rem;">
+
+            <router-link v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+              v-bind:key="meal.idmeal">
+              <p>{{ meal.strmeal }}</p>
+              <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
+              <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
+              <button>Add to a meal plan</button>
+            </router-link>
+          </div>
+
         </div>
 
       </div>
-
 
     </body>
   </main>
@@ -213,4 +219,5 @@ nav {
     border: 0;
     border-radius: 0;
   }
-}</style>
+}
+</style>
