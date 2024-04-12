@@ -10,11 +10,11 @@
   
       <body>
         <div id="main-content">
-          <div class="meal-details">
-            <img class="image-top" src="chicken_soup.jpg" alt="Meal image">
+          <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
+            <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
             <div class="meal-info">
-              <h2>{{ mealDetails.strMeal }}</h2>
-              <p>Description: {{ mealDetails.strInstructions }}</p>
+              <h2>{{ meal.strmeal }}</h2>
+              <p>Description: {{ meal.strinstructions }}</p>
               <!-- Add more details here -->
             </div>
           </div>
@@ -24,28 +24,60 @@
   </template>
   
   <script>
+  import MealService from "../services/MealService";
   export default {
     data() {
       return {
-        mealDetails: {} // Placeholder for meal details
+        meal: {
+          strmeal: '',
+          strinstructions: '',
+          strtags: '',
+          strmealthumb: '',
+          stryoutube: ''
+        } // Placeholder for meal details
       };
     },
-    methods: {
-      loadMealDetails() {
-       
-        // MealService.getMealDetails(this.$route.params.id)
-        //   .then(response => {
-        //     this.mealDetails = response.data;
-        //   })
-        //   .catch(error => {
-        //     console.error('Error fetching meal details:', error);
-        //   });
-      }
-    },
-    created() {
-      this.loadMealDetails();
-    }
-  };
+    // methods: {
+    //   loadMealDetails() {
+    //    MealService.getMealById(this.$store.state.meal.idmeal)
+    //    .then(response => {
+    //     this.meal.idmeal = response.data;
+    //    })
+    //    .catch(error => {
+    //     console.error('Error fetching meal details.', error);
+    //    })
+    //     // MealService.getMealDetails(this.$route.params.id)
+    //     //   .then(response => {
+    //     //     this.mealDetails = response.data;
+    //     //   })
+    //     //   .catch(error => {
+    //     //     console.error('Error fetching meal details:', error);
+    //     //   });
+    //   }
+    // },
+    
+      created() {
+    let idmeal = parseInt(this.$route.params.idmeal);
+    MealService.getMealById(idmeal)
+      .then(response => {
+        this.meal = response.data;
+      });
+  }
+      
+//       created() {
+// this.fetchMealDetails();
+// },
+// methods: {
+// async fetchMealDetails() {
+// try {
+// const mealId = this.$route.params.id;
+// const response = await MealService.getMealDetails(mealId);
+// this.meal = response.data;
+// } catch (error) {
+// console.error('blah blah:', error);}
+//     }
+  
+}
   </script>
   
 <style scoped>
