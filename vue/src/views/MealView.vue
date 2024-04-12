@@ -220,7 +220,10 @@ nav {
     }
   }
 
-  .image-top,
+  .image-top { /*added width and height*/
+    width: 100%;
+    height: auto;
+  }
   .image-bottom,
   img {
     border: 0;
