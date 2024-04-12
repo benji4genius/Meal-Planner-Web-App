@@ -25,7 +25,7 @@
               <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
               <div class="card-body">
                 <h4 class="card-title">{{ meal.strmeal }}</h4>
-                <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
+                <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button>Let's Cook!</button></router-link>
                 <button>Add to a meal plan</button>
               </div>
             </div>
