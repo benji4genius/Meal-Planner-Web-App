@@ -1,33 +1,30 @@
 import axios from 'axios';
 
-const http = axios.create({
-  baseURL: "http://localhost:9000"
-});
 
 export default {
 
  getMeals() {
-    return http.get('/meals');
+    return axios.get('/meals');
   },
 
   getMealsForUser() {
-    return http.get('/meals/mymeals')
+    return axios.get('/meals/mymeals')
   },
 
   getMealById(idmeal) {
-    return http.get(`/meals/${idmeal}`)
+    return axios.get(`/meals/${idmeal}`)
   },
  
   createMeal(newMeal) {
-    return http.post('/meals', newMeal);
+    return axios.post('/meals', newMeal);
   },
 
   updateMeal(meal) {
-    return http.put(`/meals/${meal.idmeal}`, meal);
+    return axios.put(`/meals/${meal.idmeal}`, meal);
   },
 
   deleteMeal(idmeal) {
-    return http.delete(`/meals/${idmeal}`);
+    return axios.delete(`/meals/${idmeal}`);
   }
   
 

@@ -56,7 +56,7 @@ export default {
       MealService
         .getMealsForUser()
         .then((response) => {
-          this.meals = response.data;
+          this.$store.state.meals = response.data;
 
         })
         .catch((error) => {

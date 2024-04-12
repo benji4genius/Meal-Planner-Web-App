@@ -92,10 +92,10 @@ public class JdbcMealDao implements MealDao {
     @Override
     public Meal addMeal(Meal meal) {
         Meal newMeal = null;
-        String sql = "INSERT INTO meals (strmeal, strinstructions, strtags, strmealthumb, stryoutube) " +
-                "VALUES (?, ?, ?, ?, ?) RETURNING idMeal";
+        String sql = "INSERT INTO meals (user_id,strmeal, strinstructions, strtags, strmealthumb, stryoutube) " +
+                "VALUES (?, ?, ?, ?, ?, ?) RETURNING idMeal";
         try {
-            int mealId = jdbcTemplate.queryForObject(sql, int.class, meal.getStrmeal(), meal.getStrinstructions(),
+            int mealId = jdbcTemplate.queryForObject(sql, int.class, meal.getUser_id(), meal.getStrmeal(), meal.getStrinstructions(),
                          meal.getStrtags(), meal.getStrmealthumb(), meal.getStryoutube());
             newMeal = getMealById(mealId);
         } catch (CannotGetJdbcConnectionException e) {
