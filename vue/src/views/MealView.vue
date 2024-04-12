@@ -24,23 +24,16 @@
 
             <div v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
               v-bind:key="meal.idmeal">
-
               <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
-              
               <div class="card-body">
                 <h4 class="card-title">{{ meal.strmeal }}</h4>
                 <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
                 <button>Add to a meal plan</button>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
-
-
-
     </body>
   </main>
 </template>
