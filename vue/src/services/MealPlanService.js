@@ -4,27 +4,27 @@ import axios from 'axios';
 export default {
 
     getAllMealPlans() {
-    return axios.get('/mealplans');
+    return axios.get('/meal_plans');
   },
 
   getAllMealPlansForUser() {
-    return axios.get('/mealplans/mymealplans')
+    return axios.get('/meal_plans/mymealplans')
   },
 
   getMealPlanById(meal_plan_id) {
-    return axios.get(`/mealplans/${meal_plan_id}`)
+    return axios.get(`/meal_plans/${meal_plan_id}`)
   },
  
   createMeal(newMealPlans) {
-    return axios.post('/mealplans', newMealPlans);
+    return axios.post('/meal_plans', newMealPlans);
   },
 
-  updateMealPlan(mealplan) {
-    return axios.put(`/meals/${mealplan.meal_plan_id}`, mealplan);
+  updateMealPlan(meal_plan) {
+    return axios.put(`/meal_plans/${meal_plan.meal_plan_id}`, meal_plan);
   },
 
   deleteMealPlan(meal_plan_id) {
-    return axios.delete(`/meals/${meal_plan_id}`);
+    return axios.delete(`/meal_plans/${meal_plan_id}`);
   }
   
 
