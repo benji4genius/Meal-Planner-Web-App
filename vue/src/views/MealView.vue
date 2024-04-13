@@ -13,7 +13,7 @@
          
              <div class="meal-container">
               <div class="card" style="width: 20rem;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
-                v-bind:key="meal.idmeal">
+                v-bind:key="meal.idmeal" >
                 <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
                 <div class="card-body">
                   <h4 class="card-title">{{ meal.strmeal }}</h4>

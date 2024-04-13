@@ -138,7 +138,7 @@ nav{
   outline: none;
   padding: .75rem;
   text-decoration: none;
-  transition: all 235ms ease-in-out;
+  transition: all 23v5ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
   border-bottom-right-radius: 225px 15px;
   border-top-left-radius: 255px 15px;
