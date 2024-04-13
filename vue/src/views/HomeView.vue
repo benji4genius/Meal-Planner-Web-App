@@ -3,8 +3,8 @@
   <div class="home">
     <header>
         <nav>
-          <p class="link">Ingredients</p>
-          <p class="link"><router-link v-bind:to="{ name: 'meals' }">Meals</router-link></p>
+          <p class="link"><router-link v-bind:to ="{name: 'meals' }">Meals</router-link></p>
+          <p class="link"><router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link></p>
           <img class="logo" src="Untitled Design.png"/>
           <p class="link">Meal Plans</p>
           <p class="link"><router-link v-bind:to="{ name: 'logout' }">Logout</router-link></p>
