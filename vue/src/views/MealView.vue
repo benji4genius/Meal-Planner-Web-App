@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <main>
       <header>
         <nav>
@@ -20,6 +21,38 @@
                   <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button>Let's Cook!</button></router-link>
                   <button>Add To My Meals</button>
                 </div>
+=======
+  <main>
+    <header>
+      <nav>
+        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
+        <img class="logo" src="Untitled Design.png" />
+        <!-- Update this section -->
+        <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
+          <!-- Updated section ends -->
+      </nav>
+    </header>
+
+    <body>
+      <div id="main-content">
+        <!-- <div class="card" style="width: 20rem;">
+          <img class="image-top" src="chicken_soup.jpg" alt="Card example image">
+          <div class="card-body">
+            <h4 class="card-title">Chicken Noodle Soup</h4>
+            <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
+            <button>Add to a meal plan</button>
+          </div>
+        </div> -->
+
+        <div class="meal-container">
+            <div class="card" style="width: 20rem;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+              v-bind:key="meal.idmeal">
+              <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
+              <div class="card-body">
+                <h4 class="card-title">{{ meal.strmeal }}</h4>
+                <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button>Let's Cook!</button></router-link>
+                <button>Add to a meal plan</button>
+>>>>>>> 2175fa8022fe9bbb42eca1a1357b0af7706172f9
               </div>
             </div>
         </div>
