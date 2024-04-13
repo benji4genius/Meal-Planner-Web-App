@@ -179,13 +179,14 @@ nav {
 }
 
 .meal {
+  width: 200px; /* Set a fixed width for meal containers */
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
 
 .meal img {
-  max-width: 100%;
+  max-width: 100%; /* Ensure images scale properly within the fixed width container */
   height: auto;
 }
 
