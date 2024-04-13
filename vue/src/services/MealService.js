@@ -14,6 +14,10 @@ export default {
         return axios.post('/meals', newMeal);
     },
 
+    getMealsForUser(){
+      return axios.get('/meals/mymeals')
+    },
+
 
     // updateIngredient(ingredient) {
     //     return http.put(`/ingredients/${ingredient.id}`, ingredient); //not sure?

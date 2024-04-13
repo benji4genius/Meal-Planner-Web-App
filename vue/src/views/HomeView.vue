@@ -7,9 +7,9 @@
           <p class="link"><router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link></p>
           <img class="logo" src="Untitled Design.png"/>
           <!-- Update this section -->
-          <p class="link"><router-link v-bind:to="{name: 'mealplans'}">Meal Plans</router-link></p>
+          <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
           <!-- Updated section ends -->
-          <p class="link"><router-link v-bind:to="{ name: 'logout' }">Logout</router-link></p>
+          <p class="link"><router-link to="{ name: 'logout' }">Logout</router-link></p>
         </nav>
       </header>
       <body>
