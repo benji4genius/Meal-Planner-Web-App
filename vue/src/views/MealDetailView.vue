@@ -3,7 +3,7 @@
       <header>
         <nav>
           <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-          <img class="logo" src="Untitled Design.png" />
+          <img class="logo" src="/Untitled Design.png" />
           <p class="link">Meal Details</p>
         </nav>
       </header>

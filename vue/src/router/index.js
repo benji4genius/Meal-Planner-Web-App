@@ -59,7 +59,7 @@ const routes = [
     }
   },
   {
-    path: "/meal_details",
+    path: "/meal_details/:idmeal",
     name: "mealDetails",
     component: MealDetailView,
     meta: {
