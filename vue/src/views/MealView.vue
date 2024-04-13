@@ -18,7 +18,7 @@
                 <div class="card-body">
                   <h4 class="card-title">{{ meal.strmeal }}</h4>
                   <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button>Let's Cook!</button></router-link>
-                  <button>Add To My Meals</button>
+                  <button v-on:click= "addToMyMeals (meal)"> Add To My Meals </button>
                 </div>
               </div>
             </div>
@@ -54,7 +54,23 @@
             }
           });
   
+        
+      },
+      addToMyMeals(newMeal){
+
+        MealService
+        .createMeal(newMeal)
+        .then((response)=>{
+          if(response.status ===201){
+            console.log("Success!");
+            this.$router.push({name:`mymeals`})
+          }
+         
+        })
+        
+      
       }
+
   
     },
     created() {
