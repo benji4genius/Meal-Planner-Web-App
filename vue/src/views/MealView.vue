@@ -4,7 +4,9 @@
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
         <img class="logo" src="Untitled Design.png" />
-        <p class="link">Meal Plans</p>
+        <!-- Update this section -->
+        <p class="link"><router-link to="/meal_plan">Meal Plans</router-link></p>
+          <!-- Updated section ends -->
       </nav>
     </header>
 
