@@ -67,7 +67,7 @@ const routes = [
     }
   },
   {
-    path: "/meal_plans",
+    path: "/mealplans",
     name: "mealPlans",
     component: MealPlanView, // Added this part 
     meta: {
