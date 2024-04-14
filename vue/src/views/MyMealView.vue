@@ -10,6 +10,7 @@
     </header>
 
     <!-- Body section -->
+
     <body>
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
@@ -18,11 +19,14 @@
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
-              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }">
+              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
                 <button>Let's Cook!</button>
               </router-link>
               <!-- Button to remove meal -->
               <button @click="removeFromMyMeals(meal)">Remove Meal</button>
+              <router-link to="/mealplans">
+                  <button @click="addToMyMeals(myMeals)">Add to Meal Plans</button>
+                </router-link> <!--i added this part-->
             </div>
           </div>
         </div>
@@ -58,6 +62,11 @@ export default {
       if (index !== -1) {
         this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
       }
+    },
+    addToMealPlan(newMeal) {
+      // Commit mutation to add my meal to "Meals Plan" in Vuex store
+      this.$store.commit('ADD_TO_MEAL_PLAN', newMeal);    
+      console.log('Adding to Meal Plan:', newMeal); // Add this line to check if my meal is being added
     }
   },
   created() {
@@ -148,10 +157,12 @@ nav {
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-.meal-container{
-  display:flex;
+
+.meal-container {
+  display: flex;
   flex-direction: row;
 }
+
 .card {
   border-color: #949ba2;
   backface-visibility: hidden;
@@ -209,15 +220,15 @@ nav {
     }
   }
 
-  .image-top { /*added width and height*/
+  .image-top {
+    /*added width and height*/
     width: 100%;
     height: auto;
   }
+
   .image-bottom,
   img {
     border: 0;
     border-radius: 0;
   }
-}
-
-</style>
+}</style>

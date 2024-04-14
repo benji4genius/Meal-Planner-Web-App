@@ -16,7 +16,8 @@
             <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
               <h4>{{ mealSlot }}</h4>
               <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
-                <img :src="mealPlan[day][mealSlot].image" alt="Meal Image" draggable="true" @dragstart="dragMeal(day, mealSlot)" />
+                <img :src="mealPlan[day][mealSlot].image" alt="Meal Image" draggable="true"
+                  @dragstart="dragMeal(day, mealSlot)" />
                 <p>{{ mealPlan[day][mealSlot].name }}</p>
               </div>
             </div>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import MealService from "../services/MealService";
+import MyMealService from "../services/MyMealService";
 
 export default {
   data() {
@@ -45,15 +46,16 @@ export default {
         Saturday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
         Sunday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } }
       },
-      meals: []
+      myMeals: [],
+      
     };
   },
   methods: {
     loadMeals() {
-      MealService
+      MyMealService
         .getMealsForUser()
         .then((response) => {
-          this.meals = response.data;
+          this.myMeals = response.data;
         })
         .catch((error) => {
           console.error("Error loading meals: ", error);
@@ -62,10 +64,10 @@ export default {
     dropMeal(day, mealSlot) {
       // Implement drop logic to add a meal to the meal plan
       // For now, let's just add the first meal from the meals list to the dropped slot
-      if (this.meals.length > 0) {
-        const meal = this.meals[0];
-        this.mealPlan[day][mealSlot].name = meal.strmeal;
-        this.mealPlan[day][mealSlot].image = meal.strmealthumb;
+      if (this.myMeals.length > 0) {
+        const mealPlanMeals = this.myMeals[0];
+        this.mealPlan[day][mealSlot].name = myMeals.strmeal;
+        this.mealPlan[day][mealSlot].image = myMeals.strmealthumb;
       }
     },
     dragMeal(day, mealSlot) {
@@ -73,6 +75,12 @@ export default {
       // For now, let's clear the dragged slot
       this.mealPlan[day][mealSlot].name = '';
       this.mealPlan[day][mealSlot].image = '';
+    },
+
+    addToMealPlan(newMeal) {
+      // Commit mutation to add my meals to "Meal plan" in Vuex store
+      this.$store.commit('ADD_TO_MEAL_PLAN', newMeal);       
+      console.log('Adding to Meal Plan:', newMeal); // Add this line to check if my meal is being added
     }
   },
   created() {
@@ -113,7 +121,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px; /* Adjusted margin */
+  margin-top: 50px;
+  /* Adjusted margin */
 }
 
 .link {
@@ -160,7 +169,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 20px; /* Added margin */
+  margin-top: 20px;
+  /* Added margin */
 }
 
 .day {
@@ -179,19 +189,20 @@ nav {
 }
 
 .meal {
-  width: 200px; /* Set a fixed width for meal containers */
+  width: 200px;
+  /* Set a fixed width for meal containers */
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
 
 .meal img {
-  max-width: 100%; /* Ensure images scale properly within the fixed width container */
+  max-width: 100%;
+  /* Ensure images scale properly within the fixed width container */
   height: auto;
 }
 
 .meal p {
   margin-top: 5px;
   margin-bottom: 0;
-}
-</style>
+}</style>

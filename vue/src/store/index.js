@@ -7,7 +7,8 @@ export function createStore(currentToken, currentUser) {
   const initialState = {
     token: currentToken || '',
     user: currentUser || {},
-    myMeals: JSON.parse(localStorage.getItem('myMeals')) || [] // Initialize myMeals with data from local storage
+    myMeals: JSON.parse(localStorage.getItem('myMeals')) || [], // Initialize myMeals with data from local storage
+    mealPlans: []
   };
 
   // Create the Vuex store
@@ -37,6 +38,9 @@ export function createStore(currentToken, currentUser) {
       },
       REMOVE_FROM_MY_MEALS(state, index) {
         state.myMeals.splice(index, 1);
+      },
+      ADD_TO_MEAL_PLAN(state, myMeals){
+        state.mealPlans.push(myMeals);
       }
     }
   });
