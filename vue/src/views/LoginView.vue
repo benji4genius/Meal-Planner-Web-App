@@ -3,7 +3,7 @@
     <div id="login">
       <header>
         <nav>
-          <img class="logo" src="Untitled Design.png"/>
+          <img class="logo" src="Chefs_Hat.png"/>
         </nav>
       </header>
       <body>
@@ -101,6 +101,7 @@ nav{
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  height: 100px;
 }          
 #main-content{
   display:flex;
@@ -113,9 +114,13 @@ nav{
   padding-top: 10rem;
   font-family: Neucha, sans-serif;
 }
-.logo{
-  height: 100px;
-  border: 2px solid black;
+.logo {
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  margin-right: 1px;
+  margin-left: 1px;
 }
 .link {
   align-self: center;

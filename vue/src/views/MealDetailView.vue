@@ -3,7 +3,7 @@
       <header>
         <nav>
           <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-          <img class="logo" src="/Untitled Design.png" />
+          <img class="logo" src="/Chefs_Hat.png" />
           <p class="link">Meal Details</p>
         </nav>
       </header>
@@ -93,6 +93,7 @@ nav{
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  height: 100px;
 }
 .link {
   align-self: center;
@@ -132,9 +133,13 @@ nav{
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-.logo{
-  height: 100px;
-  border: 2px solid black;
+.logo {
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  margin-right: 1px;
+  margin-left: 1px;
 }
   .meal-details {
     display: flex;

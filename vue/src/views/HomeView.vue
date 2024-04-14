@@ -5,7 +5,7 @@
         <nav>
           <p class="link"><router-link v-bind:to ="{name: 'meals' }">Meals</router-link></p>
           <p class="link"><router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link></p>
-          <img class="logo" src="Untitled Design.png"/>
+          <img class="logo" src="Chefs_Hat.png"/>
           <!-- Update this section -->
           <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
           <!-- Updated section ends -->
@@ -48,10 +48,15 @@ nav{
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-}
-.logo{
   height: 100px;
-  border: 2px solid black;
+}
+.logo {
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 #main-content{
   display:flex;
