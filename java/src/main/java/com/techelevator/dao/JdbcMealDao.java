@@ -59,8 +59,10 @@ public class JdbcMealDao implements MealDao {
     @Override
     public List<Meal> getAllMealsForUser(int userId) {
         List<Meal> allMeals = new ArrayList<>();
-        String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals " +
-                    "WHERE user_id = ?";
+        String sql = "SELECT m.idmeal, m.strmeal, m.strinstructions, m.strtags, m.strmealthumb, m.stryoutube " +
+                "FROM meals m " +
+                "JOIN meal_ingredient_association mia ON m.idmeal = mia.idmeal " +
+                "WHERE mia.user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
@@ -74,12 +76,13 @@ public class JdbcMealDao implements MealDao {
         return allMeals;
     }
     @Override
-    public Meal getMealById(int mealId) {
+    // switched this to idmeal from mealID
+    public Meal getMealById(int idmeal) {
         Meal meal = null;
         String sql = "SELECT idmeal, strmeal, strinstructions, strtags, strmealthumb, stryoutube FROM meals " +
                 "WHERE idmeal = ?;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealId);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, idmeal); // Did the same here as well
             if(results.next()){
                 meal = mapRowToMeal(results);
             }
@@ -126,10 +129,11 @@ public class JdbcMealDao implements MealDao {
     }
 
     @Override
-    public void deleteMeal(int id) {
+    // changed this from id to idmeal
+    public void deleteMeal(int idmeal) {
         String sql = "DELETE FROM meals WHERE idmeal = ?;";
         try {
-            jdbcTemplate.update(sql, id);
+            jdbcTemplate.update(sql, idmeal);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }

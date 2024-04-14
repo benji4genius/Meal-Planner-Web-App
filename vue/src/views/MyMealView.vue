@@ -1,5 +1,6 @@
 <template>
   <main>
+    <!-- Header section -->
     <header>
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
@@ -8,51 +9,41 @@
       </nav>
     </header>
 
+    <!-- Body section -->
     <body>
       <div id="main-content">
-        <!-- <div class="card" style="width: 20rem;">
-          <img class="image-top" src="chicken_soup.jpg" alt="Card example image">
-          <div class="card-body">
-            <h4 class="card-title">Chicken Noodle Soup</h4>
-            <router-link v-bind:to="{ name: 'mealDetails' }"><button>Let's Cook!</button></router-link>
-            <button>Add to a meal plan</button>
-          </div>
-        </div> -->
-
-        <div class="meal-container">
-            <div class="card" style="width: 20rem;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
-              v-bind:key="meal.idmeal">
-              <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
-              <div class="card-body">
-                <h4 class="card-title">{{ meal.strmeal }}</h4>
-                <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button>Let's Cook!</button></router-link>
-                <button>Add to a meal plan</button>
-              </div>
+        <!-- Loop through each meal in myMeals array -->
+        <div v-for="meal in myMeals" :key="meal.idmeal" class="meal-container">
+          <div class="card" style="width: 20rem;">
+            <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
+            <div class="card-body">
+              <h4 class="card-title">{{ meal.strmeal }}</h4>
+              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }">
+                <button>Let's Cook!</button>
+              </router-link>
+              <!-- Button to remove meal -->
+              <button @click="removeFromMyMeals(meal)">Remove Meal</button>
             </div>
           </div>
+        </div>
       </div>
     </body>
   </main>
 </template>
 
 <script>
-import MealService from "../services/MyMealService";
+import MealService from "../services/MealService";
 export default {
-  data() {
-    return {
-      meals: []
-
-
-    };
+  computed: {
+    myMeals() {
+      return this.$store.state.myMeals;
+    }
   },
   methods: {
     loadMeals() {
-
-      MealService
-        .getMealsForUser()
+      MealService.getMealsForUser()
         .then((response) => {
-          this.$store.state.meals = response.data;
-
+          this.$store.commit('SET_MY_MEALS', response.data); // Commit mutation to set myMeals
         })
         .catch((error) => {
           const response = error.response;
@@ -61,15 +52,20 @@ export default {
             this.registrationErrorMsg = 'Bad Request: Validation Errors';
           }
         });
-
+    },
+    removeFromMyMeals(meal) {
+      const index = this.$store.state.myMeals.findIndex(m => m.idmeal === meal.idmeal);
+      if (index !== -1) {
+        this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
+      }
     }
-
   },
   created() {
     this.loadMeals();
   }
 };
 </script>
+
 
 
 <style scoped>

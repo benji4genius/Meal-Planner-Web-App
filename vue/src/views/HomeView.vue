@@ -9,7 +9,7 @@
           <!-- Update this section -->
           <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
           <!-- Updated section ends -->
-          <p class="link"><router-link to="{ name: 'logout' }">Logout</router-link></p>
+          <p class="link"><router-link to="/logout">Logout</router-link></p>
         </nav>
       </header>
       <body>
