@@ -29,7 +29,7 @@
               <!-- Button to remove meal -->
               <button @click="removeFromMyMeals(meal)">Remove Meal</button>
               <router-link to="/mealplans">
-                  <button @click="addToMyMeals(myMeals)">Add to Meal Plans</button>
+                  <button @click="addToMealPlan(myMeals)">Add to Meal Plans</button>
                 </router-link> <!--i added this part-->
             </div>
           </div>
@@ -67,10 +67,10 @@ export default {
         this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
       }
     },
-    addToMealPlan(newMeal) {
+    addToMealPlan(meal) {
       // Commit mutation to add my meal to "Meals Plan" in Vuex store
-      this.$store.commit('ADD_TO_MEAL_PLAN', newMeal);    
-      console.log('Adding to Meal Plan:', newMeal); // Add this line to check if my meal is being added
+      this.$store.commit('ADD_TO_MEAL_PLAN', meal);    // changed from newMeal to meal
+      console.log('Adding to Meal Plan:', meal); // Add this line to check if my meal is being added
     }
   },
   created() {
@@ -88,12 +88,14 @@ body, html {
 }
 
 main {
-  background-image: url("healthy_background.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:cover;
   position: relative;
-  height: 100vh;
-  margin-top: 20px; /* Add margin-top to create spacing between nav and main */
+  height:fit-content;
+  background-color: white;
+ /* Add margin-top to create spacing between nav and main */
+  
 }
 
 header {
@@ -111,6 +113,7 @@ nav {
   font-size: 20px;
   height: 100px;
   margin-bottom: 20px; /* Add margin-bottom to create spacing between nav and main */
+  
 }
 
 
@@ -174,6 +177,10 @@ nav {
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
+  padding-top: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+ 
 }
 .card {
   border-color: #949ba2;
@@ -253,5 +260,4 @@ nav {
 img {
   border: 0;
   border-radius: 0;
-}
-</style>
+}</style>

@@ -82,9 +82,10 @@ export default {
 </script>
 <style scoped>
 main {
-  background-image: url("healthy_background.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: whitesmoke;
   position: relative;
   opacity: 4; /* added this part*/
 }
