@@ -4,7 +4,11 @@
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
         <img class="logo" src="Chefs_Hat.png" />
+
+        <router-link to="/mealplans">
         <p class="link">Meal Plans</p>
+        </router-link>
+
       </nav>
     </header>
 
@@ -75,17 +79,24 @@ export default {
 
 
 <style scoped>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
 main {
   background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  height: 100vh;
+  margin-top: 20px; /* Add margin-top to create spacing between nav and main */
 }
 
 header {
   background-color: #f0754f;
   padding: 20px;
-  border: 2px solid black
+  border: 2px solid black;
 }
 
 nav {
@@ -96,7 +107,9 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
+  margin-bottom: 20px; /* Add margin-bottom to create spacing between nav and main */
 }
+
 
 .logo {
   width: 200px;
@@ -162,6 +175,8 @@ nav {
 .card {
   border-color: #949ba2;
   backface-visibility: hidden;
+  border-radius: 15px; /* Adjust the value as needed */
+  overflow: hidden; /* Ensure content inside the card respects the border-radius */
   border-style: solid;
   border-width: 2px;
   display: flex;
@@ -172,64 +187,67 @@ nav {
   align-items: center;
   justify-content: center;
   will-change: transform;
-  /* word-wrap: break-word; */
+  transition: transform 0.3s ease; /* Apply hover effect to the card */
+}
 
-  .card-header,
-  .card-footer {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-color: #949ba2;
-    padding: 0.75rem 1.25rem;
+.card:hover {
+  transform: translateY(-5px); /* Define hover effect */
+}
+
+.card-header,
+.card-footer {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: #949ba2;
+  padding: 0.75rem 1.25rem;
+}
+
+.card-header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+.card-footer {
+  border-top-style: solid;
+  border-top-width: 2px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+
+  .card-title,
+  h4 {
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    text-align: center;
   }
 
-  .card-header {
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
+  .card-subtitle,
+  h5 {
+    color: #5595ce;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
   }
 
-  .card-footer {
-    border-top-style: solid;
-    border-top-width: 2px;
+  .card-text,
+  p {
+    margin-bottom: 1rem;
+    margin-top: 0;
   }
 
-  .card-body {
-    flex: 1 1 auto;
-    padding: 1.25rem;
-
-    .card-title,
-    h4 {
-      margin-bottom: 0.5rem;
-      margin-top: 0;
-      text-align: center;
-    }
-
-    .card-subtitle,
-    h5 {
-      color: #5595ce;
-      margin-bottom: 0.5rem;
-      margin-top: 0;
-    }
-
-    .card-text,
-    p {
-      margin-bottom: 1rem;
-      margin-top: 0;
-    }
-
-    .card-link+.card-link,
-    a+a {
-      margin-left: 1.25rem;
-    }
-  }
-
-  .image-top { /*added width and height*/
-    width: 100%;
-    height: auto;
-  }
-  .image-bottom,
-  img {
-    border: 0;
-    border-radius: 0;
+  .card-link+.card-link,
+  a+a {
+    margin-left: 1.25rem;
   }
 }
 
-</style>
+.image-top { /*added width and height*/
+  width: 100%;
+  height: auto;
+}
+
+.image-bottom,
+img {
+  border: 0;
+  border-radius: 0;
+}</style>

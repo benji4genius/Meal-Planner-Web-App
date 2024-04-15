@@ -4,7 +4,10 @@
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
         <img class="logo" src="Chefs_Hat.png" />
-        <p class="link">Meal Plans</p>
+
+        <router-link to="/myMeals">
+        <p class="link">My Meals</p>
+        </router-link>
       </nav>
     </header>
     <div id="main-content">
