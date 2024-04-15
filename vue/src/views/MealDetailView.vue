@@ -7,15 +7,20 @@
           <p class="link">Meal Details</p>
         </nav>
       </header>
+
+      <div class="recipe-name">
+        <h2>{{ meal.strmeal }}</h2>
+        <h3>Recipe Instructions</h3>
+      </div>
   
       <body>
         <div id="main-content">
           <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
             <div class="meal-info">
-              <h2>{{ meal.strmeal }}</h2>
-              <p>Description: {{ meal.strinstructions }}</p>
-              <!-- Add more details here -->
+              <div class="recipe-instructions"> 
+                <p>{{ meal.strinstructions }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -34,27 +39,10 @@
           strtags: '',
           strmealthumb: '',
           stryoutube: ''
-        } // Placeholder for meal details
+        }
       };
     },
-    // methods: {
-    //   loadMealDetails() {
-    //    MealService.getMealById(this.$store.state.meal.idmeal)
-    //    .then(response => {
-    //     this.meal.idmeal = response.data;
-    //    })
-    //    .catch(error => {
-    //     console.error('Error fetching meal details.', error);
-    //    })
-    //     // MealService.getMealDetails(this.$route.params.id)
-    //     //   .then(response => {
-    //     //     this.mealDetails = response.data;
-    //     //   })
-    //     //   .catch(error => {
-    //     //     console.error('Error fetching meal details:', error);
-    //     //   });
-    //   }
-    // },
+
     
       created() {
     let idmeal = parseInt(this.$route.params.idmeal);
@@ -63,20 +51,7 @@
         this.meal = response.data;
       });
   }
-      
-//       created() {
-// this.fetchMealDetails();
-// },
-// methods: {
-// async fetchMealDetails() {
-// try {
-// const mealId = this.$route.params.id;
-// const response = await MealService.getMealDetails(mealId);
-// this.meal = response.data;
-// } catch (error) {
-// console.error('blah blah:', error);}
-//     }
-  
+    
 }
   </script>
   
@@ -152,9 +127,22 @@ nav{
     width: 300px; 
     height: auto;
     margin-bottom: 20px;
+    box-shadow: 0 0 15px #f0754f;
   }
   
   .meal-info {
-    text-align: center;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    list-style-type: disc;
+    margin-left: 20px;
   }
+
+  .recipe-name {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+  }
+
   </style>

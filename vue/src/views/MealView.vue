@@ -12,7 +12,7 @@
       <div id="main-content">
        
            <div class="meal-container">
-            <div class="card" style="width: 20rem;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+            <div class="card" style="width: 320px;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
               v-bind:key="meal.idmeal" >
               <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
               <div class="card-body">
@@ -154,7 +154,7 @@ nav {
 }
 .meal-container{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
