@@ -5,7 +5,7 @@
         <nav>
           <a class="link" href="{name: home}">Home</a>
           <p class="link">Link</p>
-          <img class="logo" src="Untitled Design.png"/>
+          <img class="logo" src="Chefs_Hat.png"/>
           <p class="link">Meals</p>
           <p class="link">Meal Plans</p>
         </nav>
@@ -118,10 +118,15 @@ nav{
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-}
-.logo{
   height: 100px;
-  border: 2px solid black;
+}
+.logo {
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  margin-right: 1px;
+  margin-left: 1px;
 }
 #main-content{
   display:flex;

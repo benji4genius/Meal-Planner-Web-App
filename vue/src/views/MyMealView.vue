@@ -4,7 +4,7 @@
     <header>
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-        <img class="logo" src="Untitled Design.png" />
+        <img class="logo" src="Chefs_Hat.png" />
         <p class="link">Meal Plans</p>
       </nav>
     </header>
@@ -14,8 +14,8 @@
     <body>
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
-        <div v-for="meal in myMeals" :key="meal.idmeal" class="meal-container">
-          <div class="card" style="width: 20rem;">
+        <div class="meal-container">
+          <div class="card" style="width: 20rem;"  v-for="meal in myMeals" :key="meal.idmeal">
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
@@ -98,22 +98,20 @@ nav {
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  height: 100px;
 }
 
 .logo {
-  height: 100px;
-  border: 2px solid black;
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  margin-right: 1px;
+  margin-left: 1px;
 }
 
 #main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 200px;
-  margin-right: 40%;
-  margin-left: 40%;
-  padding-bottom: 42.75rem;
-  padding-top: 10rem;
+  display: grid;
   font-family: Neucha, sans-serif;
 }
 
@@ -157,10 +155,12 @@ nav {
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
-.meal-container {
-  display: flex;
-  flex-direction: row;
+.meal-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
@@ -171,6 +171,10 @@ nav {
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
   will-change: transform;
   /* word-wrap: break-word; */
 
@@ -199,6 +203,7 @@ nav {
     h4 {
       margin-bottom: 0.5rem;
       margin-top: 0;
+      text-align: center;
     }
 
     .card-subtitle,
