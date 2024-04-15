@@ -3,11 +3,10 @@
     <header>
       <nav>
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-        <img class="logo" src="Untitled Design.png" />
+        <img class="logo" src="Chefs_Hat.png" />
         <p class="link">Meal Plans</p>
       </nav>
     </header>
-
     <div id="main-content">
       <div class="meal-plan">
         <div class="day" v-for="day in daysOfWeek" :key="day">
@@ -16,8 +15,7 @@
             <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
               <h4>{{ mealSlot }}</h4>
               <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
-                <img :src="mealPlan[day][mealSlot].image" alt="Meal Image" draggable="true"
-                  @dragstart="dragMeal(day, mealSlot)" />
+                <img :src="mealPlan[day][mealSlot].image" alt="Meal Image" draggable="true" @dragstart="dragMeal(day, mealSlot)" />
                 <p>{{ mealPlan[day][mealSlot].name }}</p>
               </div>
             </div>
@@ -27,10 +25,8 @@
     </div>
   </main>
 </template>
-
 <script>
-import MyMealService from "../services/MyMealService";
-
+import MealService from "../services/MealService";
 export default {
   data() {
     return {
@@ -46,16 +42,15 @@ export default {
         Saturday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
         Sunday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } }
       },
-      myMeals: [],
-      
+      meals: []
     };
   },
   methods: {
     loadMeals() {
-      MyMealService
+      MealService
         .getMealsForUser()
         .then((response) => {
-          this.myMeals = response.data;
+          this.meals = response.data;
         })
         .catch((error) => {
           console.error("Error loading meals: ", error);
@@ -64,10 +59,10 @@ export default {
     dropMeal(day, mealSlot) {
       // Implement drop logic to add a meal to the meal plan
       // For now, let's just add the first meal from the meals list to the dropped slot
-      if (this.myMeals.length > 0) {
-        const mealPlanMeals = this.myMeals[0];
-        this.mealPlan[day][mealSlot].name = myMeals.strmeal;
-        this.mealPlan[day][mealSlot].image = myMeals.strmealthumb;
+      if (this.meals.length > 0) {
+        const meal = this.meals[0];
+        this.mealPlan[day][mealSlot].name = meal.strmeal;
+        this.mealPlan[day][mealSlot].image = meal.strmealthumb;
       }
     },
     dragMeal(day, mealSlot) {
@@ -75,12 +70,6 @@ export default {
       // For now, let's clear the dragged slot
       this.mealPlan[day][mealSlot].name = '';
       this.mealPlan[day][mealSlot].image = '';
-    },
-
-    addToMealPlan(newMeal) {
-      // Commit mutation to add my meals to "Meal plan" in Vuex store
-      this.$store.commit('ADD_TO_MEAL_PLAN', newMeal);       
-      console.log('Adding to Meal Plan:', newMeal); // Add this line to check if my meal is being added
     }
   },
   created() {
@@ -88,7 +77,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 main {
   background-image: url("healthy_background.jpg");
@@ -96,13 +84,11 @@ main {
   background-size: cover;
   position: relative;
 }
-
 header {
-  background-color: #f0754f;
+  background-color: #F0754F;
   padding: 20px;
   border: 2px solid black
 }
-
 nav {
   display: flex;
   flex-direction: row;
@@ -110,21 +96,22 @@ nav {
   justify-content: space-evenly;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-}
-
-.logo {
   height: 100px;
-  border: 2px solid black;
 }
-
+.logo {
+  width: 200px;
+  height: auto;
+  align-self: center;
+  position: absolute;
+  margin-right: 1px;
+  margin-left: 1px;
+}
 #main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
-  /* Adjusted margin */
+  margin-top: 50px; /* Adjusted margin */
 }
-
 .link {
   align-self: center;
   background-color: #fff;
@@ -137,7 +124,7 @@ nav {
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
   box-sizing: border-box;
-  color: #41403e;
+  color: #41403E;
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
@@ -155,54 +142,43 @@ nav {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 .link:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
-
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
 .meal-plan {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 20px;
-  /* Added margin */
+  margin-top: 20px; /* Added margin */
 }
-
 .day {
   width: 20%;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
 }
-
 .meal-slot {
   margin-top: 10px;
 }
-
 .slot {
   margin-bottom: 10px;
 }
-
 .meal {
-  width: 200px;
-  /* Set a fixed width for meal containers */
+  width: 200px; /* Set a fixed width for meal containers */
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
-
 .meal img {
-  max-width: 100%;
-  /* Ensure images scale properly within the fixed width container */
+  max-width: 100%; /* Ensure images scale properly within the fixed width container */
   height: auto;
 }
-
 .meal p {
   margin-top: 5px;
   margin-bottom: 0;
-}</style>
+}
+</style>
