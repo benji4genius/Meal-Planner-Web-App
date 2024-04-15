@@ -85,12 +85,14 @@ body, html {
 }
 
 main {
-  background-image: url("healthy_background.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:cover;
   position: relative;
-  height: 100vh;
-  margin-top: 20px; /* Add margin-top to create spacing between nav and main */
+  height:fit-content;
+  background-color: whitesmoke;
+ /* Add margin-top to create spacing between nav and main */
+  
 }
 
 header {
@@ -108,6 +110,7 @@ nav {
   font-size: 20px;
   height: 100px;
   margin-bottom: 20px; /* Add margin-bottom to create spacing between nav and main */
+  
 }
 
 
@@ -171,6 +174,10 @@ nav {
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
+  padding-top: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+ 
 }
 .card {
   border-color: #949ba2;
