@@ -14,7 +14,7 @@
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
         <div class="meal-container">
-          <div class="card" style="width: 20rem;"  v-for="meal in myMeals" :key="meal.idmeal">
+          <div class="card" style="width: 320px;"  v-for="meal in myMeals" :key="meal.idmeal">
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
@@ -148,7 +148,7 @@ nav {
 }
 .meal-container{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
