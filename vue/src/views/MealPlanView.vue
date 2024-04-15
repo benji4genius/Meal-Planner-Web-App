@@ -86,6 +86,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  opacity: 4; /* added this part*/
 }
 header {
   background-color: #F0754F;
@@ -155,6 +156,7 @@ nav {
 .meal-plan {
   display: flex;
   flex-wrap: wrap;
+  font-size: large;
   justify-content: space-around;
   margin-top: 20px; /* Added margin */
 }
@@ -162,6 +164,7 @@ nav {
   width: 20%;
   margin-bottom: 20px;
   padding: 10px;
+  
   border: 1px solid #ccc;
 }
 .meal-slot {
