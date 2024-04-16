@@ -52,7 +52,7 @@ export default {
     loadMeals() {
       MealService.getMealsForUser()
         .then((response) => {
-          this.$store.commit('SET_MY_MEALS', response.data); // Commit mutation to set myMeals
+          this.$store.commit('ADD_TO_MY_MEALS', response.data); // Commit mutation to set myMeals
         })
         .catch((error) => {
           const response = error.response;
