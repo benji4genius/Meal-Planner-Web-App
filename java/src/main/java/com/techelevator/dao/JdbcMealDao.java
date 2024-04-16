@@ -60,7 +60,7 @@ public class JdbcMealDao implements MealDao {
     public List<Meal> getAllMealsForUser(int userId) {
         List<Meal> allMeals = new ArrayList<>();
         String sql = "SELECT idmeal, user_id, strmeal,strinstructions, strmealthumb, strtags, stryoutube " +
-                "FROM meals WHERE user_id = 3;";
+                "FROM meals WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){

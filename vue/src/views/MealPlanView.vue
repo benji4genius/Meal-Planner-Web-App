@@ -75,10 +75,10 @@ dragMeal(day, mealIndex, event) {
   this.$delete(this.mealPlan[day], mealIndex);
   console.log("Updated meal plan after dragging:", this.mealPlan);
 }
-  },
-  created() {
-    this.loadMeals();
-  }
+}
+  // created() {
+  //   this.loadMeals();
+  // }
 };
 </script>
 

@@ -19,7 +19,7 @@
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
         <div class="meal-container">
-          <div class="card" style="width: 320px;" v-for="meal in myMeals" :key="meal.idmeal">
+          <div class="card" style="width: 320px;" v-for="meal in $store.state.myMeals" :key="meal.idmeal">
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
@@ -52,7 +52,7 @@ export default {
     loadMeals() {
       MealService.getMealsForUser()
         .then((response) => {
-          this.$store.commit('ADD_TO_MY_MEALS', response.data); // Commit mutation to set myMeals
+          this.$store.state.myMeals = response.data;
         })
         .catch((error) => {
           const response = error.response;
