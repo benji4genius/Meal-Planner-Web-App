@@ -22,9 +22,9 @@
               <div class="card-body">
                 <h4 class="card-title">{{ meal.strmeal }}</h4>
                 <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button class="link">Let's Cook!</button></router-link>
-                <router-link v-bind:to="{name: 'mymeals'}">
+                <!--<router-link v-bind:to="{name: 'mymeals'}">this routes to my meals on click-->
                   <button class="link" @click="addToMyMeals(meal)">Add to My Meals</button>
-                </router-link> <!--i added this part-->
+                <!--</router-link>--> <!--i added this part-->
               </div>
             </div>
           </div>
