@@ -14,10 +14,10 @@
     </header>
     <div id="main-content">
       <div class="meal-plan">
-        <div class="day" v-for="day in daysOfWeek" :key="day" @drop="dropMeal(day, $event)" @dragover.prevent>
+        <div class="day" v-for="day in daysOfWeek" :key="day" >
           <h3>{{ day }}</h3>
           <div class="meal-slot">
-            <div class="slot" v-for="(meal, index) in mealPlan[day]" :key="index" @dragstart="dragMeal(day, index,$event)">
+            <div class="slot" v-for="(meal, index) in mealPlan[day]" :key="index">
               <h4>{{ meal }}</h4>
             </div>
           </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import MealService from "../services/MealService";
+import MealPlanService from "../services/MealPlanService.js";
 
 export default {
   data() {
@@ -48,33 +48,16 @@ export default {
   },
   methods: {
     loadMeals() {
-      MealService.getMealsForUser()
+      MealPlanService.getAllMealPlansForUser()
         .then((response) => {
-          this.meals = response.data;
+          this.mealPlan.Monday = response.data;
         })
         .catch((error) => {
           console.error("Error loading meals: ", error);
         });
-    },
-    dropMeal(day, event) {
-  console.log("Drop event triggered for day:", day);
-  event.preventDefault();
-  const mealIndex = event.dataTransfer.getData("text/plain");
-  console.log("Meal index:", mealIndex);
-  const mealName = this.meals[mealIndex].strmeal; // Extract meal name
-  console.log("Meal name:", mealName);
-  this.$set(this.mealPlan[day], this.mealPlan[day].length, mealName);
-  console.log("Updated meal plan:", this.mealPlan);
-},
-dragMeal(day, mealIndex, event) {
-  console.log("Drag event triggered for day:", day);
-  console.log("Meal index being dragged:", mealIndex);
-  const mealName = this.mealPlan[day][mealIndex];
-  console.log("Meal name being dragged:", mealName);
-  event.dataTransfer.setData("text/plain", mealIndex);
-  this.$delete(this.mealPlan[day], mealIndex);
-  console.log("Updated meal plan after dragging:", this.mealPlan);
-}
+    }
+    
+   
 }
   // created() {
   //   this.loadMeals();

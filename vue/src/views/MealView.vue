@@ -63,10 +63,10 @@ export default {
 
       
     },
-    addToMyMeals(newMeal) {
+    addToMyMeals(meal) {
   // Commit mutation to add meal to "My Meals" in Vuex store
-  this.$store.commit('ADD_TO_MY_MEALS', newMeal);            //// changed this
-  console.log('Adding to My Meals:', newMeal); // Add this line to check if meal is being added
+  this.$store.commit('ADD_TO_MY_MEALS', meal);            //// changed this
+  console.log('Adding to My Meals:', meal); // Add this line to check if meal is being added
 }
 
 

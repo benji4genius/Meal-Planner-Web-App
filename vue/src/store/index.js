@@ -41,7 +41,7 @@ export function createStore(currentToken, currentUser) {
         localStorage.setItem('myMeals', JSON.stringify(state.myMeals));
       },
       ADD_TO_MEAL_PLAN(state, meal) {
-        state.mealPlans.push( meal);
+        state.mealPlans.push(meal);
         // Update local storage with the updated mealPlans array
         localStorage.setItem('mealPlans', JSON.stringify(state.mealPlans));
       }
