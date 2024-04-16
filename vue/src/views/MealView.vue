@@ -5,8 +5,10 @@
         <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
         <img class="logo" src="Chefs_Hat.png" />
 
-        <router-link to="/mealplans">
-        <p class="link">Meal Plans</p>
+       
+
+        <router-link to="/mymeals">
+        <p class="link">My Meals</p>
         </router-link>
 
       </nav>
@@ -23,7 +25,9 @@
                 <h4 class="card-title">{{ meal.strmeal }}</h4>
                 <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button class="link">Let's Cook!</button></router-link>
                 <!--<router-link v-bind:to="{name: 'mymeals'}">this routes to my meals on click-->
-                  <button class="link" @click="addToMyMeals(meal)">Add to My Meals</button>
+                  <button class="link" @click="addToMyMeals(meal)">Add to My Meals
+                  <input type="number" v-model="quantity" /> <!--<added this qty can delete>-->
+                  </button>
                 <!--</router-link>--> <!--i added this part-->
               </div>
             </div>
@@ -60,6 +64,8 @@ export default {
             this.registrationErrorMsg = 'Bad Request: Validation Errors';
           }
         });
+
+        
 
       
     },

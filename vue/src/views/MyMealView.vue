@@ -32,6 +32,7 @@
               <router-link :to="{ path: '/mealplans' }">
                 <p class="link"  @click="addToMealPlan(meal)">Add to Meal Plans</p>
               </router-link>
+              
             </div>
           </div>
         </div>
