@@ -2,25 +2,23 @@
   <main>
     <header>
       <nav>
-        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
+        <p class="link" href="{name: home}">
+          <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+        </p>
         <img class="logo" src="Chefs_Hat.png" />
 
         <router-link to="/myMeals">
-        <p class="link">My Meals</p>
+          <p class="link">My Meals</p>
         </router-link>
       </nav>
     </header>
     <div id="main-content">
       <div class="meal-plan">
-        <div class="day" v-for="day in daysOfWeek" :key="day">
+        <div class="day" v-for="day in daysOfWeek" :key="day" @drop="dropMeal(day, $event)" @dragover.prevent>
           <h3>{{ day }}</h3>
           <div class="meal-slot">
-            <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
-              <h4>{{ mealSlot }}</h4>
-              <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
-                <img :src="mealPlan[day][mealSlot].image" alt="Meal Image" draggable="true" @dragstart="dragMeal(day, mealSlot)" />
-                <p>{{ mealPlan[day][mealSlot].name }}</p>
-              </div>
+            <div class="slot" v-for="(meal, index) in mealPlan[day]" :key="index" @dragstart="dragMeal(day, index,$event)">
+              <h4>{{ meal }}</h4>
             </div>
           </div>
         </div>
@@ -28,30 +26,29 @@
     </div>
   </main>
 </template>
+
 <script>
 import MealService from "../services/MealService";
+
 export default {
   data() {
     return {
       daysOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      mealSlots: ['Breakfast', 'Lunch', 'Dinner'],
       mealPlan: {
-        // Initialize meal plan with empty slots for each day and meal
-        Monday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Tuesday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Wednesday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Thursday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Friday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Saturday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } },
-        Sunday: { Breakfast: { name: '', image: '' }, Lunch: { name: '', image: '' }, Dinner: { name: '', image: '' } }
+        Monday: [],
+        Tuesday: [],
+        Wednesday: [],
+        Thursday: [],
+        Friday: [],
+        Saturday: [],
+        Sunday: []
       },
       meals: []
     };
   },
   methods: {
     loadMeals() {
-      MealService
-        .getMealsForUser()
+      MealService.getMealsForUser()
         .then((response) => {
           this.meals = response.data;
         })
@@ -59,41 +56,50 @@ export default {
           console.error("Error loading meals: ", error);
         });
     },
-    dropMeal(day, mealSlot) {
-      // Implement drop logic to add a meal to the meal plan
-      // For now, let's just add the first meal from the meals list to the dropped slot
-      if (this.meals.length > 0) {
-        const meal = this.meals[0];
-        this.mealPlan[day][mealSlot].name = meal.strmeal;
-        this.mealPlan[day][mealSlot].image = meal.strmealthumb;
-      }
-    },
-    dragMeal(day, mealSlot) {
-      // Implement drag logic to move a meal within the meal plan
-      // For now, let's clear the dragged slot
-      this.mealPlan[day][mealSlot].name = '';
-      this.mealPlan[day][mealSlot].image = '';
-    }
+    dropMeal(day, event) {
+  console.log("Drop event triggered for day:", day);
+  event.preventDefault();
+  const mealIndex = event.dataTransfer.getData("text/plain");
+  console.log("Meal index:", mealIndex);
+  const mealName = this.meals[mealIndex].strmeal; // Extract meal name
+  console.log("Meal name:", mealName);
+  this.$set(this.mealPlan[day], this.mealPlan[day].length, mealName);
+  console.log("Updated meal plan:", this.mealPlan);
+},
+dragMeal(day, mealIndex, event) {
+  console.log("Drag event triggered for day:", day);
+  console.log("Meal index being dragged:", mealIndex);
+  const mealName = this.mealPlan[day][mealIndex];
+  console.log("Meal name being dragged:", mealName);
+  event.dataTransfer.setData("text/plain", mealIndex);
+  this.$delete(this.mealPlan[day], mealIndex);
+  console.log("Updated meal plan after dragging:", this.mealPlan);
+}
   },
   created() {
     this.loadMeals();
   }
 };
 </script>
+
 <style scoped>
 main {
   background-image: url("");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: whitesmoke;
+  height: fit-content;
   position: relative;
-  opacity: 4; /* added this part*/
+  background-color: whitesmoke;
+
+  /* added this part*/
 }
+
 header {
   background-color: #F0754F;
   padding: 20px;
   border: 2px solid black
 }
+
 nav {
   display: flex;
   flex-direction: row;
@@ -103,6 +109,7 @@ nav {
   font-size: 20px;
   height: 100px;
 }
+
 .logo {
   width: 200px;
   height: auto;
@@ -111,12 +118,15 @@ nav {
   margin-right: 1px;
   margin-left: 1px;
 }
+
 #main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px; /* Adjusted margin */
+  margin-top: 50px;
+  /* Adjusted margin */
 }
+
 .link {
   align-self: center;
   background-color: #fff;
@@ -147,43 +157,55 @@ nav {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .link:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
+
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
 .meal-plan {
   display: flex;
   flex-wrap: wrap;
   font-size: large;
   justify-content: space-around;
-  margin-top: 20px; /* Added margin */
+  margin-top: 20px;
+  /* Added margin */
 }
+
 .day {
   width: 20%;
   margin-bottom: 20px;
   padding: 10px;
-  
+
   border: 1px solid #ccc;
 }
+
 .meal-slot {
   margin-top: 10px;
 }
+
 .slot {
   margin-bottom: 10px;
 }
+
 .meal {
-  width: 200px; /* Set a fixed width for meal containers */
+  width: 200px;
+  /* Adjust width as needed */
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
+
 .meal img {
-  max-width: 100%; /* Ensure images scale properly within the fixed width container */
+  max-width: 100%;
+  /* Ensure images scale properly within the fixed width container */
   height: auto;
 }
+
 .meal p {
   margin-top: 5px;
   margin-bottom: 0;

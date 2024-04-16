@@ -7,7 +7,7 @@
         <img class="logo" src="Chefs_Hat.png" />
 
         <router-link to="/mealplans">
-        <p class="link">Meal Plans</p>
+          <p class="link">Meal Plans</p>
         </router-link>
 
       </nav>
@@ -19,18 +19,19 @@
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
         <div class="meal-container">
-          <div class="card" style="width: 320px;"  v-for="meal in myMeals" :key="meal.idmeal">
+          <div class="card" style="width: 320px;" v-for="meal in myMeals" :key="meal.idmeal">
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
               <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
-                <button>Let's Cook!</button>
+                <button class ="link">Let's Cook!</button>
               </router-link>
               <!-- Button to remove meal -->
-              <button @click="removeFromMyMeals(meal)">Remove Meal</button>
-              <router-link to="/mealplans">
-                  <button @click="addToMealPlan(myMeals)">Add to Meal Plans</button>
-                </router-link> <!--i added this part-->
+              <button class ="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
+              <!-- Pass the meal data to MealPlanView -->
+              <router-link :to="{ path: '/mealplans', query: { mealName: meal.strmeal } }">
+                <p class="link">Add to Meal Plans</p>
+              </router-link>
             </div>
           </div>
         </div>
@@ -69,7 +70,8 @@ export default {
     },
     addToMealPlan(meal) {
       // Commit mutation to add my meal to "Meals Plan" in Vuex store
-      this.$store.commit('ADD_TO_MEAL_PLAN', meal);    // changed from newMeal to meal
+      // Navigate to MealPlanView and pass the meal data as a query parameter
+      this.$router.push({ path: '/mealplans', query: { mealName: meal.strmeal } });
       console.log('Adding to Meal Plan:', meal); // Add this line to check if my meal is being added
     }
   },
@@ -82,20 +84,20 @@ export default {
 
 
 <style scoped>
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
 }
 
 main {
-  background-image: url("");
+  background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   position: relative;
-  height:fit-content;
-  background-color: white;
- /* Add margin-top to create spacing between nav and main */
-  
+  height: 100vh;
+  margin-top: 20px;
+  /* Add margin-top to create spacing between nav and main */
 }
 
 header {
@@ -112,8 +114,8 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
-  margin-bottom: 20px; /* Add margin-bottom to create spacing between nav and main */
-  
+  margin-bottom: 20px;
+  /* Add margin-bottom to create spacing between nav and main */
 }
 
 
@@ -152,6 +154,8 @@ nav {
   line-height: 23px;
   outline: none;
   padding: .75rem;
+  margin-right: 10px;
+  margin-bottom: 2px;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
@@ -171,22 +175,22 @@ nav {
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-.meal-container{
+
+.meal-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
-  padding-top: 5rem;
-  padding-left: 10rem;
-  padding-right: 10rem;
- 
 }
+
 .card {
   border-color: #949ba2;
   backface-visibility: hidden;
-  border-radius: 15px; /* Adjust the value as needed */
-  overflow: hidden; /* Ensure content inside the card respects the border-radius */
+  border-radius: 15px;
+  /* Adjust the value as needed */
+  overflow: hidden;
+  /* Ensure content inside the card respects the border-radius */
   border-style: solid;
   border-width: 2px;
   display: flex;
@@ -197,11 +201,13 @@ nav {
   align-items: center;
   justify-content: center;
   will-change: transform;
-  transition: transform 0.3s ease; /* Apply hover effect to the card */
+  transition: transform 0.3s ease;
+  /* Apply hover effect to the card */
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Define hover effect */
+  transform: translateY(-5px);
+  /* Define hover effect */
 }
 
 .card-header,
@@ -251,7 +257,8 @@ nav {
   }
 }
 
-.image-top { /*added width and height*/
+.image-top {
+  /*added width and height*/
   width: 100%;
   height: auto;
 }
