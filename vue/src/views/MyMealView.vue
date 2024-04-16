@@ -23,14 +23,15 @@
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
-              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
-                <button>Let's Cook!</button>
-              </router-link>
-              <!-- Button to remove meal -->
-              <button @click="removeFromMyMeals(meal)">Remove Meal</button>
-              <router-link to="/mealplans">
+                <div class="button-container">
+                  <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
+                  <button>Let's Cook!</button>
+                  </router-link>
+                  <button @click="removeFromMyMeals(meal)">Remove Meal</button>
+                  <router-link to="/mealplans">
                   <button @click="addToMealPlan(myMeals)">Add to Meal Plans</button>
-                </router-link> <!--i added this part-->
+                  </router-link> <!--i added this part-->
+                </div>
             </div>
           </div>
         </div>
@@ -223,7 +224,7 @@ nav {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 1.75rem;
 
   .card-title,
   h4 {
@@ -260,4 +261,16 @@ nav {
 img {
   border: 0;
   border-radius: 0;
-}</style>
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 -50px;
+}
+
+.button-container button {
+  margin: 0 2.5px;
+}
+
+</style>

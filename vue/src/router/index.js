@@ -10,19 +10,7 @@ import MealView from '../views/MealView.vue';
 import MyMealView from '../views/MyMealView.vue';
 import MealDetailView from '../views/MealDetailView.vue';
 import MealPlanView from '../views/MealPlanView.vue';
-<<<<<<< HEAD
 import NewMealView from '../views/NewMealView.vue'; 
-/**
- * The Vue Router is used to "direct" the browser to render a specific view component
- * inside of App.vue depending on the URL.
- *
- * It also is used to detect whether or not a route requires the user to have first authenticated.
- * If the user has not yet authenticated (and needs to) they are redirected to /login
- * If they have (or don't need to) they're allowed to go about their way.
- */
-=======
-import NewMealView from '../views/NewMealView.vue';
->>>>>>> 90200b6d9887f486c99b74c927dd9e8edab21409
 const routes = [
   {
     path: '/',
