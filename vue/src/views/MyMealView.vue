@@ -229,7 +229,7 @@ nav {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 1.75rem;
 
   .card-title,
   h4 {

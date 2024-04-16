@@ -38,12 +38,14 @@ export function createStore(currentToken, currentUser) {
       },
       REMOVE_FROM_MY_MEALS(state, index) {
         state.myMeals.splice(index, 1);
+        localStorage.setItem('myMeals', JSON.stringify(state.myMeals));
       },
       ADD_TO_MEAL_PLAN(state, meal) {
         state.mealPlans.push( meal);
         // Update local storage with the updated mealPlans array
         localStorage.setItem('mealPlans', JSON.stringify(state.mealPlans));
       }
+      
     }
   });
 

@@ -198,7 +198,7 @@ nav {
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Define hover effect */
+  transform: translateY(-5px); 
 }
 
 .card-header,
@@ -248,7 +248,7 @@ nav {
   }
 }
 
-.image-top { /*added width and height*/
+.image-top { 
   width: 100%;
   height: auto;
 }
@@ -257,4 +257,5 @@ nav {
 img {
   border: 0;
   border-radius: 0;
-}</style>
+}
+</style>
