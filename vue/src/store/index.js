@@ -8,7 +8,14 @@ export function createStore(currentToken, currentUser) {
     token: currentToken || '',
     user: currentUser || {},
     myMeals: JSON.parse(localStorage.getItem('myMeals')) || [], // Initialize myMeals with data from local storage
-    mealPlans: []
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: []
+
   };
 
   // Create the Vuex store
@@ -40,10 +47,10 @@ export function createStore(currentToken, currentUser) {
         state.myMeals.splice(index, 1);
         localStorage.setItem('myMeals', JSON.stringify(state.myMeals));
       },
-      ADD_TO_MEAL_PLAN(state, meal) {
-        state.mealPlans.push(meal);
+      ADD_TO_MONDAY(state, meal) {
+        state.Monday.push(meal);
         // Update local storage with the updated mealPlans array
-        localStorage.setItem('mealPlans', JSON.stringify(state.mealPlans));
+        localStorage.setItem('Monday', JSON.stringify(state.Monday));
       }
       
     }

@@ -71,7 +71,7 @@ export default {
     addToMealPlan(meal) {
       // Commit mutation to add my meal to "Meals Plan" in Vuex store
       // Navigate to MealPlanView and pass the meal data as a query parameter
-      this.$store.commit('ADD_TO_MEAL_PLAN', meal);
+      this.$store.commit('ADD_TO_MONDAY', meal);
       console.log('Adding to Meal Plan:', meal); // Add this line to check if my meal is being added
     }
   },

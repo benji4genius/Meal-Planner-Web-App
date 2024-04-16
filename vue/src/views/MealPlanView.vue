@@ -17,9 +17,7 @@
         <div class="day" v-for="day in daysOfWeek" :key="day" >
           <h3>{{ day }}</h3>
           <div class="meal-slot">
-            <div class="slot" v-for="(meal, index) in mealPlan[day]" :key="index">
-              <h4>{{ meal }}</h4>
-            </div>
+            <!-- filler text -->
           </div>
         </div>
       </div>
@@ -34,16 +32,14 @@ export default {
   data() {
     return {
       daysOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      mealPlan: {
-        Monday: [],
-        Tuesday: [],
-        Wednesday: [],
-        Thursday: [],
-        Friday: [],
-        Saturday: [],
-        Sunday: []
-      },
-      meals: []
+     
+        Monday: {},
+        Tuesday: {},
+        Wednesday: {},
+        Thursday: {},
+        Friday: {},
+        Saturday: {},
+        Sunday: {}
     };
   },
   methods: {
