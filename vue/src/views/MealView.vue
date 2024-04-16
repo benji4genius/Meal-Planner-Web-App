@@ -174,7 +174,7 @@ nav {
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
-  padding-top: 5rem;
+  padding-top: rem;
   padding-left: 10rem;
   padding-right: 10rem;
  
