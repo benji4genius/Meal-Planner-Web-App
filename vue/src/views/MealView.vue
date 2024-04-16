@@ -26,12 +26,16 @@
                 <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button class="link">Let's Cook!</button></router-link>
                 <!--<router-link v-bind:to="{name: 'mymeals'}">this routes to my meals on click-->
                   <button class="link" @click="addToMyMeals(meal)">Add to My Meals
-                  <input type="number" v-model="quantity" /> <!--<added this qty can delete>-->
+                 
                   </button>
                 <!--</router-link>--> <!--i added this part-->
               </div>
             </div>
           </div>
+      </div>
+      <!---Added this for popup functionality-->
+      <div class="popup" v-if="showPopup">
+        <p>Meal successfully added!</p>
       </div>
     </body>
   </main>
@@ -42,7 +46,8 @@ import MealService from "../services/MealService";
 export default {
   data() {
     return {
-      meals: []
+      meals: [],
+      showPopup: false
 
 
     };
@@ -73,6 +78,11 @@ export default {
   // Commit mutation to add meal to "My Meals" in Vuex store
   this.$store.commit('ADD_TO_MY_MEALS', meal);            //// changed this
   console.log('Adding to My Meals:', meal); // Add this line to check if meal is being added
+  this.showPopup = true;
+      // Reset the popup after a certain time, for example, 3 seconds
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 3000);
 }
 
 
@@ -117,6 +127,18 @@ nav {
   height: 100px;
   margin-bottom: 20px; /* Add margin-bottom to create spacing between nav and main */
   
+}
+
+/* Styling for the pop-up message */
+.popup {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f0754f;
+  color: white;
+  padding: 25px;
+  border-radius: 5px;
 }
 
 
