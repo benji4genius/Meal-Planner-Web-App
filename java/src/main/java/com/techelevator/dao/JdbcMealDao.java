@@ -59,10 +59,8 @@ public class JdbcMealDao implements MealDao {
     @Override
     public List<Meal> getAllMealsForUser(int userId) {
         List<Meal> allMeals = new ArrayList<>();
-        String sql = "SELECT m.idmeal, m.strmeal, m.strinstructions, m.strtags, m.strmealthumb, m.stryoutube " +
-                "FROM meals m " +
-                "JOIN meal_ingredient_association mia ON m.idmeal = mia.idmeal " +
-                "WHERE mia.user_id = ?";
+        String sql = "SELECT idmeal, user_id, strmeal,strinstructions, strmealthumb, strtags, stryoutube " +
+                "FROM meals WHERE user_id = 3;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while(results.next()){
