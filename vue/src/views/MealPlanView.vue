@@ -14,25 +14,68 @@
         <router-link to="/meals">
           <p class="link">Meals</p>
         </router-link>
-      
+
       </nav>
     </header>
     <div id="main-content">
       <div class="meal-plan">
-       
-          <div class="meal-slot">
-            <!-- <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
-              <h4>{{ mealSlot }}</h4>
-              <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
-                <p>{{ mealPlan[day][mealSlot].name }}</p>
-              </div>
-            </div> -->
+
+        <div class="meal-slot">
+          <div>
             <h2>Monday</h2>
-            <h3>Chicken Soup</h3>
-            <img class="food" src="https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/10/Chicken-Soup-main-2.jpg"/>
+            <h3>Chicken Enchilada Casserole</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/qtuwxu1468233098.jpg" />
+          </div>
+        </div>
+
+        <div class="meal-slot">
+          <div>
+            <h2>Tuesday</h2>
+            <h3>Beef Caldereta</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/41cxjh1683207682.jpg" />
+          </div>
+        </div>
+
+        <div class="meal-slot">
+          <div>
+            <h2>Wednesday</h2>
+            <h3>Beef Wellington</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg" />
+          </div>
+        </div>
+        <div class="meal-slot">
+          <div>
+            <h2>Thursday</h2>
+            <h3>Chicken Alfredo Primavera</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg" />
+          </div>
+        </div>
+
+        <div class="meal-slot">
+          <div>
+            <h2>Friday</h2>
+            <h3>Beef Brisket Pot Roast</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg" />
+          </div>
+        </div>
+
+        <div class="meal-slot">
+          <div>
+            <h2>Saturday</h2>
+            <h3>Baingan Bharta</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/urtpqw1487341253.jpg" />
+          </div>
+        </div>
+
+        <div class="meal-slot">
+          <div>
+            <h2>Sunday</h2>
+            <h3>Chicken Fajita Mac and Cheese</h3>
+            <img class="food" src="https://www.themealdb.com/images/media/meals/qrqywr1503066605.jpg" />
           </div>
         </div>
       </div>
+    </div>
   </main>
 </template>
 
@@ -213,15 +256,21 @@ nav {
   margin-bottom: 0;
 }
 
-.food{
-  width: 200px;
+.food {
+  width: 300px;
 }
-.meal-slot{
+
+.h3 {
+  padding-top: 50px;
+}
+
+.meal-slot {
   border: 1px solid black;
+  margin-right: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   border-radius: 10px;
 }
 </style>

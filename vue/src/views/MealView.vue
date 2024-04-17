@@ -2,27 +2,20 @@
   <main>
     <header>
       <nav>
-<<<<<<< HEAD
-        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-=======
 
         <router-link to="/mealplans">
         <p class="link">Meal Plan</p>
         </router-link>
         <!-- <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p> -->
 
->>>>>>> 37abf60597154d03ece20a41516ff9ec5c9ff2ca
         <!-- Route link for Home -->
         <router-link to="/">
           <!-- Logo with route link -->
           <img class="logo" src="Chefs_Hat.png" />
         </router-link>
-<<<<<<< HEAD
-=======
 
        
 
->>>>>>> 37abf60597154d03ece20a41516ff9ec5c9ff2ca
         <router-link to="/mymeals">
         <p class="link">My Meals</p>
         </router-link>

@@ -27,10 +27,6 @@
               <button class="link" @click="navigateToMealDetails(meal.idmeal)">Let's Cook!</button>
               <!-- Button to remove meal -->
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
-<<<<<<< HEAD
-              <!-- Call method to add meal to meal plan -->
-              <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
-=======
               <!-- Pass the meal data to MealPlanView -->
               <select name="days">
                   <option>Monday</option>
@@ -45,7 +41,6 @@
                 <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
               </router-link>
 
->>>>>>> 37abf60597154d03ece20a41516ff9ec5c9ff2ca
             </div>
           </div>
         </div>
@@ -100,7 +95,7 @@ html {
 main {
   background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: fit-content;
   position: relative;
   height: 100vh;
   margin-top: 20px;
