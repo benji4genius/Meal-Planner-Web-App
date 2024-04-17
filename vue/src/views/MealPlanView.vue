@@ -3,10 +3,18 @@
     <header>
       <nav>
         <p class="link" href="{name: home}">
-          <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+          <router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link>
         </p>
-        <img class="logo" src="Chefs_Hat.png" />
-        <p class="link">Meal Plans</p>
+        <router-link to="/">
+          <!-- Logo with route link -->
+          <img class="logo" src="Chefs_Hat.png" />
+        </router-link>
+
+
+        <router-link to="/meals">
+          <p class="link">Meals</p>
+        </router-link>
+      
       </nav>
     </header>
     <div id="main-content">
@@ -118,7 +126,7 @@ nav {
   width: 200px;
   height: auto;
   align-self: center;
-  position: absolute;
+  position: relative;
   margin-right: 1px;
   margin-left: 1px;
 }

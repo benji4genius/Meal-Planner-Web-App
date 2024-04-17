@@ -2,13 +2,18 @@
   <main>
     <header>
       <nav>
-        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
+
+        <router-link to="/mealplans">
+        <p class="link">Meal Plan</p>
+        </router-link>
+        <!-- <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p> -->
 
         <!-- Route link for Home -->
         <router-link to="/">
           <!-- Logo with route link -->
           <img class="logo" src="Chefs_Hat.png" />
         </router-link>
+
        
 
         <router-link to="/mymeals">
