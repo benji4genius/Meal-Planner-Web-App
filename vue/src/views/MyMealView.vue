@@ -93,11 +93,12 @@ html {
   margin: 0;
 }
 main {
-  background-image: url("healthy_background.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
+  background-color: whitesmoke;
   background-size: fit-content;
   position: relative;
-  height: 100vh;
+  height: 100%;
   margin-top: 20px;
   /* Add margin-top to create spacing between nav and main */
 }
@@ -174,6 +175,8 @@ nav {
   grid-gap: 5px;
   align-items: center;
   justify-content: center;
+  padding-top: 5rem;
+  
 }
 .card {
   border-color: #949BA2;
