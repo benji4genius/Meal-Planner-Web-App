@@ -10,7 +10,6 @@ import MealView from '../views/MealView.vue';
 import MyMealView from '../views/MyMealView.vue';
 import MealDetailView from '../views/MealDetailView.vue';
 import MealPlanView from '../views/MealPlanView.vue';
-import NewMealView from '../views/NewMealView.vue';
 const routes = [
   {
     path: '/',
@@ -72,14 +71,6 @@ const routes = [
     path: "/mealplans",
     name: "mealplans",
     component: MealPlanView, // Added this part 
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/new_meal",
-    name: "newmeal",
-    component: NewMealView,
     meta: {
       requiresAuth: false
     }
