@@ -201,6 +201,7 @@ nav {
   justify-content: center;
   will-change: transform;
   transition: transform 0.3s ease; /* Apply hover effect to the card */
+  
 }
 .card:hover {
   transform: translateY(-5px);

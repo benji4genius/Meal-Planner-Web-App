@@ -37,9 +37,9 @@
                   <option>Saturday</option>
                   <option>Sunday</option>
                 </select>
-              <router-link :to="{ path: '/mealplans', query: { meal: meal } }">
+              <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
                 <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
-              </router-link>
+              <!-- </router-link> -->
 
             </div>
           </div>
@@ -76,14 +76,27 @@ export default {
         this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
       }
     },
+
+
+
+
+
     addToMealPlan(meal) {
-      this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
+      this.$store.commit('ADD_TO_MEAL_PLAN', meal);            //// changed this
+  console.log('Adding to Meal Plan:', meal); // Add this line to check if meal is being added
+  this.showPopup = true;
+      // Reset the popup after a certain time, for example, 3 seconds
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 3000);
     },
+    //   this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
+    // },
     navigateToMealDetails(idmeal) {
       this.$router.push({ name: 'mealDetails', params: { idmeal } });
     }
-  
   }
+  
 };
 </script>
 <style scoped>

@@ -76,6 +76,7 @@
         </div>
       </div>
     </div>
+   
   </main>
 </template>
 
@@ -98,7 +99,8 @@ export default {
         Sunday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } }
       },
       meals: []
-    };
+
+    }
   },
   methods: {
     // loadMeals() {
@@ -273,4 +275,6 @@ nav {
 
   border-radius: 10px;
 }
+
+
 </style>
