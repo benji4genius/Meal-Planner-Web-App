@@ -2,64 +2,81 @@
   <main>
     <header>
       <nav>
-        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
+        <p class="link" href="{name: home}">
+          <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+        </p>
         <img class="logo" src="Chefs_Hat.png" />
         <p class="link">Meal Plans</p>
       </nav>
     </header>
     <div id="main-content">
       <div class="meal-plan">
-        <div  v-for="meal in mealPlan" :key="meal.meal_plan_id"></div>
-        <h3>{{ day }}</h3>
-        <div class="meal-slot">
-          <h4>{{ mealPlan }}</h4>
-          <div class="meal" @drop="dropMeal(day, mealPlan)" @dragover.prevent>
-            <img :src="mealPlan[day][mealPlan].image" alt="Meal Image" draggable="true"
-              @dragstart="dragMeal(day, mealSlot)" />
-            <p>{{ mealPlan[day][mealPlan].name }}</p>
+        <div class="day" v-for="day in daysOfWeek" :key="day">
+          <h3>{{ day }}</h3>
+          <div class="meal-slot">
+            <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
+              <h4>{{ mealSlot }}</h4>
+              <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
+                <p>{{ mealPlan[day][mealSlot].name }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
-
   </main>
 </template>
+
 <script>
-import MealPlanService from "../services/MealPlanService.js";
+import MealPlanService from "../services/MealPlanService";
+
 export default {
   data() {
     return {
       daysOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       mealSlots: ['Breakfast', 'Lunch', 'Dinner'],
-      mealPlan: []
-    }
+      mealPlan: {
+        // Initialize meal plan with empty slots for each day and meal
+        Monday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Tuesday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Wednesday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Thursday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Friday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Saturday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
+        Sunday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } }
+      },
+      meals: []
+    };
   },
   methods: {
     loadMeals() {
       MealPlanService
         .getAllMealPlansForUser()
+
         .then((response) => {
-          this.mealPlan = response.data;
+          this.meals = response.data;
         })
         .catch((error) => {
           console.error("Error loading meals: ", error);
         });
+    },
+    dayOfWeek() {
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const currentDate = new Date();
+      return daysOfWeek[currentDate.getDay()];
     },
     dropMeal(day, mealSlot) {
       // Implement drop logic to add a meal to the meal plan
       // For now, let's just add the first meal from the meals list to the dropped slot
       if (this.meals.length > 0) {
         const meal = this.meals[0];
-        this.mealPlan[day][mealSlot].name = meal.strmeal;
-        this.mealPlan[day][mealSlot].image = meal.strmealthumb;
+        this.$set(this.mealPlan[day], mealSlot, meal);
       }
     },
     dragMeal(day, mealSlot) {
       // Implement drag logic to move a meal within the meal plan
       // For now, let's clear the dragged slot
       this.mealPlan[day][mealSlot].name = '';
-      this.mealPlan[day][mealSlot].image = '';
     }
   },
   created() {

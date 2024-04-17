@@ -3,7 +3,7 @@
     <!-- Header section -->
     <header>
       <nav>
-        <p class="link"><router-link v-bind:to ="{name: 'meals' }">Meals</router-link></p>
+        <p class="link"><router-link v-bind:to="{ name: 'meals' }">Meals</router-link></p>
 
         <!-- Route link for Home -->
         <router-link to="/">
@@ -29,15 +29,15 @@
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
               <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
-                <button class ="link">Let's Cook!</button>
+                <button class="link">Let's Cook!</button>
               </router-link>
               <!-- Button to remove meal -->
-              <button class ="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
+              <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
               <!-- Pass the meal data to MealPlanView -->
-              <router-link :to="{ path: '/mealplans' }">
-                <p class="link"  @click="addToMealPlan(meal)">Add to Meal Plans</p>
+              <router-link :to="{ path: '/mealplans', query: { meal: meal } }">
+                <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
               </router-link>
-              
+
             </div>
           </div>
         </div>
@@ -68,6 +68,7 @@ export default {
     // //       }
     // //     });
     // },
+
     removeFromMyMeals(meal) {
       const index = this.$store.state.myMeals.findIndex(m => m.idmeal === meal.idmeal);
       if (index !== -1) {
@@ -75,15 +76,27 @@ export default {
       }
     },
     addToMealPlan(meal) {
-      // Commit mutation to add my meal to "Meals Plan" in Vuex store
-      // Navigate to MealPlanView and pass the meal data as a query parameter
-      this.$store.commit('ADD_TO_MONDAY', meal);
-      console.log('Adding to Meal Plan:', meal); // Add this line to check if my meal is being added
+      const dayOfWeek = this.dayOfWeek(); // Get the current day of the week
+      const mealSlot = this.mealSlot(); // Get the current meal slot
+      this.$store.commit('ADD_TO_MEAL_PLAN', { meal, dayOfWeek, mealSlot });
+      console.log('Adding to Meal Plan:', meal);
+    },
+    dayOfWeek() {
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const currentDate = new Date();
+      return daysOfWeek[currentDate.getDay()];
+    },
+    mealSlot() {
+      // You can implement your logic here based on the current time
+      // For simplicity, let's return a hardcoded value
+      const mealSlots = ['Breakfast', 'Lunch', 'Dinner'];
+      return mealSlots[0];
+
+      // created() {
+      //   this.loadMeals();
+      // }
     }
-  },
-  // created() {
-  //   this.loadMeals();
-  // }
+  }
 };
 </script>
 
@@ -127,7 +140,7 @@ nav {
 
 .logo {
   width: 200px;
-  height:auto;
+  height: auto;
   align-self: center;
   position: relative;
   margin-right: 1px;
@@ -273,4 +286,5 @@ nav {
 img {
   border: 0;
   border-radius: 0;
-}</style>
+}
+</style>
