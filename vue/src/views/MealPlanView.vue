@@ -11,30 +11,31 @@
     </header>
     <div id="main-content">
       <div class="meal-plan">
-        <div class="day" v-for="day in daysOfWeek" :key="day">
-          <h3>{{ day }}</h3>
+       
           <div class="meal-slot">
-            <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
+            <!-- <div class="slot" v-for="mealSlot in mealSlots" :key="mealSlot">
               <h4>{{ mealSlot }}</h4>
               <div class="meal" @drop="dropMeal(day, mealSlot)" @dragover.prevent>
                 <p>{{ mealPlan[day][mealSlot].name }}</p>
               </div>
-            </div>
+            </div> -->
+            <h2>Monday</h2>
+            <h3>Chicken Soup</h3>
+            <img class="food" src="https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/10/Chicken-Soup-main-2.jpg"/>
           </div>
         </div>
       </div>
-    </div>
   </main>
 </template>
 
 <script>
-import MealPlanService from "../services/MealPlanService";
+// import MealPlanService from "../services/MealPlanService";
 
 export default {
   data() {
     return {
       daysOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      mealSlots: ['Breakfast', 'Lunch', 'Dinner'],
+      // mealSlots: ['Breakfast', 'Lunch', 'Dinner'],
       mealPlan: {
         // Initialize meal plan with empty slots for each day and meal
         Monday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
@@ -49,17 +50,17 @@ export default {
     };
   },
   methods: {
-    loadMeals() {
-      MealPlanService
-        .getAllMealPlansForUser()
+    // loadMeals() {
+    //   MealPlanService
+    //     .getAllMealPlansForUser()
 
-        .then((response) => {
-          this.meals = response.data;
-        })
-        .catch((error) => {
-          console.error("Error loading meals: ", error);
-        });
-    },
+    //     .then((response) => {
+    //       this.meals = response.data;
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error loading meals: ", error);
+    //     });
+    // },
     dayOfWeek() {
       const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       const currentDate = new Date();
@@ -78,10 +79,10 @@ export default {
       // For now, let's clear the dragged slot
       this.mealPlan[day][mealSlot].name = '';
     }
-  },
-  created() {
-    this.loadMeals();
   }
+  // created() {
+  //   this.loadMeals();
+  // }
 };
 </script>
 
@@ -181,18 +182,6 @@ nav {
   /* Added margin */
 }
 
-.day {
-  width: 20%;
-  margin-bottom: 20px;
-  padding: 10px;
-
-  border: 1px solid #ccc;
-}
-
-.meal-slot {
-  margin-top: 10px;
-}
-
 .slot {
   margin-bottom: 10px;
 }
@@ -214,5 +203,17 @@ nav {
 .meal p {
   margin-top: 5px;
   margin-bottom: 0;
+}
+
+.food{
+  width: 200px;
+}
+.meal-slot{
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
 }
 </style>

@@ -34,6 +34,15 @@
               <!-- Button to remove meal -->
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
               <!-- Pass the meal data to MealPlanView -->
+              <select name="days">
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                  <option>Thursday</option>
+                  <option>Friday</option>
+                  <option>Saturday</option>
+                  <option>Sunday</option>
+                </select>
               <router-link :to="{ path: '/mealplans', query: { meal: meal } }">
                 <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
               </router-link>
