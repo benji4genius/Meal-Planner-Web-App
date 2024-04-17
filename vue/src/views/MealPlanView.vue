@@ -151,6 +151,17 @@ main {
   /* added this part*/
 }
 
+.popup {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F0754F;
+  color: white;
+  padding: 25px;
+  border-radius: 5px;
+}
+
 header {
   background-color: #F0754F;
   padding: 20px;
@@ -275,6 +286,7 @@ nav {
 
   border-radius: 10px;
 }
+
 
 
 </style>

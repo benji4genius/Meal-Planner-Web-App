@@ -14,8 +14,15 @@
       </header>
       <body>
         <div id="main-content">
+          <h1 class="main-title">
+            <h3>Meal Planning Made Easy</h3>
+          </h1>
           <h2>Welcome! Let's get planning!</h2>
         </div>
+        <div class="stepscontainer">
+                <div class="steps"><img data-pin-nopin="true" class="step-image" src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/meal.jpg" scale="0"><br><span class="nb">1</span><span class="step-text"> Choose Your Meals</span></div>
+                <div class="steps"><img data-pin-nopin="true" class="step-image phone" src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/phone.jpg" scale="0"><br><span class="nb">2</span><span class="step-text"> Add To The Meal Planner</span></div>
+            </div>
       </body>
   </div>
 </main>
@@ -30,6 +37,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 main{
   background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
@@ -58,13 +67,65 @@ nav{
   padding-left: 1px;
   padding-right: 1px;
 }
+
+/* added this for title */
+.main-title { 
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+
+  box-sizing: inherit;
+  word-break: break-word;
+  line-height: 1.125;
+  padding-bottom: 5px;
+  text-transform: none;
+  margin-bottom: 1.5rem;
+  font-size: 4rem;
+  font-family: 'Cabin Sketch', cursive;
+  color: #007444;
+  font-weight: bold;
+  text-align: center;
+}
+
+.stepscontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 900px;
+  right: 1000px;
+  position: absolute;
+
+}
+.steps {
+  text-align: center;
+  align-items: center;
+  justify-content:center;
+}
+.step-image {
+  width: 150px; /* Adjust as needed */
+  height: auto;
+  justify-content: space-around;
+  padding: 50px;
+  align-items: center;
+  top: 100px;
+}
+.nb {
+  font-size: 24px; /* Adjust as needed */
+  font-weight: bold;
+}
+.step-text {
+  font-size: 14px; /* Adjust as needed */
+}
+
+
 #main-content{
   display:flex;
   flex-direction: column;
   align-items: center;
   margin-top: 200px;
-  margin-right: 40%;
-  margin-left: 40%;
+  /* margin-right: 40%;
+  margin-left: 40%; */
   padding-bottom: 42.75rem;
   padding-top: 10rem;
   font-family: Neucha, sans-serif;

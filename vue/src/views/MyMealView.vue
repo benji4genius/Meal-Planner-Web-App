@@ -15,6 +15,7 @@
       </nav>
     </header>
     <!-- Body section -->
+
     <body>
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
@@ -29,16 +30,16 @@
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
               <!-- Pass the meal data to MealPlanView -->
               <select name="days">
-                  <option>Monday</option>
-                  <option>Tuesday</option>
-                  <option>Wednesday</option>
-                  <option>Thursday</option>
-                  <option>Friday</option>
-                  <option>Saturday</option>
-                  <option>Sunday</option>
-                </select>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+              </select>
               <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
-                <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
+              <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
               <!-- </router-link> -->
 
             </div>
@@ -54,7 +55,7 @@ export default {
   computed: {
     myMeals() {
       return this.$store.state.myMeals;
-    }
+    },
   },
   methods: {
     // // loadMeals() {
@@ -77,18 +78,14 @@ export default {
       }
     },
 
-
-
-
-
     addToMealPlan(meal) {
-      this.$store.commit('ADD_TO_MEAL_PLAN', meal);            //// changed this
-  console.log('Adding to Meal Plan:', meal); // Add this line to check if meal is being added
-  this.showPopup = true;
-      // Reset the popup after a certain time, for example, 3 seconds
-      setTimeout(() => {
-        this.showPopup = false;
-      }, 3000);
+      // this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
+      this.showNotification('Successfully added to Meal Plan')
+    },
+      showNotification(message) {
+        alert(message);
+      }
+     
     },
     //   this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
     // },
@@ -96,8 +93,7 @@ export default {
       this.$router.push({ name: 'mealDetails', params: { idmeal } });
     }
   }
-  
-};
+
 </script>
 <style scoped>
 body,
@@ -105,6 +101,7 @@ html {
   height: 100%;
   margin: 0;
 }
+
 main {
   background-image: url("");
   background-repeat: no-repeat;
@@ -115,11 +112,13 @@ main {
   margin-top: 20px;
   /* Add margin-top to create spacing between nav and main */
 }
+
 header {
   background-color: #F0754F;
   padding: 20px;
   border: 2px solid black;
 }
+
 nav {
   display: flex;
   flex-direction: row;
@@ -131,6 +130,7 @@ nav {
   margin-bottom: 20px;
   /* Add margin-bottom to create spacing between nav and main */
 }
+
 .logo {
   width: 200px;
   height: auto;
@@ -139,10 +139,23 @@ nav {
   margin-right: 1px;
   margin-left: 1px;
 }
+
 #main-content {
   display: grid;
   font-family: Neucha, sans-serif;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F0754F;
+  color: white;
+  padding: 25px;
+  border-radius: 5px;
+}
+
 .link {
   align-self: center;
   background-color: #fff;
@@ -175,13 +188,16 @@ nav {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .link:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
+
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
 .meal-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -189,8 +205,9 @@ nav {
   align-items: center;
   justify-content: center;
   padding-top: 5rem;
-  
+
 }
+
 .card {
   border-color: #949BA2;
   backface-visibility: hidden;
@@ -211,57 +228,67 @@ nav {
   transition: transform 0.3s ease;
   /* Apply hover effect to the card */
 }
+
 .card:hover {
   transform: translateY(-5px);
   /* Define hover effect */
 }
+
 .card-header,
 .card-footer {
   background-color: rgba(255, 255, 255, 0.03);
   border-color: #949BA2;
   padding: 0.75rem 1.25rem;
 }
+
 .card-header {
   border-bottom-style: solid;
   border-bottom-width: 2px;
 }
+
 .card-footer {
   border-top-style: solid;
   border-top-width: 2px;
 }
+
 .card-body {
   flex: 1 1 auto;
   padding: 1.75rem;
+
   .card-title,
   h4 {
     margin-bottom: 0.5rem;
     margin-top: 0;
     text-align: center;
   }
+
   .card-subtitle,
   h5 {
     color: #5595CE;
     margin-bottom: 0.5rem;
     margin-top: 0;
   }
+
   .card-text,
   p {
     margin-bottom: 1rem;
     margin-top: 0;
   }
+
   .card-link+.card-link,
   a+a {
     margin-left: 1.25rem;
   }
 }
+
 .image-top {
   /*added width and height*/
   width: 100%;
   height: auto;
 }
+
 .image-bottom,
 img {
   border: 0;
   border-radius: 0;
-}
-</style>
+}</style>
