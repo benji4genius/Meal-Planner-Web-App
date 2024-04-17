@@ -4,22 +4,17 @@
     <header>
       <nav>
         <p class="link"><router-link v-bind:to="{ name: 'meals' }">Meals</router-link></p>
-
         <!-- Route link for Home -->
         <router-link to="/">
           <!-- Logo with route link -->
           <img class="logo" src="Chefs_Hat.png" />
         </router-link>
-
         <router-link to="/mealplans">
           <p class="link">Meal Plans</p>
         </router-link>
-
       </nav>
     </header>
-
     <!-- Body section -->
-
     <body>
       <div id="main-content">
         <!-- Loop through each meal in myMeals array -->
@@ -28,16 +23,12 @@
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
-              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
-                <button class="link">Let's Cook!</button>
-              </router-link>
+              <!-- Call method to handle meal details navigation -->
+              <button class="link" @click="navigateToMealDetails(meal.idmeal)">Let's Cook!</button>
               <!-- Button to remove meal -->
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
-              <!-- Pass the meal data to MealPlanView -->
-              <router-link :to="{ path: '/mealplans', query: { meal: meal } }">
-                <p class="link" @click="addToMealPlan(meal)">Add to Meal Plans</p>
-              </router-link>
-
+              <!-- Call method to add meal to meal plan -->
+              <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
             </div>
           </div>
         </div>
@@ -45,7 +36,6 @@
     </body>
   </main>
 </template>
-
 <script>
 import MealService from "../services/MealService";
 export default {
@@ -68,7 +58,6 @@ export default {
     // //       }
     // //     });
     // },
-
     removeFromMyMeals(meal) {
       const index = this.$store.state.myMeals.findIndex(m => m.idmeal === meal.idmeal);
       if (index !== -1) {
@@ -76,39 +65,21 @@ export default {
       }
     },
     addToMealPlan(meal) {
-      const dayOfWeek = this.dayOfWeek(); // Get the current day of the week
-      const mealSlot = this.mealSlot(); // Get the current meal slot
-      this.$store.commit('ADD_TO_MEAL_PLAN', { meal, dayOfWeek, mealSlot });
-      console.log('Adding to Meal Plan:', meal);
+      this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
     },
-    dayOfWeek() {
-      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const currentDate = new Date();
-      return daysOfWeek[currentDate.getDay()];
-    },
-    mealSlot() {
-      // You can implement your logic here based on the current time
-      // For simplicity, let's return a hardcoded value
-      const mealSlots = ['Breakfast', 'Lunch', 'Dinner'];
-      return mealSlots[0];
-
-      // created() {
-      //   this.loadMeals();
-      // }
+    navigateToMealDetails(idmeal) {
+      this.$router.push({ name: 'mealDetails', params: { idmeal } });
     }
+  
   }
 };
 </script>
-
-
-
 <style scoped>
 body,
 html {
   height: 100%;
   margin: 0;
 }
-
 main {
   background-image: url("healthy_background.jpg");
   background-repeat: no-repeat;
@@ -118,13 +89,11 @@ main {
   margin-top: 20px;
   /* Add margin-top to create spacing between nav and main */
 }
-
 header {
-  background-color: #f0754f;
+  background-color: #F0754F;
   padding: 20px;
   border: 2px solid black;
 }
-
 nav {
   display: flex;
   flex-direction: row;
@@ -136,8 +105,6 @@ nav {
   margin-bottom: 20px;
   /* Add margin-bottom to create spacing between nav and main */
 }
-
-
 .logo {
   width: 200px;
   height: auto;
@@ -146,13 +113,10 @@ nav {
   margin-right: 1px;
   margin-left: 1px;
 }
-
 #main-content {
   display: grid;
   font-family: Neucha, sans-serif;
 }
-
-
 .link {
   align-self: center;
   background-color: #fff;
@@ -165,7 +129,7 @@ nav {
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
   box-sizing: border-box;
-  color: #41403e;
+  color: #41403E;
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
@@ -185,16 +149,13 @@ nav {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 .link:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
-
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-
 .meal-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -202,9 +163,8 @@ nav {
   align-items: center;
   justify-content: center;
 }
-
 .card {
-  border-color: #949ba2;
+  border-color: #949BA2;
   backface-visibility: hidden;
   border-radius: 15px;
   /* Adjust the value as needed */
@@ -223,65 +183,54 @@ nav {
   transition: transform 0.3s ease;
   /* Apply hover effect to the card */
 }
-
 .card:hover {
   transform: translateY(-5px);
   /* Define hover effect */
 }
-
 .card-header,
 .card-footer {
   background-color: rgba(255, 255, 255, 0.03);
-  border-color: #949ba2;
+  border-color: #949BA2;
   padding: 0.75rem 1.25rem;
 }
-
 .card-header {
   border-bottom-style: solid;
   border-bottom-width: 2px;
 }
-
 .card-footer {
   border-top-style: solid;
   border-top-width: 2px;
 }
-
 .card-body {
   flex: 1 1 auto;
   padding: 1.75rem;
-
   .card-title,
   h4 {
     margin-bottom: 0.5rem;
     margin-top: 0;
     text-align: center;
   }
-
   .card-subtitle,
   h5 {
-    color: #5595ce;
+    color: #5595CE;
     margin-bottom: 0.5rem;
     margin-top: 0;
   }
-
   .card-text,
   p {
     margin-bottom: 1rem;
     margin-top: 0;
   }
-
   .card-link+.card-link,
   a+a {
     margin-left: 1.25rem;
   }
 }
-
 .image-top {
   /*added width and height*/
   width: 100%;
   height: auto;
 }
-
 .image-bottom,
 img {
   border: 0;
