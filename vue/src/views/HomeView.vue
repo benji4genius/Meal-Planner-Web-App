@@ -16,21 +16,19 @@
       </header>
 
       <body>
+       
         <div id="main-content">
           <h1 class="main-title">
-            <h3>Meal Planning Made Easy</h3>
-          </h1>
+            Meal Planning Made Easy
+            </h1>
           <h2 class=" welcome-text">Welcome! Let's get planning!</h2>
+          <div class="steps-text">
+          <h3>Step 1: Choose your meals</h3>
+          <h3>Step 2: Add to your Meal Plan</h3>
+          <h3>Step 3: Get cookin'</h3>
         </div>
-        
-        <div class="stepscontainer">
-          <div class="steps"><img data-pin-nopin="true" class="step-image"
-              src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/meal.jpg"
-              scale="0"><br><span class="nb">1</span><span class="step-text"> Choose Your Meals</span></div>
-          <div class="steps"><img data-pin-nopin="true" class="step-image phone"
-              src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/phone.jpg"
-              scale="0"><br><span class="nb">2</span><span class="step-text"> Add To The Meal Planner</span></div>
-        </div>
+      </div>
+           
       </body>
     </div>
   </main>
@@ -93,6 +91,9 @@ nav {
   font-size: 5rem;
   font-family: 'Cabin Sketch', cursive;
   color: #007444;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
   font-weight: bold;
   text-align: center;
 }
@@ -129,12 +130,6 @@ nav {
   font-weight: bold;
 }
 
-.step-text {
-  font-size: 14px;
-  /* Adjust as needed */
-}
-
-
 #main-content {
   display: flex;
   flex-direction: column;
@@ -144,12 +139,16 @@ nav {
   margin-left: 40%; */
   padding-bottom: 42.75rem;
   padding-top: 10rem;
-  font-family: Neucha, sans-serif;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .welcome-text {
-  color: orangered;
-  font-size: xx-large;
+  font-size: 50px;
+  color: #007444;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 
@@ -191,4 +190,11 @@ nav {
 
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-}</style>
+}
+
+.steps-text {
+  color: black;
+  border-radius: 10px;
+  padding: 15px;
+}
+</style>

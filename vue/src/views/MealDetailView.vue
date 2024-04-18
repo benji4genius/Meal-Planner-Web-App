@@ -21,16 +21,16 @@
 
     <div class="recipe-name">
       <h2>{{ meal.strmeal }}</h2>
-      <h3>Recipe Instructions</h3>
-    </div>
+          </div>
 
     <body>
       <div id="main-content">
         <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
           <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
           <div class="meal-info">
-            <div class="recipe-instructions">
-              <ul>
+          <div class="recipe-ingredients">
+            <h4>Ingredients</h4>
+              <ol>
                 <p>{{ meal.stringredient1 }}</p>
                 <p>{{ meal.stringredient2 }}</p>
                 <p>{{ meal.stringredient3 }}</p>
@@ -51,8 +51,12 @@
                 <p>{{ meal.stringredient18 }}</p>
                 <p>{{ meal.stringredient19 }}</p>
                 <p>{{ meal.stringredient20 }}</p>
-              </ul>
-              <ul>
+              </ol>
+            </div>
+        
+              <div class="recipe-measurements">
+                <h4>Measurements</h4>
+              <ol>
                 <p>{{ meal.strmeasure1 }}</p>
                 <p>{{ meal.strmeasure2 }}</p>
                 <p>{{ meal.strmeasure3 }}</p>
@@ -73,13 +77,16 @@
                 <p>{{ meal.strmeasure18 }}</p>
                 <p>{{ meal.strmeasure19 }}</p>
                 <p>{{ meal.strmeasure20 }}</p>
-              </ul>
-              <ol>
-                <p>{{ meal.strinstructions }}</p>
               </ol>
             </div>
           </div>
-        </div>
+            <div class="recipe-instructions">
+              <h3>Recipe Instructions</h3>
+              <ol>
+              <p>{{ meal.strinstructions }}</p>
+              </ol>
+            </div>
+          </div>
       </div>
     </body>
   </main>
@@ -246,4 +253,20 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
 }
+
+.meal-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.recipe-ingredients, .recipe-measurements {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recipe-instructions {
+  font-size: 20px;
+}
+
 </style>

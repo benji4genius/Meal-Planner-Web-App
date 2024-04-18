@@ -146,7 +146,7 @@ main {
   background-size:cover;
   height: 100vh;
   position: relative;
-
+  
 
   /* added this part*/
 }
@@ -246,7 +246,8 @@ nav {
   border-style: solid;
   color: black;
   font-size: large;
- 
+  background-color: #fff;
+  margin-top: 10px;
 
   
   /* Apply hover effect to the card */

@@ -186,6 +186,7 @@ nav {
 }
 .card {
   border-color: #949BA2;
+  background-color: #fff;
   backface-visibility: hidden;
   border-radius: 15px; /* Adjust the value as needed */
   overflow: hidden; /* Ensure content inside the card respects the border-radius */
@@ -222,6 +223,7 @@ nav {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
+  background-color: #fff;
   .card-title,
   h4 {
     margin-bottom: 0.5rem;

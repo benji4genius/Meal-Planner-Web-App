@@ -26,13 +26,8 @@
               <h4 class="card-title">{{ meal.strmeal }}</h4>
               <!-- Call method to handle meal details navigation -->
               
-              <button  @click="navigateToMealDetails(meal.idmeal)"></button>
-
-              <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
-                <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
-              <!-- </router-link> -->
-
-             
+              <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal} }"><button class="link">Let's Cook!</button></router-link>
+                    
               <!-- Button to remove meal -->
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
               <!-- Pass the meal data to MealPlanView -->
@@ -45,7 +40,11 @@
                 <option>Saturday</option>
                 <option>Sunday</option>
               </select>
-              
+               <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
+                <button class="link" @click="addToMealPlan(meal)">Add to Meal Plan</button>
+              <!-- </router-link> -->
+
+                          
             </div>
           </div>
         </div>
@@ -119,6 +118,10 @@ header {
   background-color: #F0754F;
   padding: 20px;
   border: 2px solid black;
+}
+
+select {
+  margin-right: 5px;
 }
 
 nav {
@@ -204,6 +207,7 @@ nav {
 
 .card {
   border-color: #949BA2;
+  background-color: #fff;
   backface-visibility: hidden;
   border-radius: 15px;
   /* Adjust the value as needed */
