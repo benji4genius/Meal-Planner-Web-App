@@ -21,16 +21,17 @@
 
     <div class="recipe-name">
       <h2>{{ meal.strmeal }}</h2>
-          </div>
+    </div>
 
     <body>
       <div id="main-content">
         <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
           <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
           <div class="meal-info">
-          <div class="recipe-ingredients">
-            <h4>Ingredients</h4>
-              <ol>
+            <div class="recipe-info"></div>
+            <div class="recipe-ingredients">
+              <h4>Ingredients</h4>
+              <ul>
                 <p>{{ meal.stringredient1 }}</p>
                 <p>{{ meal.stringredient2 }}</p>
                 <p>{{ meal.stringredient3 }}</p>
@@ -51,9 +52,9 @@
                 <p>{{ meal.stringredient18 }}</p>
                 <p>{{ meal.stringredient19 }}</p>
                 <p>{{ meal.stringredient20 }}</p>
-              </ol>
+              </ul>
             </div>
-        
+            
               <div class="recipe-measurements">
                 <h4>Measurements</h4>
               <ol>

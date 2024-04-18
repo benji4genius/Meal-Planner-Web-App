@@ -91,7 +91,7 @@ nav {
   font-size: 5rem;
   font-family: 'Cabin Sketch', cursive;
   color: #007444;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
   padding: 15px;
   font-weight: bold;
@@ -145,7 +145,7 @@ nav {
 .welcome-text {
   font-size: 50px;
   color: #007444;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
   padding: 15px;
   font-family: 'Cabin Sketch', cursive;

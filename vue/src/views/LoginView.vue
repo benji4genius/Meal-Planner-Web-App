@@ -33,6 +33,9 @@
       </body>
     </div>
   </main>
+  <footer>
+    <p>This meal plan application was meticulously crafted, cooked, and served by Benjamin Adetunlese, Jake Lilly, Katherine Miller, Saraswati Rizal, and Melissa Stevens.</p>
+  </footer>
 </template>
 
 <script>
@@ -79,9 +82,12 @@ label {
   margin-right: 0.5rem;
 }
 main{
-  background-image: url("healthy_background.jpg");
+  background-image: url("login-page-photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
+  padding: 0;
+  margin: 0;
   position: relative;
 }
 form{
@@ -94,8 +100,23 @@ header{
   padding: 20px;
   border: 2px solid black;
 }
+
+footer {
+  background-color:#f0754f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+  height: 145px;
+  border: 2px solid black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
 nav{
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
