@@ -8,9 +8,9 @@
           <img class="logo" src="Chefs_Hat.png" />
         </router-link> -->
 
-        
+
         <router-link to="/mymeals">
-        <p class="link">My Meals</p>
+          <p class="link">My Meals</p>
         </router-link>
 
         <router-link to="/meals">
@@ -19,7 +19,6 @@
       </nav>
     </header>
 
-<<<<<<< HEAD
     <div class="recipe-name">
       <h2>{{ meal.strmeal }}</h2>
       <h3>Recipe Instructions</h3>
@@ -31,20 +30,7 @@
           <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
           <div class="meal-info">
             <div class="recipe-instructions">
-              <p>{{ meal.strinstructions }}</p>
-=======
-      <div class="recipe-name">
-        <h2>{{ meal.strmeal }}</h2>
-        <h3>Recipe Instructions</h3>
-      </div>
-  
-      <body>
-        <div id="main-content">
-          <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
-            <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
-            <div class="meal-info">
-              <div class="recipe-instructions"> 
-                <ul>
+              <ul>
                 <p>{{ meal.stringredient1 }}</p>
                 <p>{{ meal.stringredient2 }}</p>
                 <p>{{ meal.stringredient3 }}</p>
@@ -66,7 +52,7 @@
                 <p>{{ meal.stringredient19 }}</p>
                 <p>{{ meal.stringredient20 }}</p>
               </ul>
-                <ul>
+              <ul>
                 <p>{{ meal.strmeasure1 }}</p>
                 <p>{{ meal.strmeasure2 }}</p>
                 <p>{{ meal.strmeasure3 }}</p>
@@ -91,8 +77,6 @@
               <ol>
                 <p>{{ meal.strinstructions }}</p>
               </ol>
-              </div>
->>>>>>> 21ce6e7b93ba01afe68c07530ffa1ec99aebb9ed
             </div>
           </div>
         </div>
@@ -101,7 +85,6 @@
   </main>
 </template>
   
-<<<<<<< HEAD
 <script>
 import MealService from "../services/MealService";
 export default {
@@ -112,71 +95,52 @@ export default {
         strinstructions: '',
         strtags: '',
         strmealthumb: '',
-        stryoutube: ''
-      }
-    };
-  },
-
-
-  created() {
-=======
-  <script>
-  import MealService from "../services/MealService";
-  export default {
-    data() {
-      return {
-        meal: {
-          strmeal: '',
-          strinstructions: '',
-          strtags: '',
-          strmealthumb: '',
-          stryoutube: '',
-          stringredient1: '', 
-        stringredient2: '', 
+        stryoutube: '',
+        stringredient1: '',
+        stringredient2: '',
         stringredient3: '',
         stringredient4: '',
-        stringredient5: '', 
-        stringredient6: '', 
+        stringredient5: '',
+        stringredient6: '',
         stringredient7: '',
-        stringredient8: '', 
-        stringredient9: '', 
-        stringredient10: '', 
+        stringredient8: '',
+        stringredient9: '',
+        stringredient10: '',
         stringredient11: '',
-        stringredient12: '', 
+        stringredient12: '',
         stringredient13: '',
-        stringredient14: '', 
-        stringredient15: '', 
-        stringredient16: '', 
-        stringredient17: '', 
-        stringredient18: '', 
-        stringredient19: '', 
-        stringredient20: '', 
+        stringredient14: '',
+        stringredient15: '',
+        stringredient16: '',
+        stringredient17: '',
+        stringredient18: '',
+        stringredient19: '',
+        stringredient20: '',
         strmeasure1: '',
-        strmeasure2: '', 
-        strmeasure3: '', 
+        strmeasure2: '',
+        strmeasure3: '',
         strmeasure4: '',
         strmeasure5: '',
         strmeasure6: '',
-        strmeasure7: '', 
-        strmeasure8: '', 
-        strmeasure9: '', 
-        strmeasure10: '', 
+        strmeasure7: '',
+        strmeasure8: '',
+        strmeasure9: '',
+        strmeasure10: '',
         strmeasure11: '',
         strmeasure12: '',
         strmeasure13: '',
         strmeasure14: '',
-        strmeasure15: '', 
-        strmeasure16: '', 
+        strmeasure15: '',
+        strmeasure16: '',
         strmeasure17: '',
-        strmeasure18: '', 
+        strmeasure18: '',
         strmeasure19: '',
         strmeasure20: ''
-        }
-      };
-    },
+      }
+    };
+  },
 
-          created() {
->>>>>>> 21ce6e7b93ba01afe68c07530ffa1ec99aebb9ed
+  created() {
     let idmeal = parseInt(this.$route.params.idmeal);
     MealService.getMealById(idmeal)
       .then(response => {
@@ -281,4 +245,5 @@ nav {
   margin-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
-}</style>
+}
+</style>
