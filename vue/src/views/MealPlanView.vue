@@ -141,26 +141,16 @@ export default {
 
 <style scoped>
 main {
-  background-image: url("");
+  background-image: url("asparigus.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  height: fit-content;
+  background-size:cover;
+  height: 100vh;
   position: relative;
-  background-color: whitesmoke;
+
 
   /* added this part*/
 }
 
-.popup {
-  position:fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #F0754F;
-  color: white;
-  padding: 25px;
-  border-radius: 5px;
-}
 
 header {
   background-color: #F0754F;
@@ -244,6 +234,29 @@ nav {
   justify-content: space-around;
   margin-top: 20px;
   /* Added margin */
+}
+
+.meal-slot {
+  border-color: #949BA2;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  /* Adjust the value as needed */
+  overflow: hidden;
+  /* Ensure content inside the card respects the border-radius */
+  border-style: solid;
+  color: black;
+  font-size: large;
+ 
+
+  
+  /* Apply hover effect to the card */
+}
+
+.meal-slot:hover {
+  transform: translateY(-5px);
+  will-change: transform;
+  transition: transform 0.3s ease;
+  /* Define hover effect */
 }
 
 .slot {

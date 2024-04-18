@@ -13,7 +13,6 @@
           <!-- Logo with route link -->
           <img class="logo" src="Chefs_Hat.png" />
         </router-link>
-
        
 
         <router-link to="/mymeals">
@@ -92,7 +91,7 @@ body, html {
   margin: 0;
 }
 main {
-  background-image: url("");
+  background-image: url("plums.jpg");
   background-repeat: no-repeat;
   background-size:cover;
   position: relative;
@@ -234,6 +233,7 @@ nav {
     color: #5595CE;
     margin-bottom: 0.5rem;
     margin-top: 0;
+    font-size: x-large;
   }
   .card-text,
   p {

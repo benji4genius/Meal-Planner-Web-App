@@ -1,57 +1,65 @@
 <template>
   <main>
-  <div class="home">
-    <header>
+    <div class="home">
+      <header>
+
         <nav>
-          <p class="link"><router-link v-bind:to ="{name: 'meals' }">Meals</router-link></p>
+          <p class="link"><router-link v-bind:to="{ name: 'meals' }">Meals</router-link></p>
           <p class="link"><router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link></p>
-          <img class="logo" src="Chefs_Hat.png"/>
+          <img class="logo" src="Chefs_Hat.png" />
           <!-- Update this section -->
           <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
           <!-- Updated section ends -->
           <p class="link"><router-link to="/logout">Logout</router-link></p>
         </nav>
+
       </header>
+
       <body>
         <div id="main-content">
           <h1 class="main-title">
             <h3>Meal Planning Made Easy</h3>
           </h1>
-          <h2>Welcome! Let's get planning!</h2>
+          <h2 class=" welcome-text">Welcome! Let's get planning!</h2>
         </div>
+        
         <div class="stepscontainer">
-                <div class="steps"><img data-pin-nopin="true" class="step-image" src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/meal.jpg" scale="0"><br><span class="nb">1</span><span class="step-text"> Choose Your Meals</span></div>
-                <div class="steps"><img data-pin-nopin="true" class="step-image phone" src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/phone.jpg" scale="0"><br><span class="nb">2</span><span class="step-text"> Add To The Meal Planner</span></div>
-            </div>
+          <div class="steps"><img data-pin-nopin="true" class="step-image"
+              src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/meal.jpg"
+              scale="0"><br><span class="nb">1</span><span class="step-text"> Choose Your Meals</span></div>
+          <div class="steps"><img data-pin-nopin="true" class="step-image phone"
+              src="https://www.eatwell101.com/wp-content/plugins/eric-meal-planner/assets/images/phone.jpg"
+              scale="0"><br><span class="nb">2</span><span class="step-text"> Add To The Meal Planner</span></div>
+        </div>
       </body>
-  </div>
-</main>
+    </div>
+  </main>
 </template>
 
 <script>
 import { RouterLink } from 'vue-router';
 
 export default {
-    components: { RouterLink }
+  components: { RouterLink }
 };
 </script>
 
 <style scoped>
-
-
-main{
-  background-image: url("healthy_background.jpg");
+main {
+  background-image: url("plates of salad.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
-header{
-  background-color:#f0754f;
+
+header {
+  background-color: #f0754f;
   padding: 20px;
   border: 2px solid black
 }
-nav{
-  display:flex;
+
+nav {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
@@ -59,6 +67,7 @@ nav{
   font-size: 20px;
   height: 100px;
 }
+
 .logo {
   width: 200px;
   height: auto;
@@ -69,7 +78,7 @@ nav{
 }
 
 /* added this for title */
-.main-title { 
+.main-title {
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -81,7 +90,7 @@ nav{
   padding-bottom: 5px;
   text-transform: none;
   margin-bottom: 1.5rem;
-  font-size: 4rem;
+  font-size: 5rem;
   font-family: 'Cabin Sketch', cursive;
   color: #007444;
   font-weight: bold;
@@ -97,30 +106,37 @@ nav{
   position: absolute;
 
 }
+
 .steps {
   text-align: center;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
+
 .step-image {
-  width: 150px; /* Adjust as needed */
+  width: 150px;
+  /* Adjust as needed */
   height: auto;
   justify-content: space-around;
   padding: 50px;
   align-items: center;
   top: 100px;
 }
+
 .nb {
-  font-size: 24px; /* Adjust as needed */
+  font-size: 24px;
+  /* Adjust as needed */
   font-weight: bold;
 }
+
 .step-text {
-  font-size: 14px; /* Adjust as needed */
+  font-size: 14px;
+  /* Adjust as needed */
 }
 
 
-#main-content{
-  display:flex;
+#main-content {
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 200px;
@@ -130,6 +146,12 @@ nav{
   padding-top: 10rem;
   font-family: Neucha, sans-serif;
 }
+
+.welcome-text {
+  color: orangered;
+  font-size: xx-large;
+}
+
 
 .link {
   align-self: center;
@@ -169,5 +191,4 @@ nav{
 
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-}
-</style>
+}</style>

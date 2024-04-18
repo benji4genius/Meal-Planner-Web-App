@@ -1,73 +1,80 @@
 <template>
-    <main>
-      <header>
-        <nav>
-          <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-         
-        
-          <img class="logo" src="Chefs_Hat.png" />
-        
-          <router-link to="/meals">
-          <p class="link">Meals</p>
-          </router-link>
-        </nav>
-      </header>
+  <main>
+    <header>
+      <nav>
+        <p class="link" href="{name: home}"><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
 
-      <div class="recipe-name">
-        <h2>{{ meal.strmeal }}</h2>
-        <h3>Recipe Instructions</h3>
-      </div>
-  
-      <body>
-        <div id="main-content">
-          <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
-            <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
-            <div class="meal-info">
-              <div class="recipe-instructions"> 
-                <p>{{ meal.strinstructions }}</p>
-              </div>
+        <!-- <router-link to="/">
+          <img class="logo" src="Chefs_Hat.png" />
+        </router-link> -->
+
+        
+        <router-link to="/mymeals">
+        <p class="link">My Meals</p>
+        </router-link>
+
+        <router-link to="/meals">
+          <p class="link">Meals</p>
+        </router-link>
+      </nav>
+    </header>
+
+    <div class="recipe-name">
+      <h2>{{ meal.strmeal }}</h2>
+      <h3>Recipe Instructions</h3>
+    </div>
+
+    <body>
+      <div id="main-content">
+        <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
+          <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
+          <div class="meal-info">
+            <div class="recipe-instructions">
+              <p>{{ meal.strinstructions }}</p>
             </div>
           </div>
         </div>
-      </body>
-    </main>
-  </template>
+      </div>
+    </body>
+  </main>
+</template>
   
-  <script>
-  import MealService from "../services/MealService";
-  export default {
-    data() {
-      return {
-        meal: {
-          strmeal: '',
-          strinstructions: '',
-          strtags: '',
-          strmealthumb: '',
-          stryoutube: ''
-        }
-      };
-    },
+<script>
+import MealService from "../services/MealService";
+export default {
+  data() {
+    return {
+      meal: {
+        strmeal: '',
+        strinstructions: '',
+        strtags: '',
+        strmealthumb: '',
+        stryoutube: ''
+      }
+    };
+  },
 
-    
-      created() {
+
+  created() {
     let idmeal = parseInt(this.$route.params.idmeal);
     MealService.getMealById(idmeal)
       .then(response => {
         this.meal = response.data;
       });
   }
-    
+
 }
-  </script>
+</script>
   
 <style scoped>
-header{
-    background-color:#f0754f;
-    padding: 20px;
-    border: 2px solid black
+header {
+  background-color: #f0754f;
+  padding: 20px;
+  border: 2px solid black
 }
-nav{
-  display:flex;
+
+nav {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
@@ -75,6 +82,7 @@ nav{
   font-size: 20px;
   height: 100px;
 }
+
 .link {
   align-self: center;
   background-color: #fff;
@@ -105,6 +113,7 @@ nav{
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .link:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
@@ -113,6 +122,7 @@ nav{
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
 .logo {
   width: 200px;
   height: auto;
@@ -121,33 +131,32 @@ nav{
   margin-right: 1px;
   margin-left: 1px;
 }
-  .meal-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .image-top {
-    width: 300px; 
-    height: auto;
-    margin-bottom: 20px;
-    box-shadow: 0 0 15px #f0754f;
-  }
-  
-  .meal-info {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    list-style-type: disc;
-    margin-left: 20px;
-  }
 
-  .recipe-name {
-    text-align: center;
-    margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-  }
+.meal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
-  </style>
+.image-top {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px #f0754f;
+}
+
+.meal-info {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.recipe-name {
+  text-align: center;
+  margin-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}</style>

@@ -25,7 +25,14 @@
             <div class="card-body">
               <h4 class="card-title">{{ meal.strmeal }}</h4>
               <!-- Call method to handle meal details navigation -->
-              <button class="link" @click="navigateToMealDetails(meal.idmeal)">Let's Cook!</button>
+              
+              <button  @click="navigateToMealDetails(meal.idmeal)"></button>
+
+              <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
+                <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
+              <!-- </router-link> -->
+
+             
               <!-- Button to remove meal -->
               <button class="link" @click="removeFromMyMeals(meal)">Remove Meal</button>
               <!-- Pass the meal data to MealPlanView -->
@@ -38,10 +45,7 @@
                 <option>Saturday</option>
                 <option>Sunday</option>
               </select>
-              <!-- <router-link :to="{ path: '/mealplans', query: { meal: meal } }"> -->
-              <button class="link" @click="addToMealPlan(meal)">Add to Meal Plans</button>
-              <!-- </router-link> -->
-
+              
             </div>
           </div>
         </div>
@@ -50,49 +54,49 @@
   </main>
 </template>
 <script>
+import { RouterLink } from "vue-router";
 import MealService from "../services/MealService";
 export default {
-  computed: {
-    myMeals() {
-      return this.$store.state.myMeals;
+    computed: {
+        myMeals() {
+            return this.$store.state.myMeals;
+        },
     },
-  },
-  methods: {
-    // // loadMeals() {
-    // //   MealService.getMealsForUser()
-    // //     .then((response) => {
-    // //       this.$store.state.myMeals = response.data;
-    // //     })
-    // //     .catch((error) => {
-    // //       const response = error.response;
-    // //       this.registrationErrors = true;
-    // //       if (response.status === 400) {
-    // //         this.registrationErrorMsg = 'Bad Request: Validation Errors';
-    // //       }
-    // //     });
-    // },
-    removeFromMyMeals(meal) {
-      const index = this.$store.state.myMeals.findIndex(m => m.idmeal === meal.idmeal);
-      if (index !== -1) {
-        this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
-      }
-    },
-
-    addToMealPlan(meal) {
-      // this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
-      this.showNotification('Successfully added to Meal Plan')
-    },
-      showNotification(message) {
-        alert(message);
-      }
-     
+    methods: {
+        // // loadMeals() {
+        // //   MealService.getMealsForUser()
+        // //     .then((response) => {
+        // //       this.$store.state.myMeals = response.data;
+        // //     })
+        // //     .catch((error) => {
+        // //       const response = error.response;
+        // //       this.registrationErrors = true;
+        // //       if (response.status === 400) {
+        // //         this.registrationErrorMsg = 'Bad Request: Validation Errors';
+        // //       }
+        // //     });
+        // },
+        removeFromMyMeals(meal) {
+            const index = this.$store.state.myMeals.findIndex(m => m.idmeal === meal.idmeal);
+            if (index !== -1) {
+                this.$store.commit('REMOVE_FROM_MY_MEALS', index); // Commit mutation to remove meal from myMeals
+            }
+        },
+        addToMealPlan(meal) {
+            // this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
+            this.showNotification('Successfully added to Meal Plan');
+        },
+        showNotification(message) {
+            alert(message);
+        }
     },
     //   this.$router.push({ name: 'mealplans', query: { meal: meal.idmeal } });
     // },
     navigateToMealDetails(idmeal) {
-      this.$router.push({ name: 'mealDetails', params: { idmeal } });
-    }
-  }
+        this.$router.push({ name: 'mealDetails', params: { idmeal } });
+    },
+    components: { RouterLink }
+}
 
 </script>
 <style scoped>
@@ -103,14 +107,12 @@ html {
 }
 
 main {
-  background-image: url("");
+  background-image: url("Avocado Plate.jpg");
   background-repeat: no-repeat;
-  background-color: whitesmoke;
-  background-size: fit-content;
+  background-size:cover;
+  height: 100vh;
   position: relative;
-  height: 100%;
-  margin-top: 20px;
-  /* Add margin-top to create spacing between nav and main */
+ /* Add margin-top to create spacing between nav and main */
 }
 
 header {
@@ -143,17 +145,9 @@ nav {
 #main-content {
   display: grid;
   font-family: Neucha, sans-serif;
-}
-
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #F0754F;
-  color: white;
-  padding: 25px;
-  border-radius: 5px;
+  font-size: larger;
+  color: black;
+  
 }
 
 .link {
