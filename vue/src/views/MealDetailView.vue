@@ -24,7 +24,53 @@
             <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
             <div class="meal-info">
               <div class="recipe-instructions"> 
+                <ul>
+                <p>{{ meal.stringredient1 }}</p>
+                <p>{{ meal.stringredient2 }}</p>
+                <p>{{ meal.stringredient3 }}</p>
+                <p>{{ meal.stringredient4 }}</p>
+                <p>{{ meal.stringredient5 }}</p>
+                <p>{{ meal.stringredient6 }}</p>
+                <p>{{ meal.stringredient7 }}</p>
+                <p>{{ meal.stringredient8 }}</p>
+                <p>{{ meal.stringredient9 }}</p>
+                <p>{{ meal.stringredient10 }}</p>
+                <p>{{ meal.stringredient11 }}</p>
+                <p>{{ meal.stringredient12 }}</p>
+                <p>{{ meal.stringredient13 }}</p>
+                <p>{{ meal.stringredient14 }}</p>
+                <p>{{ meal.stringredient15 }}</p>
+                <p>{{ meal.stringredient16 }}</p>
+                <p>{{ meal.stringredient17 }}</p>
+                <p>{{ meal.stringredient18 }}</p>
+                <p>{{ meal.stringredient19 }}</p>
+                <p>{{ meal.stringredient20 }}</p>
+              </ul>
+                <ul>
+                <p>{{ meal.strmeasure1 }}</p>
+                <p>{{ meal.strmeasure2 }}</p>
+                <p>{{ meal.strmeasure3 }}</p>
+                <p>{{ meal.strmeasure4 }}</p>
+                <p>{{ meal.strmeasure5 }}</p>
+                <p>{{ meal.strmeasure6 }}</p>
+                <p>{{ meal.strmeasure7 }}</p>
+                <p>{{ meal.strmeasure8 }}</p>
+                <p>{{ meal.strmeasure9 }}</p>
+                <p>{{ meal.strmeasure10 }}</p>
+                <p>{{ meal.strmeasure11 }}</p>
+                <p>{{ meal.strmeasure12 }}</p>
+                <p>{{ meal.strmeasure13 }}</p>
+                <p>{{ meal.strmeasure14 }}</p>
+                <p>{{ meal.strmeasure15 }}</p>
+                <p>{{ meal.strmeasure16 }}</p>
+                <p>{{ meal.strmeasure17 }}</p>
+                <p>{{ meal.strmeasure18 }}</p>
+                <p>{{ meal.strmeasure19 }}</p>
+                <p>{{ meal.strmeasure20 }}</p>
+              </ul>
+              <ol>
                 <p>{{ meal.strinstructions }}</p>
+              </ol>
               </div>
             </div>
           </div>
@@ -43,17 +89,57 @@
           strinstructions: '',
           strtags: '',
           strmealthumb: '',
-          stryoutube: ''
+          stryoutube: '',
+          stringredient1: '', 
+        stringredient2: '', 
+        stringredient3: '',
+        stringredient4: '',
+        stringredient5: '', 
+        stringredient6: '', 
+        stringredient7: '',
+        stringredient8: '', 
+        stringredient9: '', 
+        stringredient10: '', 
+        stringredient11: '',
+        stringredient12: '', 
+        stringredient13: '',
+        stringredient14: '', 
+        stringredient15: '', 
+        stringredient16: '', 
+        stringredient17: '', 
+        stringredient18: '', 
+        stringredient19: '', 
+        stringredient20: '', 
+        strmeasure1: '',
+        strmeasure2: '', 
+        strmeasure3: '', 
+        strmeasure4: '',
+        strmeasure5: '',
+        strmeasure6: '',
+        strmeasure7: '', 
+        strmeasure8: '', 
+        strmeasure9: '', 
+        strmeasure10: '', 
+        strmeasure11: '',
+        strmeasure12: '',
+        strmeasure13: '',
+        strmeasure14: '',
+        strmeasure15: '', 
+        strmeasure16: '', 
+        strmeasure17: '',
+        strmeasure18: '', 
+        strmeasure19: '',
+        strmeasure20: ''
         }
       };
     },
 
-    
-      created() {
+          created() {
     let idmeal = parseInt(this.$route.params.idmeal);
     MealService.getMealById(idmeal)
       .then(response => {
         this.meal = response.data;
+        console.log(this.meal);
       });
   }
     

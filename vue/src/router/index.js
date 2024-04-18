@@ -70,14 +70,13 @@ const routes = [
   {
     path: "/mealplans",
     name: "mealplans",
-    component: MealPlanView, // Added this part 
+    component: MealPlanView,  
     meta: {
       requiresAuth: false
     }
   }
 ];
 
-// Create the router
 const router = createRouter({
   history: createWebHistory(),
   routes: routes

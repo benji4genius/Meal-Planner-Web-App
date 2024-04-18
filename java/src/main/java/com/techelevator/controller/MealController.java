@@ -16,20 +16,17 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/meals")
-@PreAuthorize("isAuthenticated()") // For user Authentication?
+@PreAuthorize("isAuthenticated()")
 public class MealController {
     private MealDao mealDao;
     private UserDao userDao;
-
-    // Might need to add userDao Here but not completely sure
-    // Also might need to add int user_id to our JDBCmealDao and maybe JDBCmealPlanDao as well
 
     public MealController(MealDao mealDao, UserDao userDao) {
         this.mealDao = mealDao;
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET) //Not completely sure about this path here
+    @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Meal> getMeals() {
         try {
             return mealDao.getAllMeals();
@@ -38,7 +35,7 @@ public class MealController {
         }
     }
 
-    @RequestMapping(path = "/mymeals", method = RequestMethod.GET) //Not completely sure about this path here
+    @RequestMapping(path = "/mymeals", method = RequestMethod.GET)
     public List<Meal> getMealsForUser(Principal principal) {
         try {
             int userId = userDao.getUserByUsername(principal.getName()).getId();
@@ -61,11 +58,8 @@ public class MealController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "", method = RequestMethod.POST)
-    //Might need to add Principal principal(Needed to extract user information) here but not completely sure
     public Meal createMeal(@Valid @RequestBody Meal newMeal) {
         try {
-
-           // int user_id = getCurrentUserId(principal);
             return mealDao.addMeal(newMeal);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -75,8 +69,7 @@ public class MealController {
 
     @RequestMapping(path = "/{idmeal}", method = RequestMethod.PUT)
     public Meal updateMeal(@Valid @RequestBody Meal meal, @PathVariable int idmeal) {
-        // The id on the path takes precedence over the one in the request body, if any
-        meal.setIdmeal(idmeal);
+               meal.setIdmeal(idmeal);
         try {
             Meal updatedMeal = mealDao.updateMeal(meal);
             return updatedMeal;

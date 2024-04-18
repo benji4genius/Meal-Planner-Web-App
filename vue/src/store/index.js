@@ -8,6 +8,7 @@ export function createStore(currentToken, currentUser) {
     token: currentToken || '',
     user: currentUser || {},
     myMeals: JSON.parse(localStorage.getItem('myMeals')) || [], // Initialize myMeals with data from local storage
+    ingredients: [],
 
     mealPlan: {
       Monday: {},
@@ -56,6 +57,16 @@ export function createStore(currentToken, currentUser) {
       
         // Update local storage to persist the changes
         localStorage.setItem('mealPlan', JSON.stringify(state.mealPlan));
+      },
+      SET_INGREDIENTS(state, ingredients) {
+        state.ingredients = ingredients;
+        localStorage.setItem('ingredients', JSON.stringify(ingredients));
+      }
+    },
+    actions: {
+      fetchIngredients({ commit }) {
+        const ingredients = JSON.parse(localStorage.getItem('ingredients')) || [];
+        commit('SET_INGREDIENTS', ingredients);
       }
     }
   });
