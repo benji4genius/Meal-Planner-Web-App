@@ -18,6 +18,7 @@ public class Ingredient {
         return idingredient;
     }
 
+
     public String getStringredient() {
         return stringredient;
     }
