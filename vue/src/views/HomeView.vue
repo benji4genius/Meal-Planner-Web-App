@@ -6,7 +6,7 @@
         <nav>
           <p class="link"><router-link v-bind:to="{ name: 'meals' }">Meals</router-link></p>
           <p class="link"><router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link></p>
-          <img class="logo" src="Chefs_Hat.png" />
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
           <!-- Update this section -->
           <p class="link"><router-link to="/mealplans">Meal Plans</router-link></p>
           <!-- Updated section ends -->
@@ -16,21 +16,26 @@
       </header>
 
       <body>
-       
+        
         <div id="main-content">
+          <div><img class="plan-to-plate" src="logo-orange-hat.png"/>
+          </div>
+         
           <h1 class="main-title">
-            Meal Planning Made Easy
-            </h1>
-          <h2 class=" welcome-text">Welcome! Let's get planning!</h2>
-          <div class="steps-text">
-          <h3>Step 1: Choose your meals</h3>
-          <h3>Step 2: Add to your Meal Plan</h3>
-          <h3>Step 3: Get cookin'</h3>
-        </div>
-      </div>
-           
+             Meal Planning Made Easy
+          </h1>
+            <h2 class=" welcome-text">Let's get planning!</h2>
+              <div class="steps-text">
+                <h3>Step 1: Choose your meals</h3>
+                <h3>Step 2: Add to your Meal Plan</h3>
+                <h3>Step 3: Get cookin'</h3>
+              </div>
+          </div>
       </body>
     </div>
+      <footer>
+        <p>This meal plan application was meticulously crafted, cooked, and served by Benjamin Adetunlese, Jake Lilly, Katherine Miller, Saraswati Rizal, and Melissa Stevens.</p>
+      </footer>
   </main>
 </template>
 
@@ -47,6 +52,9 @@ main {
   background-image: url("plates of salad.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
+  padding: 0;
+  margin: 0;
   position: relative;
 }
 
@@ -54,6 +62,32 @@ header {
   background-color: #f0754f;
   padding: 20px;
   border: 2px solid black
+}
+
+.plan-to-plate-nav {
+  width: 100px;
+  height: auto;
+}
+
+.plan-to-plate {
+  width: 500px;
+  height: auto;
+  margin-bottom: 175px;
+  justify-content: center;
+}
+
+footer {
+  background-color:#f0754f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 145px;
+  border: 2px solid black;
+  font-family: 'Cabin Sketch', cursive;
+  font-weight: bold;
+  bottom: 0;
 }
 
 nav {
@@ -64,15 +98,6 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
-}
-
-.logo {
-  width: 200px;
-  height: auto;
-  align-self: center;
-  position: absolute;
-  padding-left: 1px;
-  padding-right: 1px;
 }
 
 /* added this for title */
@@ -88,7 +113,7 @@ nav {
   padding-bottom: 5px;
   text-transform: none;
   margin-bottom: 1.5rem;
-  font-size: 5rem;
+  font-size: 60px;
   font-family: 'Cabin Sketch', cursive;
   color: #007444;
   background-color: rgba(255, 255, 255, 0.75);
@@ -143,7 +168,7 @@ nav {
 }
 
 .welcome-text {
-  font-size: 50px;
+  font-size: 40px;
   color: #007444;
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
@@ -196,5 +221,6 @@ nav {
   color: black;
   border-radius: 10px;
   padding: 15px;
+  font-size: 20px;
 }
 </style>

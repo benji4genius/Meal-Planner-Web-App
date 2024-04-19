@@ -3,16 +3,15 @@
   <div id="register" class="text-center">
     <header>
         <nav>
-          <a class="link" href="{name: home}">Home</a>
-          <p class="link">Link</p>
-          <img class="logo" src="Chefs_Hat.png"/>
-          <p class="link">Meals</p>
-          <p class="link">Meal Plans</p>
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
         </nav>
       </header>
       <body>
         <div id="main-content">
-          <h2>Welcome! Let's get planning!</h2>
+          <div class="welcome-text">
+            <h1>Welcome to PlanMyPlate!</h1>
+          </div>
+          <h2>Making life easier one meal at a time.</h2>
         <form v-on:submit.prevent="register">
       <h2>Create Account</h2>
       <div role="alert" v-if="registrationErrors">
@@ -36,6 +35,8 @@
         </div>
       </body>
   </div>
+  <footer> <p>This meal plan application was meticulously crafted, cooked, and served by
+    Benjamin Adetunlese, Jake Lilly, Katherine Miller, Saraswati Rizal, and Melissa Stevens.</p></footer>
 </main>
 </template>
 
@@ -96,11 +97,38 @@ label {
   margin-right: 0.5rem;
 }
 main{
-  background-image: url("healthy_background.jpg");
+  background-image: url("login-page-photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
+  padding: 0;
+  margin: 0;
   position: relative;
 }
+
+.welcome-text {
+  text-align: center;
+  font-family: Neucha, sans-serif;
+  white-space: nowrap;
+  display: inline-block;
+  margin-right: 20px;
+  font-size: larger;
+}
+
+footer {
+  background-color:#f0754f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+  height: 145px;
+  border: 2px solid black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
 form{
   display: flex;
   flex-direction: column;
@@ -137,7 +165,16 @@ nav{
   margin-left: 40%;
   padding-bottom: 42.75rem;
   padding-top: 10rem;
+  text-align: center;
   font-family: Neucha, sans-serif;
+}
+
+h1 {
+  font-family: 'Cabin Sketch', cursive;
+}
+
+h2 {
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .link {

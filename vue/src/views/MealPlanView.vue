@@ -7,7 +7,7 @@
         </p>
         <router-link to="/">
           <!-- Logo with route link -->
-          <img class="logo" src="Chefs_Hat.png" />
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
         </router-link>
 
 
@@ -141,14 +141,11 @@ export default {
 
 <style scoped>
 main {
-  background-image: url("asparigus.jpg");
+  background-image: url("wood-veggies-pasta.jpg");
   background-repeat: no-repeat;
   background-size:cover;
-  height: 100vh;
+  background-position: center center;
   position: relative;
-  
-
-  /* added this part*/
 }
 
 
@@ -176,8 +173,6 @@ nav {
   margin-right: 1px;
   margin-left: 1px;
 }
-
-
 
 #main-content {
   display: flex;
@@ -248,9 +243,7 @@ nav {
   font-size: large;
   background-color: #fff;
   margin-top: 10px;
-
-  
-  /* Apply hover effect to the card */
+  box-shadow: 0 0 10px #f0754f;
 }
 
 .meal-slot:hover {

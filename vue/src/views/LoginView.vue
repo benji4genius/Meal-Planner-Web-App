@@ -3,14 +3,16 @@
     <div id="login">
       <header>
         <nav>
-          <img class="logo" src="Chefs_Hat.png"/>
+          <img class="logo" src="plantoplate-favicon-white.png"/>
         </nav>
       </header>
       <body>
         <div id="main-content">
-          <h2>Welcome! Let's get planning!</h2>
+          <img class="logo-name" src="logo-orange-hat.png"/>
+          <h1>Welcome! Get ready to plan, prep, and enjoy!</h1>
+          <h2>Please Sign In</h2>
         <form v-on:submit.prevent="login">
-        <h2>Please Sign In</h2>
+        
         <div role="alert" v-if="invalidCredentials">
           Invalid username and password!
         </div>
@@ -18,11 +20,11 @@
           Thank you for registering, please sign in.
         </div>
         <div class="form-input-group">
-          <label for="username">Username</label>
+          <label for="username">Username:</label>
           <input type="text" id="username" v-model="user.username" required autofocus />
         </div>
         <div class="form-input-group">
-          <label for="password">Password</label>
+          <label for="password">Password:</label>
           <input type="password" id="password" v-model="user.password" required />
         </div>
         <button type="submit">Sign in</button>
@@ -81,14 +83,21 @@ export default {
 label {
   margin-right: 0.5rem;
 }
+
+.logo-name {
+  width: 500px;
+  height: auto;
+  margin-bottom: 100px;
+  justify-content: center;
+}
+
 main{
   background-image: url("login-page-photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  padding: 0;
-  margin: 0;
   position: relative;
+  padding-bottom: 1rem;
 }
 form{
   display: flex;
@@ -98,7 +107,8 @@ form{
 header{
   background-color:#f0754f;
   padding: 20px;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
+  margin-top: -10px;
 }
 
 footer {
@@ -106,13 +116,16 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  margin-bottom: 0;
-  width: 100%;
-  height: 145px;
-  border: 2px solid black;
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width:100%;
+  height: 100px;
+  border-top: 2px solid black;
+  font-family: 'Cabin Sketch', cursive;
   font-weight: bold;
+
+ 
 }
 
 nav{
@@ -123,7 +136,8 @@ nav{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
-}          
+}
+
 #main-content{
   display:flex;
   flex-direction: column;
@@ -133,15 +147,15 @@ nav{
   margin-left: 40%;
   padding-bottom: 45rem;
   padding-top: 10rem;
-  font-family: Neucha, sans-serif;
+  font-family: 'Cabin Sketch', cursive;
 }
 .logo {
-  width: 200px;
+  width: 100px;
   height: auto;
   align-self: center;
   position: absolute;
-  margin-right: 1px;
-  margin-left: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 .link {
   align-self: center;
@@ -182,4 +196,13 @@ nav{
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
+h1 {
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 50px;
+}
+
 </style>

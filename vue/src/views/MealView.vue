@@ -11,7 +11,7 @@
         <!-- Route link for Home -->
         <router-link to="/">
           <!-- Logo with route link -->
-          <img class="logo" src="Chefs_Hat.png" />
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
         </router-link>
        
 
@@ -91,13 +91,13 @@ body, html {
   margin: 0;
 }
 main {
-  background-image: url("plums.jpg");
+  background-image: url("marble-bg.jpg");
   background-repeat: no-repeat;
   background-size:cover;
+  background-position: center center;
   position: relative;
-  height:fit-content;
   background-color: whitesmoke;
- /* Add margin-top to create spacing between nav and main */
+  background-color: #F0754F;
 }
 header {
   background-color: #F0754F;

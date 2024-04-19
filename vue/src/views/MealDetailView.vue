@@ -19,12 +19,10 @@
       </nav>
     </header>
 
-    <div class="recipe-name">
-      <h2>{{ meal.strmeal }}</h2>
-    </div>
-
     <body>
       <div id="main-content">
+        <div class="recipe-name">
+        <h2>{{ meal.strmeal }}</h2>
         <div class="meal-details" v-bind:to="{ name: '', params: { id: meal.idmeal } }">
           <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb">
           <div class="meal-info">
@@ -89,6 +87,7 @@
             </div>
           </div>
       </div>
+    </div>
     </body>
   </main>
 </template>
@@ -175,6 +174,14 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
+}
+
+.main-content {
+  background-image: url("marble-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 
 .link {

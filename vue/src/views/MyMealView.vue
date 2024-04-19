@@ -7,7 +7,7 @@
         <!-- Route link for Home -->
         <router-link to="/">
           <!-- Logo with route link -->
-          <img class="logo" src="Chefs_Hat.png" />
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
         </router-link>
         <router-link to="/mealplans">
           <p class="link">Meal Plans</p>
@@ -106,12 +106,11 @@ html {
 }
 
 main {
-  background-image: url("Avocado Plate.jpg");
+  background-image: url("marble-bg.jpg");
   background-repeat: no-repeat;
-  background-size:cover;
-  height: 100vh;
+  background-size: cover;
+  background-position: center center;
   position: relative;
- /* Add margin-top to create spacing between nav and main */
 }
 
 header {
