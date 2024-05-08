@@ -23,7 +23,7 @@
     <body>
       <div id="main-content">
            <div class="meal-container">
-            <div class="card" style="width: 320px;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
+            <div class="card" style="width: 350px;" v-bind:to="{ name: '', params: { id: meal.idmeal } }" v-for="meal in $store.state.meals"
               v-bind:key="meal.idmeal" >
               <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
               <div class="card-body">
@@ -91,9 +91,10 @@ body, html {
   margin: 0;
 }
 main {
-  background-image: url("marble-bg.jpg");
+  background-image: url("wood-greenleaves.jpg");
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: 100% 100%;
+  min-height: 100vh;
   background-position: center center;
   position: relative;
   background-color: whitesmoke;
@@ -153,7 +154,7 @@ nav {
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 23px;
   outline: none;
   padding: .75rem;
@@ -177,7 +178,7 @@ nav {
 .meal-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 5px;
+  grid-gap: 48px;
   align-items: center;
   justify-content: center;
   padding-top: 5rem;
@@ -191,7 +192,7 @@ nav {
   border-radius: 15px; /* Adjust the value as needed */
   overflow: hidden; /* Ensure content inside the card respects the border-radius */
   border-style: solid;
-  border-width: 2px;
+  border-width: 5px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -229,6 +230,7 @@ nav {
     margin-bottom: 0.5rem;
     margin-top: 0;
     text-align: center;
+    font-size: 22px;
   }
   .card-subtitle,
   h5 {

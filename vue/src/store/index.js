@@ -1,6 +1,5 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
-
 // Function to create the Vuex store
 export function createStore(currentToken, currentUser) {
   // Initialize state with data from local storage or default values
@@ -8,19 +7,18 @@ export function createStore(currentToken, currentUser) {
     token: currentToken || '',
     user: currentUser || {},
     myMeals: JSON.parse(localStorage.getItem('myMeals')) || [], // Initialize myMeals with data from local storage
+    mealplans: JSON.parse(localStorage.getItem('mealplans')) || [],
     ingredients: [],
-
     mealPlan: {
-      Monday: {},
-      Tuesday: {},
-      Wednesday: {},
-      Thursday: {},
-      Friday: {},
-      Saturday: {},
-      Sunday: {}
+      Monday: [],
+      Tuesday: [],
+      Wednesday: [],
+      Thursday: [],
+      Friday: [],
+      Saturday: [],
+      Sunday: []
     }
   };
-
   // Create the Vuex store
   const store = _createStore({
     state: initialState,
@@ -50,18 +48,33 @@ export function createStore(currentToken, currentUser) {
         state.myMeals.splice(index, 1);
         localStorage.setItem('myMeals', JSON.stringify(state.myMeals));
       },
-      ADD_TO_MEAL_PLAN(state, payload) {
-        const { meal, dayOfWeek, mealSlot } = payload;
+      REMOVE_FROM_MEAL_PLANS(state, index) {
+        state.mealplans.splice(index, 1);
+        localStorage.setItem('mealplans', JSON.stringify(state.mealplans));
+      },
+      ADD_TO_MEAL_PLANS(state,{meal}) {
         // Update the meal plan with the new meal data
-        state.mealPlan[dayOfWeek][mealSlot] = meal;
-      
+      state.mealplans.push(meal);
         // Update local storage to persist the changes
-        localStorage.setItem('mealPlan', JSON.stringify(state.mealPlan));
+        localStorage.setItem('mealplans', JSON.stringify(state.mealplans));
       },
       SET_INGREDIENTS(state, ingredients) {
         state.ingredients = ingredients;
         localStorage.setItem('ingredients', JSON.stringify(ingredients));
-      }
+      },
+
+       // Added this part
+       SET_SELECTED_DAY(state, { mealId, selectedDay }) {
+        // Find the meal by its id and update its selected day
+        const meal = state.myMeals.find(meal => meal.idmeal === mealId);
+        if (meal) {
+          meal.selectedDay = selectedDay;
+        }
+        
+        // Save the updated myMeals array to localStorage
+        localStorage.setItem('myMeals', JSON.stringify(state.myMeals));
+      },
+
     },
     actions: {
       fetchIngredients({ commit }) {
@@ -70,12 +83,10 @@ export function createStore(currentToken, currentUser) {
       }
     }
   });
-
   // Load data from local storage when the application starts
   // This ensures that the state persists between page loads
   if (!currentToken) {
     store.replaceState(initialState);
   }
-
   return store;
 }

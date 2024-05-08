@@ -10,10 +10,15 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore src"
   },
   "dependencies": {
-    "axios": "^0.21.4",
+    "@fullcalendar/vue3": "^6.1.11",
+    "@mdi/font": "^7.4.47",
+    "axios": "^1.6.8",
     "papercss": "^1.9.2",
     "vue": "^3.3.4",
+    "vue-cal": "^4.8.1",
+    "vue-functional-calendar": "^2.9.98",
     "vue-router": "^4.2.1",
+    "vuetify": "^3.6.4",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

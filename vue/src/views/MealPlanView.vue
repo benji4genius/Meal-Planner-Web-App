@@ -7,152 +7,147 @@
         </p>
         <router-link to="/">
           <!-- Logo with route link -->
-          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png" />
         </router-link>
-
-
         <router-link to="/meals">
           <p class="link">Meals</p>
         </router-link>
-
       </nav>
     </header>
+
     <div id="main-content">
-      <div class="meal-plan">
+      <h2 class="meal-title-page">Meal Plan</h2>
+      <div class="meal-container">
 
-        <div class="meal-slot">
-          <div>
-            <h2>Monday</h2>
-            <h3>Chicken Enchilada Casserole</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/qtuwxu1468233098.jpg" />
+        <div class="card" style="width:355px;" v-for="meal in mealplans" :key="meal.idmeal">
+          <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
+          <div class="card-body">
+            <h4 class="card-title">{{ meal.strmeal }}</h4>
+            <!-- Call method to handle meal details navigation -->
+            <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }"><button class="link">Let's
+                Cook!</button></router-link>
+            <button class="link" @click="removeFromMealPlans(meal)">Remove Meal</button>
+            <!-- New button to add meal to calendar -->
+            <button class="link" @click="addToCalendar(meal.strmeal)">Add to Calendar</button>
           </div>
+
+        </div>
+        <!-- Placeholder for floating calendar icon -->
+        <div class="floating-calendar-icon" @click="toggleCalendarVisibility">
+          <img src="calendar logo.png" alt="Icon Description">
+
         </div>
 
-        <div class="meal-slot">
-          <div>
-            <h2>Tuesday</h2>
-            <h3>Beef Caldereta</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/41cxjh1683207682.jpg" />
-          </div>
-        </div>
 
-        <div class="meal-slot">
-          <div>
-            <h2>Wednesday</h2>
-            <h3>Beef Wellington</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg" />
-          </div>
-        </div>
-        <div class="meal-slot">
-          <div>
-            <h2>Thursday</h2>
-            <h3>Chicken Alfredo Primavera</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg" />
-          </div>
-        </div>
+        <!-- Calendar component -->
+        <div v-show="calendarVisible" class="calendar-container">
+          <!-- Placeholder for your calendar component -->
+          <!-- You need to replace this with your actual calendar component -->
 
-        <div class="meal-slot">
-          <div>
-            <h2>Friday</h2>
-            <h3>Beef Brisket Pot Roast</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg" />
-          </div>
-        </div>
-
-        <div class="meal-slot">
-          <div>
-            <h2>Saturday</h2>
-            <h3>Baingan Bharta</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/urtpqw1487341253.jpg" />
-          </div>
-        </div>
-
-        <div class="meal-slot">
-          <div>
-            <h2>Sunday</h2>
-            <h3>Chicken Fajita Mac and Cheese</h3>
-            <img class="food" src="https://www.themealdb.com/images/media/meals/qrqywr1503066605.jpg" />
+          <Calendar :mealplans="calendarMeals" @addMeal="addMealToCalendar" @removeMeal="removeMealFromCalendar" />
+          <div class="calendar">
+            <h3>Calendar</h3>
+            <ul>
+              <li v-for="meal in calendarMeals" :key="meal">{{ meal }}</li>
+            </ul>
           </div>
         </div>
       </div>
+      <!--------------------End of Calendar code--------------------->
+      <div v-for="(dayMeals, day) in mealplan" :key="day">
+        <h3>{{ day }}</h3>
+        <ul>
+          <li v-for="meal in dayMeals" :key="meal.idmeal">{{ meal.strmeal }}</li>
+        </ul>
+      </div>
     </div>
-   
+      <!-- Floating Calendar component -->
+    <FloatingCalendar />
+
   </main>
 </template>
 
 <script>
-// import MealPlanService from "../services/MealPlanService";
+import { mapState } from "vuex";
+//import MyMealService from "../services/MyMealService";
+//import { RouterLink } from "vue-router";
+//import Calendar from '../components/Calendar.vue'; // Import the Calendar component
+// import FloatingCalendar from '../components/FloatingCalendar.vue';
+
+// Introduced in vue file
+//import { FunctionalCalendar } from 'vue-functional-calendar';
+
+
 
 export default {
+
+  components: {
+    //Calendar, // Register the Calendar component
+    // Register the FloatingCalendar component
+     FunctionalCalendar
+  },
+
   data() {
     return {
-      daysOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      // mealSlots: ['Breakfast', 'Lunch', 'Dinner'],
-      mealPlan: {
-        // Initialize meal plan with empty slots for each day and meal
-        Monday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Tuesday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Wednesday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Thursday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Friday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Saturday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } },
-        Sunday: { Breakfast: { name: '' }, Lunch: { name: '' }, Dinner: { name: '' } }
-      },
-      meals: []
-
-    }
+      calendarVisible: false,
+     //calendarData: {} 
+    };
+  },
+  computed: {
+    ...mapState(['mealplans']),// Map mealPlan from Vuex store
+    // mealPlans() {
+    //   return this.$store.state.mealPlans;
+    // }
   },
   methods: {
-    // loadMeals() {
-    //   MealPlanService
-    //     .getAllMealPlansForUser()
 
-    //     .then((response) => {
-    //       this.meals = response.data;
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error loading meals: ", error);
-    //     });
-    // },
-    dayOfWeek() {
-      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const currentDate = new Date();
-      return daysOfWeek[currentDate.getDay()];
-    },
-    dropMeal(day, mealSlot) {
-      // Implement drop logic to add a meal to the meal plan
-      // For now, let's just add the first meal from the meals list to the dropped slot
-      if (this.meals.length > 0) {
-        const meal = this.meals[0];
-        this.$set(this.mealPlan[day], mealSlot, meal);
+    removeFromMealPlans(meal) {
+      const index = this.mealplans.findIndex(m => m.idmeal === meal.idmeal);
+      if (index !== -1) {
+        this.$store.commit('REMOVE_FROM_MEAL_PLANS', index);
       }
     },
-    dragMeal(day, mealSlot) {
-      // Implement drag logic to move a meal within the meal plan
-      // For now, let's clear the dragged slot
-      this.mealPlan[day][mealSlot].name = '';
+
+    toggleCalendarVisibility() {
+      this.calendarVisible = !this.calendarVisible;
+    },
+    addToCalendar(meal) {
+      // Add the meal to the calendarMeals array
+      this.calendarMeals.push(meal);
+    },
+
+    removeMealFromCalendar(index) {
+      this.calendarMeals.splice(index, 1);
     }
   }
-  // created() {
-  //   this.loadMeals();
-  // }
-};
+}
 </script>
 
+
 <style scoped>
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
 main {
-  background-image: url("wood-veggies-pasta.jpg");
+  background-image: url("table-spices-spoons.jpg");
   background-repeat: no-repeat;
-  background-size:cover;
+  min-height: 100vh;
+  background-size: 100% 100%;
   background-position: center center;
   position: relative;
 }
 
-
 header {
   background-color: #F0754F;
   padding: 20px;
-  border: 2px solid black
+  border: 2px solid black;
+}
+
+select {
+  margin-right: 5px;
 }
 
 nav {
@@ -163,6 +158,8 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   height: 100px;
+  margin-bottom: 20px;
+  /* Add margin-bottom to create spacing between nav and main */
 }
 
 .logo {
@@ -175,11 +172,11 @@ nav {
 }
 
 #main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-  /* Adjusted margin */
+  display: grid;
+  font-family: Neucha, sans-serif;
+  font-size: larger;
+  color: black;
+
 }
 
 .link {
@@ -198,10 +195,12 @@ nav {
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 23px;
   outline: none;
   padding: .75rem;
+  margin-right: 10px;
+  margin-bottom: 2px;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
@@ -222,78 +221,135 @@ nav {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
-.meal-plan {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: large;
-  justify-content: space-around;
-  margin-top: 20px;
-  /* Added margin */
+.meal-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 20px 20px;
+
+
 }
 
-.meal-slot {
+.meal-title-page {
+  text-align: center;
+}
+
+.card {
+  width: 100%;
   border-color: #949BA2;
+  background-color: #fff;
   backface-visibility: hidden;
   border-radius: 15px;
   /* Adjust the value as needed */
   overflow: hidden;
   /* Ensure content inside the card respects the border-radius */
   border-style: solid;
-  color: black;
-  font-size: large;
-  background-color: #fff;
-  margin-top: 10px;
-  box-shadow: 0 0 10px #f0754f;
-}
+  border-width: 5px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
-.meal-slot:hover {
-  transform: translateY(-5px);
+  height: auto;
+  align-items: center;
+  justify-content: center;
   will-change: transform;
   transition: transform 0.3s ease;
+  /* Apply hover effect to the card */
+}
+
+.card:hover {
+  transform: translateY(-5px);
   /* Define hover effect */
 }
 
-.slot {
-  margin-bottom: 10px;
+.card-header,
+.card-footer {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: #949BA2;
+  padding: 0.75rem 1.25rem;
 }
 
-.meal {
-  width: 200px;
-  /* Adjust width as needed */
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
+.card-header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
 }
 
-.meal img {
-  max-width: 100%;
-  /* Ensure images scale properly within the fixed width container */
+.card-footer {
+  border-top-style: solid;
+  border-top-width: 2px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.75rem;
+
+  .card-title,
+  h4 {
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .card-subtitle,
+  h5 {
+    color: #5595CE;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+
+  .card-text,
+  p {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  .card-link+.card-link,
+  a+a {
+    margin-left: 1.25rem;
+  }
+}
+
+.days-of-the-week {
+  font-size: larger;
+}
+
+.image-top {
+  /*added width and height*/
+  width: 100%;
   height: auto;
 }
 
-.meal p {
-  margin-top: 5px;
-  margin-bottom: 0;
+.image-bottom,
+img {
+  border: 0;
+  border-radius: 0;
 }
 
-.food {
-  width: 300px;
-}
+/* Floatin-Calendar CSS */
 
-.h3 {
-  padding-top: 50px;
-}
-
-.meal-slot {
-  border: 1px solid black;
-  margin-right: 20px;
-  padding: 20px;
+.floating-calendar-icon {
+  position: fixed;
+  bottom: 100px; /* Adjust as needed */
+  right: 300px; /* Adjust as needed */
+  width: 100px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  background-color: #f0754f; /* Background color of the icon container */
+  border-radius: 50%; /* Makes it round */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow */
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-
-  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Make sure it's above other elements */
 }
 
-
+.floating-calendar-icon img {
+  width: 70%; /* Make sure the image fits inside the container */
+  height: auto;
+}
 
 </style>
