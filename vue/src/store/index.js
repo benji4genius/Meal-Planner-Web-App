@@ -8,16 +8,16 @@ export function createStore(currentToken, currentUser) {
     user: currentUser || {},
     myMeals: JSON.parse(localStorage.getItem('myMeals')) || [], // Initialize myMeals with data from local storage
     mealplans: JSON.parse(localStorage.getItem('mealplans')) || [],
-    ingredients: [],
-    mealPlan: {
-      Monday: [],
-      Tuesday: [],
-      Wednesday: [],
-      Thursday: [],
-      Friday: [],
-      Saturday: [],
-      Sunday: []
-    }
+    // ingredients: [],
+    // mealPlan: {
+    //   Monday: [],
+    //   Tuesday: [],
+    //   Wednesday: [],
+    //   Thursday: [],
+    //   Friday: [],
+    //   Saturday: [],
+    //   Sunday: []
+    // }
   };
   // Create the Vuex store
   const store = _createStore({

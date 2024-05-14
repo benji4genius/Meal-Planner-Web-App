@@ -4,6 +4,11 @@ import { createStore } from './store'
 import router from './router'
 import axios from 'axios'
 
+
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+
+
 /* sets the base url for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
 
@@ -28,3 +33,7 @@ const app = createApp(CapstoneApp);
 app.use(store);
 app.use(router);
 app.mount('#app');
+
+// Use plugin with optional defaults
+app.use(VCalendar, {})
+

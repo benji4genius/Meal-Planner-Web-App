@@ -12,8 +12,10 @@
   "dependencies": {
     "@fullcalendar/vue3": "^6.1.11",
     "@mdi/font": "^7.4.47",
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.6.8",
     "papercss": "^1.9.2",
+    "v-calendar": "^3.1.2",
     "vue": "^3.3.4",
     "vue-cal": "^4.8.1",
     "vue-functional-calendar": "^2.9.98",
@@ -27,6 +29,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^7.20.0",
+    "sass": "^1.77.0",
     "vite": "^3.2.7",
     "vue-eslint-parser": "^9.3.0"
   }

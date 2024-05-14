@@ -44,60 +44,68 @@
           <!-- Placeholder for your calendar component -->
           <!-- You need to replace this with your actual calendar component -->
 
-          <Calendar :mealplans="calendarMeals" @addMeal="addMealToCalendar" @removeMeal="removeMealFromCalendar" />
-          <div class="calendar">
-            <h3>Calendar</h3>
-            <ul>
-              <li v-for="meal in calendarMeals" :key="meal">{{ meal }}</li>
-            </ul>
+
+          <div class="custom-calendar">
+            <VDatePicker v-model="date" class="calendar-component"/>
+            <!-- Display meal name in rectangular box when hovering over a day -->
+            <div v-if="tooltipVisible" class="meal-box">
+             <div>{{ hoveredDay  }} </div>
+             <div>{{ hoveredMeal }}</div>
+             <button class="remove-meal"  @click="removeMealFromCalendar(hoveredDay, hoveredMeal)">Remove</button>
+            </div>
           </div>
+
         </div>
       </div>
       <!--------------------End of Calendar code--------------------->
-      <div v-for="(dayMeals, day) in mealplan" :key="day">
-        <h3>{{ day }}</h3>
+      <div v-for="( dayMeals, day) in mealplan" :key="day">
+         <h3>{{ day }}</h3> 
+
+        <!--------changed this part here for the calendar------>
+        <!-- Assuming the meal name is displayed within an <li> element -->
         <ul>
-          <li v-for="meal in dayMeals" :key="meal.idmeal">{{ meal.strmeal }}</li>
+          <div v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
+            @mouseover="showHoverBox(day, meal.strmeal)" @mouseleave="hideHoverBox">
+             {{ meal.strmeal }} 
+            
+        </div>
         </ul>
+
       </div>
     </div>
-      <!-- Floating Calendar component -->
-    <FloatingCalendar />
 
   </main>
 </template>
 
 <script>
 import { mapState } from "vuex";
-//import MyMealService from "../services/MyMealService";
-//import { RouterLink } from "vue-router";
-//import Calendar from '../components/Calendar.vue'; // Import the Calendar component
-// import FloatingCalendar from '../components/FloatingCalendar.vue';
 
-// Introduced in vue file
-//import { FunctionalCalendar } from 'vue-functional-calendar';
-
-
+//import 'v-calendar/style.css';
 
 export default {
-
-  components: {
-    //Calendar, // Register the Calendar component
-    // Register the FloatingCalendar component
-     FunctionalCalendar
-  },
 
   data() {
     return {
       calendarVisible: false,
-     //calendarData: {} 
-    };
+      date: null,
+      tooltipVisible: false,
+      hoveredDay: '',
+      hoveredMeal: '',
+      mealplan: {}
+    }
   },
   computed: {
     ...mapState(['mealplans']),// Map mealPlan from Vuex store
     // mealPlans() {
     //   return this.$store.state.mealPlans;
     // }
+  },
+  created() {
+    // Load mealplan data from local storage
+    const storedMealPlan = localStorage.getItem('mealplan');
+    if (storedMealPlan) {
+      this.mealplan = JSON.parse(storedMealPlan);
+    }
   },
   methods: {
 
@@ -112,14 +120,50 @@ export default {
       this.calendarVisible = !this.calendarVisible;
     },
     addToCalendar(meal) {
-      // Add the meal to the calendarMeals array
-      this.calendarMeals.push(meal);
+      if (this.date) {
+        if (!this.mealplan[this.date]) {
+          this.mealplan[this.date] = [];
+        }
+        this.mealplan[this.date].push({ strmeal: meal });
+      }
     },
 
-    removeMealFromCalendar(index) {
-      this.calendarMeals.splice(index, 1);
-    }
+    removeMealFromCalendar(day, meal) {
+      if (this.mealplan[day]) {
+        this.mealplan[day] = this.mealplan[day].filter(m => m.strmeal !== meal);
+      }
+    },
+
+    // eslint-disable-next-line vue/no-dupe-keys
+    showHoverBox(day, meal) {
+      this.tooltipVisible = true;
+      this.hoveredDay = day;
+      this.hoveredMeal = meal;
+    },
+    hideHoverBox() {
+      this.tooltipVisible = false;
+      this.hoveredDay = '';
+      this.hoveredMeal = '';
+    },
+    // addMealToCalendar(day) {
+    //   // Set the selected date to the clicked day
+    //   this.date = day;
+    // }
+
+  },
+  
+  watch: {
+    // Watch for changes in mealplan and update local storage
+    mealplan: {
+      handler(newVal) {
+        localStorage.setItem('mealplan', JSON.stringify(newVal));
+      },
+      deep: true,
+    },
   }
+
+
+
 }
 </script>
 
@@ -333,23 +377,77 @@ img {
 
 .floating-calendar-icon {
   position: fixed;
-  bottom: 100px; /* Adjust as needed */
-  right: 300px; /* Adjust as needed */
-  width: 100px; /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
-  background-color: #f0754f; /* Background color of the icon container */
-  border-radius: 50%; /* Makes it round */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow */
+  bottom: 100px;
+  /* Adjust as needed */
+  right: 300px;
+  /* Adjust as needed */
+  width: 100px;
+  /* Adjust as needed */
+  height: 50px;
+  /* Adjust as needed */
+  background-color: #f0754f;
+  /* Background color of the icon container */
+  border-radius: 50%;
+  /* Makes it round */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Optional: Adds a shadow */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Make sure it's above other elements */
+  z-index: 999;
+  /* Make sure it's above other elements */
 }
 
 .floating-calendar-icon img {
-  width: 70%; /* Make sure the image fits inside the container */
+  width: 70%;
+  /* Make sure the image fits inside the container */
   height: auto;
 }
+
+
+/* 3. Implement hover effect to display meal names */
+.calendar-day.with-meals:hover {
+  visibility: visible;
+}
+
+.meal-box {
+  position: absolute;
+  background-color: orange;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+}
+
+/* Style the calendar to make it bigger */
+/* .custom-calendar {
+  position: relative;
+  width:auto;
+  height: auto;
+}
+
+.calendar-container{
+  width: auto;
+  height: auto;
+} */
+/* .calndar-container.custom-calendar {
+    position: relative;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: -webkit-max-content;
+    width: max-content;
+    height: -webkit-max-content;
+    height: max-content;
+    font-family: var(--vc-font-family);
+    color: var(--vc-color);
+    background-color: var(--vc-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+} */
+
+
 
 </style>
