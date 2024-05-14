@@ -66,7 +66,7 @@
         <ul>
           <div v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
             @mouseover="showHoverBox(day, meal.strmeal)" @mouseleave="hideHoverBox">
-             {{ meal.strmeal }} 
+             <!-- {{ meal.strmeal }}  -->
             
         </div>
         </ul>
