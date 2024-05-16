@@ -28,7 +28,7 @@
                 Cook!</button></router-link>
             <button class="link" @click="removeFromMealPlans(meal)">Remove Meal</button>
             <!-- New button to add meal to calendar -->
-            <button class="link" @click="addToCalendar(meal.strmeal)">Add to Calendar</button>
+            <button class="link" @click="addToCalendar(meal)">Add to Calendar</button>
           </div>
 
         </div>
@@ -45,13 +45,14 @@
           <!-- You need to replace this with your actual calendar component -->
 
 
-          <div class="custom-calendar">
-            <VDatePicker v-model="date" class="calendar-component"/>
+          <div class="custom-calendar" style="width: 600px !important; height: 600px !important;">
+            <VDatePicker v-model="date" class="calendar-component"
+              style="width: 600px !important; height: 350px !important;" />
             <!-- Display meal name in rectangular box when hovering over a day -->
             <div v-if="tooltipVisible" class="meal-box">
-             <div>{{ hoveredDay  }} </div>
-             <div>{{ hoveredMeal }}</div>
-             <button class="remove-meal"  @click="removeMealFromCalendar(hoveredDay, hoveredMeal)">Remove</button>
+              <div>{{ hoveredDay }} </div>
+              <div>{{ hoveredMeal }}</div>
+              <button class="remove-meal" @click="removeMealFromCalendar(hoveredDay, hoveredMeal)">Remove</button>
             </div>
           </div>
 
@@ -59,16 +60,14 @@
       </div>
       <!--------------------End of Calendar code--------------------->
       <div v-for="( dayMeals, day) in mealplan" :key="day">
-         <h3>{{ day }}</h3> 
+        <h3>{{ day }}</h3>
 
-        <!--------changed this part here for the calendar------>
-        <!-- Assuming the meal name is displayed within an <li> element -->
         <ul>
-          <div v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
-            @mouseover="showHoverBox(day, meal.strmeal)" @mouseleave="hideHoverBox">
-             <!-- {{ meal.strmeal }}  -->
-            
-        </div>
+          <!-- Loop through meals of the day -->
+          <li v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
+            @mouseover="showHoverBox(day, meal)" @mouseleave="hideHoverBox">
+            <!-- {{ meal }} -->
+          </li>>
         </ul>
 
       </div>
@@ -100,13 +99,13 @@ export default {
     //   return this.$store.state.mealPlans;
     // }
   },
-  created() {
-    // Load mealplan data from local storage
-    const storedMealPlan = localStorage.getItem('mealplan');
-    if (storedMealPlan) {
-      this.mealplan = JSON.parse(storedMealPlan);
-    }
-  },
+  // created() {
+  //   // Load mealplan data from local storage
+  //   const storedMealPlan = localStorage.getItem('mealplan');
+  //   if (storedMealPlan) {
+  //     this.mealplan = JSON.parse(storedMealPlan);
+  //   }
+  // },
   methods: {
 
     removeFromMealPlans(meal) {
@@ -119,12 +118,13 @@ export default {
     toggleCalendarVisibility() {
       this.calendarVisible = !this.calendarVisible;
     },
+
     addToCalendar(meal) {
-      if (this.date) {
+      if (this.date && meal && meal.strmeal) {
         if (!this.mealplan[this.date]) {
           this.mealplan[this.date] = [];
         }
-        this.mealplan[this.date].push({ strmeal: meal });
+        this.mealplan[this.date].push(meal.strmeal);
       }
     },
 
@@ -134,7 +134,6 @@ export default {
       }
     },
 
-    // eslint-disable-next-line vue/no-dupe-keys
     showHoverBox(day, meal) {
       this.tooltipVisible = true;
       this.hoveredDay = day;
@@ -151,7 +150,7 @@ export default {
     // }
 
   },
-  
+
   watch: {
     // Watch for changes in mealplan and update local storage
     mealplan: {
@@ -417,34 +416,35 @@ img {
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- 
+
 }
 
 /* Style the calendar to make it bigger */
-/* .custom-calendar {
+.custom-calendar {
   position: relative;
-  width:auto;
+  width: auto;
   height: auto;
 }
 
-.calendar-container{
+.calendar-container {
   width: auto;
   height: auto;
-} */
-/* .calndar-container.custom-calendar {
-    position: relative;
-    display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    width: -webkit-max-content;
-    width: max-content;
-    height: -webkit-max-content;
-    height: max-content;
-    font-family: var(--vc-font-family);
-    color: var(--vc-color);
-    background-color: var(--vc-bg);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-tap-highlight-color: transparent;
-} */
+}
+
+.calndar-container.custom-calendar {
+  position: relative;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: -webkit-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: max-content;
+  font-family: var(--vc-font-family);
+  color: var(--vc-color);
+  background-color: var(--vc-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
 </style>
