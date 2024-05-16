@@ -447,7 +447,4 @@ img {
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
 } */
-
-
-
 </style>
