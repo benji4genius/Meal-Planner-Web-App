@@ -6,7 +6,6 @@
           <router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link>
         </p>
         <router-link to="/">
-          <!-- Logo with route link -->
           <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png" />
         </router-link>
         <router-link to="/meals">
@@ -18,71 +17,54 @@
     <div id="main-content">
       <h2 class="meal-title-page">Meal Plan</h2>
       <div class="meal-container">
-
         <div class="card" style="width:355px;" v-for="meal in mealplans" :key="meal.idmeal">
           <img class="image-top" v-if="meal.idmeal" :src="meal.strmealthumb" alt="Card example image">
           <div class="card-body">
             <h4 class="card-title">{{ meal.strmeal }}</h4>
-            <!-- Call method to handle meal details navigation -->
-            <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }"><button class="link">Let's
-                Cook!</button></router-link>
+            <router-link v-bind:to="{ name: 'mealDetails', params: { idmeal: meal.idmeal } }">
+              <button class="link">Let's Cook!</button>
+            </router-link>
             <button class="link" @click="removeFromMealPlans(meal)">Remove Meal</button>
-            <!-- New button to add meal to calendar -->
             <button class="link" @click="addToCalendar(meal)">Add to Calendar</button>
           </div>
-
         </div>
-        <!-- Placeholder for floating calendar icon -->
+
         <div class="floating-calendar-icon" @click="toggleCalendarVisibility">
           <img src="calendar logo.png" alt="Icon Description">
-
         </div>
 
-
-        <!-- Calendar component -->
         <div v-show="calendarVisible" class="calendar-container">
-          <!-- Placeholder for your calendar component -->
-          <!-- You need to replace this with your actual calendar component -->
-
-
           <div class="custom-calendar" style="width: 600px !important; height: 600px !important;">
-            <VDatePicker v-model="date" class="calendar-component"
-              style="width: 600px !important; height: 350px !important;" />
-            <!-- Display meal name in rectangular box when hovering over a day -->
-            <div v-if="tooltipVisible" class="meal-box">
-              <div>{{ hoveredDay }} </div>
+            <VDatePicker v-model="date" class="calendar-component" style="width: 600px !important; height: 350px !important;" @input="addToCalendar" />
+
+            <div v-if="tooltipVisible" class="meal-box" :style="{ top: tooltipPosition.top + 'px', left: tooltipPosition.left + 'px' }">
+              <div>{{ hoveredDay }}</div>
               <div>{{ hoveredMeal }}</div>
+              
               <button class="remove-meal" @click="removeMealFromCalendar(hoveredDay, hoveredMeal)">Remove</button>
+
+            </div>
+
+            <div v-for="(dayMeals, day) in mealplan" :key="day">
+              <h3>{{ day }}</h3>
+              <ul>
+                <li v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item" @mouseover="showHoverBox(day, meal, $event)" @mouseleave="hideHoverBox">
+                  {{ meal }}
+                </li>
+              </ul>
             </div>
           </div>
-
         </div>
       </div>
-      <!--------------------End of Calendar code--------------------->
-      <div v-for="( dayMeals, day) in mealplan" :key="day">
-        <h3>{{ day }}</h3>
-
-        <ul>
-          <!-- Loop through meals of the day -->
-          <li v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
-            @mouseover="showHoverBox(day, meal)" @mouseleave="hideHoverBox">
-            <!-- {{ meal }} -->
-          </li>>
-        </ul>
-
-      </div>
     </div>
-
   </main>
 </template>
 
 <script>
 import { mapState } from "vuex";
-
-//import 'v-calendar/style.css';
+import { reactive } from 'vue';
 
 export default {
-
   data() {
     return {
       calendarVisible: false,
@@ -90,69 +72,65 @@ export default {
       tooltipVisible: false,
       hoveredDay: '',
       hoveredMeal: '',
-      mealplan: {}
+      tooltipPosition: {
+        top: 0,
+        left: 0
+      },
+      mealplan: reactive({})
     }
   },
   computed: {
-    ...mapState(['mealplans']),// Map mealPlan from Vuex store
-    // mealPlans() {
-    //   return this.$store.state.mealPlans;
-    // }
+    ...mapState(['mealplans'])
   },
-  // created() {
-  //   // Load mealplan data from local storage
-  //   const storedMealPlan = localStorage.getItem('mealplan');
-  //   if (storedMealPlan) {
-  //     this.mealplan = JSON.parse(storedMealPlan);
-  //   }
-  // },
   methods: {
-
     removeFromMealPlans(meal) {
       const index = this.mealplans.findIndex(m => m.idmeal === meal.idmeal);
       if (index !== -1) {
         this.$store.commit('REMOVE_FROM_MEAL_PLANS', index);
       }
     },
-
     toggleCalendarVisibility() {
       this.calendarVisible = !this.calendarVisible;
     },
-
     addToCalendar(meal) {
-      if (this.date && meal && meal.strmeal) {
-        if (!this.mealplan[this.date]) {
-          this.mealplan[this.date] = [];
-        }
-        this.mealplan[this.date].push(meal.strmeal);
+      if (!this.date || !meal || !meal.strmeal) {
+        console.error('Invalid date or meal.');
+        return;
       }
-    },
 
+      const selectedDate = new Date(this.date);
+      if (isNaN(selectedDate.getTime())) {
+        console.error('Invalid date format.');
+        return;
+      }
+
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+      if (!this.mealplan[formattedDate]) {
+        this.mealplan[formattedDate] = [];
+      }
+      this.mealplan[formattedDate].push(meal.strmeal);
+    },
     removeMealFromCalendar(day, meal) {
       if (this.mealplan[day]) {
-        this.mealplan[day] = this.mealplan[day].filter(m => m.strmeal !== meal);
+        this.mealplan[day] = this.mealplan[day].filter(m => m !== meal);
       }
     },
-
-    showHoverBox(day, meal) {
-      this.tooltipVisible = true;
-      this.hoveredDay = day;
-      this.hoveredMeal = meal;
+    showHoverBox(day, meal, event) {
+      if (event) {
+        this.tooltipVisible = true;
+        this.hoveredDay = day;
+        this.hoveredMeal = meal;
+        this.tooltipPosition.top = event.clientY;
+        this.tooltipPosition.left = event.clientX;
+      }
     },
     hideHoverBox() {
       this.tooltipVisible = false;
       this.hoveredDay = '';
       this.hoveredMeal = '';
-    },
-    // addMealToCalendar(day) {
-    //   // Set the selected date to the clicked day
-    //   this.date = day;
-    // }
-
+    }
   },
-
   watch: {
-    // Watch for changes in mealplan and update local storage
     mealplan: {
       handler(newVal) {
         localStorage.setItem('mealplan', JSON.stringify(newVal));
@@ -160,9 +138,6 @@ export default {
       deep: true,
     },
   }
-
-
-
 }
 </script>
 
@@ -415,11 +390,10 @@ img {
   background-color: orange;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  z-index: 1000;
 }
 
-/* Style the calendar to make it bigger */
+/* Style the calendar to make it bigger
 .custom-calendar {
   position: relative;
   width: auto;
@@ -446,5 +420,5 @@ img {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-}
+} */
 </style>
