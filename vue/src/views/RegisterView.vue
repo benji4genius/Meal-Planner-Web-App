@@ -1,43 +1,47 @@
 <template>
   <main>
-  <div id="register" class="text-center">
-    <header>
+    <div id="register" class="text-center">
+      <header>
         <nav>
-          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png"/>
+          <img class="plan-to-plate-nav" src="plantoplate-favicon-white.png" />
         </nav>
       </header>
+
       <body>
         <div id="main-content">
           <div class="welcome-text">
             <h1>Start your journey to a healthier life!</h1>
           </div>
           <h2>Making life easier one meal at a time.</h2>
-        <form v-on:submit.prevent="register">
-      <h2>Create Account</h2>
-      <div role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <div class="form-input-group">
-        <label id="sign-up-text" for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label id="sign-up-text" for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <div class="form-input-group">
-        <label id="sign-up-text" for="confirmPassword">Confirm Password</label>
-        <input type="confirmPassword" id="confirmPassword" v-model="user.confirmPassword" required />
-      </div>
-      <button id="submit-btn" type="submit">Create Account</button>
-      <p><router-link id="sign-up-link" v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
-    </form>
+          <form v-on:submit.prevent="register">
+            <h2>Create Account</h2>
+            <div role="alert" v-if="registrationErrors">
+              {{ registrationErrorMsg }}
+            </div>
+            <div class="form-input-group">
+              <label id="sign-up-text" for="username">Username</label>
+              <input type="text" id="username" v-model="user.username" required autofocus />
+            </div>
+            <div class="form-input-group">
+              <label id="sign-up-text" for="password">Password</label>
+              <input type="password" id="password" v-model="user.password" required />
+            </div>
+            <div class="form-input-group">
+              <label id="sign-up-text" for="confirmPassword">Confirm Password</label>
+              <input type="confirmPassword" id="confirmPassword" v-model="user.confirmPassword" required />
+            </div>
+            <button id="submit-btn" type="submit">Create Account</button>
+            <p><router-link id="sign-up-link" v-bind:to="{ name: 'login' }">Already have an account? Log
+                in.</router-link></p>
+          </form>
         </div>
       </body>
-  </div>
-  <footer> <p>This meal plan application was meticulously crafted, cooked, and served by
-    Benjamin Adetunlese, Jake Lilly, Katherine Miller, Saraswati Rizal, and Melissa Stevens.</p></footer>
-</main>
+    </div>
+    <footer>
+      <p>This meal plan application was meticulously crafted, cooked, and served by
+        Benjamin Adetunlese, Jake Lilly, Katherine Miller, Saraswati Rizal, and Melissa Stevens.</p>
+    </footer>
+  </main>
 </template>
 
 <script>
@@ -93,10 +97,12 @@ export default {
 .form-input-group {
   margin-bottom: 1rem;
 }
+
 label {
   margin-right: 0.5rem;
 }
-main{
+
+main {
   background-image: url("login-page-photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -116,7 +122,7 @@ main{
 }
 
 footer {
-  background-color:#f0754f;
+  background-color: #f0754f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,18 +135,20 @@ footer {
   font-weight: bold;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-header{
-  background-color:#f0754f;
+
+header {
+  background-color: #f0754f;
   padding: 20px;
   border: 2px solid black
 }
-nav{
-  display:flex;
+
+nav {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
@@ -148,6 +156,7 @@ nav{
   font-size: 20px;
   height: 100px;
 }
+
 .logo {
   width: 200px;
   height: auto;
@@ -156,8 +165,9 @@ nav{
   margin-right: 1px;
   margin-left: 1px;
 }
-#main-content{
-  display:flex;
+
+#main-content {
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 200px;
@@ -217,28 +227,31 @@ h2 {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
-.form-input-group{
+.form-input-group {
   border: 2px solid #ccc;
   border-width: 10px;
   border-radius: 6px;
- font-size: 16px;
+  font-size: 16px;
 }
-#username{
+
+#username {
   font-size: 25px;
 }
-#password{
+
+#password {
   font-size: 25px;
 }
-#confirmPassword{
+
+#confirmPassword {
   font-size: 19px;
 }
 
-#sign-up-text{
+#sign-up-text {
   font-size: 25px;
 }
 
-#submit-btn{
-  
+#submit-btn {
+
   color: black;
   padding: 12px 20px;
   margin: 8px 0;
@@ -247,15 +260,17 @@ h2 {
   cursor: pointer;
   font-size: 24px;
 }
-#submit-btn:hover{
+
+#submit-btn:hover {
   background-color: #f0754f;
   color: white;
 }
-#sign-up-link{
+
+#sign-up-link {
   font-size: 25px;
   color: blue;
   padding: 2px 10px;
-  margin: 8px 0; 
+  margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
