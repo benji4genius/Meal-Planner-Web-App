@@ -20,16 +20,16 @@
           Thank you for registering, please sign in.
         </div>
         <div class="form-input-group">
-          <label for="username">Username:</label>
+          <label id="log-in-text" for="username">Username:</label>
           <input type="text" id="username" v-model="user.username" required autofocus />
         </div>
         <div class="form-input-group">
-          <label for="password">Password:</label>
+          <label id="log-in-text" for="password">Password:</label>
           <input type="password" id="password" v-model="user.password" required />
         </div>
-        <button type="submit">Sign in</button>
+        <button id="submit-btn" type="submit">Sign in</button>
         <p>
-        <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+        <router-link id="sign-up-link" v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
       </form>
         </div>
       </body>
@@ -204,5 +204,45 @@ h1 {
   margin-right: 2px;
   font-size: 50px;
 }
+.form-input-group{
+  border: 2px solid #ccc;
+  border-width: 10px;
+  border-radius: 6px;
+ font-size: 16px;
+}
+#username{
+  font-size: 25px;
+}
+#password{
+  font-size: 25px;
+}
 
+#log-in-text{
+  font-size: 25px;
+}
+
+#submit-btn{
+  
+  color: black;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 3px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 24px;
+}
+#submit-btn:hover{
+  background-color: #f0754f;
+  color: white;
+}
+#sign-up-link{
+  font-size: 25px;
+  color: blue;
+  padding: 2px 10px;
+  margin: 8px 0; 
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 25px;
+}
 </style>

@@ -5,9 +5,16 @@ import router from './router'
 import axios from 'axios'
 
 
-import VCalendar from 'v-calendar';
-import 'v-calendar/style.css';
+//// DELETE THESE IF THE NEW CALEANDAR WORKS//
+import vuetify from './plugins/vuetify';
+import { loadFonts } from './plugins/webfontloader';
+import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
+///////////////////////////////////////////////
 
+// ADDED THIS PART HERE/// DELETE IF NEW CALEADAR WORKS//
+loadFonts();
+//////////////
 
 /* sets the base url for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
@@ -32,8 +39,12 @@ const store = createStore(currentToken, currentUser);
 const app = createApp(CapstoneApp);
 app.use(store);
 app.use(router);
+// ADDED THIS HERE/// // DELETE THIS IF YOUR NEW CALEANDAR WORKSS//
+app.use(vuetify);
+//////////////////////////
 app.mount('#app');
 
-// Use plugin with optional defaults
-app.use(VCalendar, {})
+
+
+
 

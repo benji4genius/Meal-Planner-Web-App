@@ -20,8 +20,9 @@
     "vue-cal": "^4.8.1",
     "vue-functional-calendar": "^2.9.98",
     "vue-router": "^4.2.1",
-    "vuetify": "^3.6.4",
-    "vuex": "^4.1.0"
+    "vuetify": "^3.6.6",
+    "vuex": "^4.1.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

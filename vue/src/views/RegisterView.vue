@@ -9,7 +9,7 @@
       <body>
         <div id="main-content">
           <div class="welcome-text">
-            <h1>Welcome to PlanMyPlate!</h1>
+            <h1>Start your journey to a healthier life!</h1>
           </div>
           <h2>Making life easier one meal at a time.</h2>
         <form v-on:submit.prevent="register">
@@ -18,19 +18,19 @@
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
+        <label id="sign-up-text" for="username">Username</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
-        <label for="password">Password</label>
+        <label id="sign-up-text" for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
+        <label id="sign-up-text" for="confirmPassword">Confirm Password</label>
+        <input type="confirmPassword" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
-      <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <button id="submit-btn" type="submit">Create Account</button>
+      <p><router-link id="sign-up-link" v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
         </div>
       </body>
@@ -112,7 +112,7 @@ main{
   white-space: nowrap;
   display: inline-block;
   margin-right: 20px;
-  font-size: larger;
+  font-size: 35px;
 }
 
 footer {
@@ -215,5 +215,50 @@ h2 {
 
 .link:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.form-input-group{
+  border: 2px solid #ccc;
+  border-width: 10px;
+  border-radius: 6px;
+ font-size: 16px;
+}
+#username{
+  font-size: 25px;
+}
+#password{
+  font-size: 25px;
+}
+#confirmPassword{
+  font-size: 19px;
+}
+
+#sign-up-text{
+  font-size: 25px;
+}
+
+#submit-btn{
+  
+  color: black;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 3px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 24px;
+}
+#submit-btn:hover{
+  background-color: #f0754f;
+  color: white;
+}
+#sign-up-link{
+  font-size: 25px;
+  color: blue;
+  padding: 2px 10px;
+  margin: 8px 0; 
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 25px;
 }
 </style>

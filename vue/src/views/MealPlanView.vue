@@ -2,7 +2,7 @@
   <main>
     <header>
       <nav>
-        <p class="link" href="{name: home}">
+        <p class="link">
           <router-link v-bind:to="{ name: 'mymeals' }">My Meals</router-link>
         </p>
         <router-link to="/">
@@ -30,29 +30,42 @@
         </div>
 
         <div class="floating-calendar-icon" @click="toggleCalendarVisibility">
-          <img src="calendar logo.png" alt="Icon Description">
+          <img src="calendar logo 3.png" alt="Icon Description">
         </div>
 
         <div v-show="calendarVisible" class="calendar-container">
           <div class="custom-calendar" style="width: 600px !important; height: 600px !important;">
-            <VDatePicker v-model="date" class="calendar-component" style="width: 600px !important; height: 350px !important;" @input="addToCalendar" />
+            <VDatePicker v-model="date" class="calendar-component custom-calendar" ref="datePicker"
+              style="width: 600px !important; height: 490px !important;  background-color: whitesmoke !important; color: black !important;">
+              <template #day="{ date }">
+                <div class="v-date-picker-month__day-btn custom-date-btn"> {{ date }}
+                </div>
+              </template>
+              <template #weekday="{ weekday }">
+                <div class="v-date-picker-month__weekday custom-weekday"> {{ weekday }}
+                </div>
+              </template>
 
-            <div v-if="tooltipVisible" class="meal-box" :style="{ top: tooltipPosition.top + 'px', left: tooltipPosition.left + 'px' }">
+              <div v-if="tooltipVisible" class="meal-box"
+              :style="{ top: tooltipPosition.top + 'px', left: tooltipPosition.left + 'px' }">
               <div>{{ hoveredDay }}</div>
               <div>{{ hoveredMeal }}</div>
-              
               <button class="remove-meal" @click="removeMealFromCalendar(hoveredDay, hoveredMeal)">Remove</button>
-
             </div>
+            </VDatePicker>
+
 
             <div v-for="(dayMeals, day) in mealplan" :key="day">
               <h3>{{ day }}</h3>
               <ul>
-                <li v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item" @mouseover="showHoverBox(day, meal, $event)" @mouseleave="hideHoverBox">
+                <li v-for="(meal, mealIndex) in dayMeals" :key="mealIndex" class="meal-item"
+                  @mouseover="showHoverBox(day, meal, $event)" @mouseleave="hideHoverBox">
                   {{ meal }}
                 </li>
               </ul>
             </div>
+
+            
           </div>
         </div>
       </div>
@@ -63,8 +76,15 @@
 <script>
 import { mapState } from "vuex";
 import { reactive } from 'vue';
+import { VDatePicker } from 'vuetify/components';
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
 
 export default {
+  components: {
+    VDatePicker,
+  },
+
   data() {
     return {
       calendarVisible: false,
@@ -74,7 +94,8 @@ export default {
       hoveredMeal: '',
       tooltipPosition: {
         top: 0,
-        left: 0
+        left: 0,
+
       },
       mealplan: reactive({})
     }
@@ -109,7 +130,10 @@ export default {
         this.mealplan[formattedDate] = [];
       }
       this.mealplan[formattedDate].push(meal.strmeal);
+
+      console.log(`Meal added to calendar on ${formattedDate}:`, this.mealplan[formattedDate]);
     },
+
     removeMealFromCalendar(day, meal) {
       if (this.mealplan[day]) {
         this.mealplan[day] = this.mealplan[day].filter(m => m !== meal);
@@ -130,6 +154,7 @@ export default {
       this.hoveredMeal = '';
     }
   },
+
   watch: {
     mealplan: {
       handler(newVal) {
@@ -138,11 +163,12 @@ export default {
       deep: true,
     },
   }
+
 }
 </script>
 
-
 <style scoped>
+/* Your existing styles */
 body,
 html {
   height: 100%;
@@ -239,21 +265,6 @@ nav {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
-.meal-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 50px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  padding: 20px 20px;
-
-
-}
-
-.meal-title-page {
-  text-align: center;
-}
 
 .card {
   width: 100%;
@@ -277,6 +288,7 @@ nav {
   transition: transform 0.3s ease;
   /* Apply hover effect to the card */
 }
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -331,12 +343,7 @@ nav {
   }
 }
 
-.days-of-the-week {
-  font-size: larger;
-}
-
 .image-top {
-  /*added width and height*/
   width: 100%;
   height: auto;
 }
@@ -347,78 +354,88 @@ img {
   border-radius: 0;
 }
 
-/* Floatin-Calendar CSS */
+.meal-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 20px 20px;
+
+
+}
+
+.meal-title-page {
+  font-family: Neucha, sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
 .floating-calendar-icon {
   position: fixed;
-  bottom: 100px;
-  /* Adjust as needed */
-  right: 300px;
-  /* Adjust as needed */
-  width: 100px;
-  /* Adjust as needed */
-  height: 50px;
-  /* Adjust as needed */
-  background-color: #f0754f;
-  /* Background color of the icon container */
+  bottom: 10px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #F0754F;
   border-radius: 50%;
-  /* Makes it round */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Optional: Adds a shadow */
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  /* Make sure it's above other elements */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .floating-calendar-icon img {
-  width: 70%;
-  /* Make sure the image fits inside the container */
-  height: auto;
+  width: 700px;
+  height: 60px;
+}
+
+.calendar-container {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  background-color: rgb(204, 197, 197);
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 
-/* 3. Implement hover effect to display meal names */
-.calendar-day.with-meals:hover {
-  visibility: visible;
+.meal-item:hover {
+  background-color: #F0754F;
+  color: white;
 }
 
 .meal-box {
   position: absolute;
-  background-color: orange;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  z-index: 100;
+}
+
+.remove-meal {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  background-color: #FF5252;
+  color: white;
   border-radius: 5px;
-  z-index: 1000;
+  cursor: pointer;
 }
 
-/* Style the calendar to make it bigger
-.custom-calendar {
-  position: relative;
-  width: auto;
-  height: auto;
+.remove-meal:hover {
+  background-color: #E64A19;
 }
 
-.calendar-container {
-  width: auto;
-  height: auto;
+.custom-date-btn {
+  font-size: 1.5rem;
+  padding: 2.5rem;
 }
-
-.calndar-container.custom-calendar {
-  position: relative;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  width: -webkit-max-content;
-  width: max-content;
-  height: -webkit-max-content;
-  height: max-content;
-  font-family: var(--vc-font-family);
-  color: var(--vc-color);
-  background-color: var(--vc-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
-} */
 </style>
